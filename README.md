@@ -1,59 +1,60 @@
-# NgUi
+# @emc-dev/ng-ui
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.0.
+Angular 22 UI component library (standalone components, `ui-*` selectors) with a
+demo app and Storybook. Built with Angular CDK, Forms, Overlay, and Router on
+Tailwind CSS v4.
 
-## Development server
+## Requirements
 
-To start a local development server, run:
+- Node.js >= 20
+- pnpm >= 11 (see `packageManager` in `package.json`)
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting started
 
 ```bash
-ng generate component component-name
+pnpm install
+pnpm build      # build the library -> dist/ng-ui
+pnpm start      # ng serve demo -> http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The demo resolves `@emc-dev/ng-ui` **from source** through TS paths
+(`demo/tsconfig.app.json`), so there is no install/rebuild step between
+editing the library and reloading the demo.
 
-```bash
-ng generate --help
+## Scripts
+
+| Script              | Description                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| `pnpm build`        | Build `@emc-dev/ng-ui` (`ng build ng-ui`)                   |
+| `pnpm build:demo`   | Build the demo app (`ng build demo`)                        |
+| `pnpm start`        | Dev server for the demo (`ng serve demo`)                   |
+| `pnpm build:styles` | Compile the Tailwind theme -> `projects/ng-ui/styles.css`   |
+| `pnpm analyze`      | Bundle-size report from `dist/ng-ui` -> `dist/bundle-stats` |
+| `pnpm test`         | Run unit tests (vitest)                                     |
+| `pnpm lint`         | ESLint                                                      |
+| `pnpm storybook`    | Storybook dev server (port 6006)                            |
+| `pnpm chromatic`    | Chromatic visual regression                                 |
+| `pnpm changeset`    | Create a changeset entry                                    |
+| `pnpm release`      | Build + styles + `changeset publish`                        |
+
+## Package structure
+
+```
+projects/
+  ng-ui/        the @emc-dev/ng-ui library (src/lib/**, src/public-api.ts)
+demo/           showcase app consuming the library from source
+.storybook/     Storybook config (compodoc + a11y)
+scripts/        analyze-ng-ui.mjs (bundle report), patch-ng-ui-exports.mjs
+docs/           architecture notes
 ```
 
-## Building
+## Publishing
 
-To build the project run:
+Releases run via Changesets: merge a `changeset/*.md` entry into `main`, and the
+`Release` workflow opens a version PR; merging it publishes to npm with GitHub
+trusted publishing (see `.github/workflows/release.yml`).
 
-```bash
-ng build
-```
+## Docs
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+See [`docs/`](./docs) for architecture and future-implementation notes, and
+[`projects/ng-ui/CHANGELOG.md`](./projects/ng-ui/CHANGELOG.md) for release history.

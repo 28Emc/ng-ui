@@ -1,0 +1,46 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ComboboxStories from './combobox.stories';
+
+<Meta of={ComboboxStories} />
+
+# Combobox
+
+Select con filtrado mientras se escribe. Implementa `ControlValueAccessor`,
+usa CDK Overlay, `aria-activedescendant` y navegación completa por teclado
+(Flechas, Enter, Escape).
+
+<Canvas of={ComboboxStories.Default} />
+<Controls of={ComboboxStories.Default} />
+
+<Canvas of={ComboboxStories.WithValue} />
+<Canvas of={ComboboxStories.StringOptions} />
+<Canvas of={ComboboxStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-combobox
+  [options]="frameworks"
+  placeholder="Buscar framework…"
+  formControlName="framework"
+/>
+
+frameworks = [
+{ label: 'Angular', value: 'angular' },
+{ label: 'React', value: 'react' },
+];`}
+language="typescript"
+/>
+
+| Input         | Tipo                          | Descripción            |
+| ------------- | ----------------------------- | ---------------------- |
+| `options`     | `(string \| {label,value})[]` | Opciones del listado   |
+| `value`       | `string \| null`              | Valor seleccionado     |
+| `placeholder` | `string`                      | Texto del campo vacío  |
+| `id`          | `string`                      | Id del input           |
+| `name`        | `string`                      | Atributo `name`        |
+| `invalid`     | `boolean`                     | Estilo de error        |
+| `disabled`    | `boolean`                     | Deshabilita el control |
+
+El input interno usa `autocomplete="off"` para evitar que el autocompletado del navegador interfiera
+con el filtrado del listado.

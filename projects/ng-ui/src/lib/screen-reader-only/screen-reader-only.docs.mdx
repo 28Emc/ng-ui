@@ -1,0 +1,32 @@
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks';
+import * as ScreenReaderOnlyStories from './screen-reader-only.stories';
+
+<Meta of={ScreenReaderOnlyStories} />
+
+# ScreenReaderOnly
+
+Componente de utilidad que oculta el contenido visualmente pero lo mantiene en el DOM, accesible para lectores de pantalla. Aplica el patrón `sr-only` de Tailwind (posicionamiento absoluto, 1×1px, `clip`, sin desbordamiento) directamente sobre el elemento host, por lo que el contenido proyectado no se envuelve en elementos extra.
+
+Ideal para mensajes de ayuda, etiquetas de controles de solo icono y títulos de sección no visuales.
+
+<Canvas of={ScreenReaderOnlyStories.InlineText} />
+<Canvas of={ScreenReaderOnlyStories.VisuallyHiddenHeading} />
+
+## Uso
+
+El contenido se proyecta con `<ng-content />`. Como el host es un elemento personalizado (`<ui-screen-reader-only>`), puede contener texto en línea o bloques completos sin restricciones de contenido.
+
+<Source
+  code={`<button type="button" aria-label="Eliminar">
+  <svg lucideTrash2 [size]="16" [strokeWidth]="2" />
+  <ui-screen-reader-only>Eliminar usuario</ui-screen-reader-only>
+</button>
+
+<p class="text-sm text-muted">
+  Este texto es visible.
+  <ui-screen-reader-only>Ayuda solo para lectores de pantalla</ui-screen-reader-only>
+</p>`}
+  language="html"
+/>
+
+El componente no expone inputs: su única responsabilidad es aplicar la clase `sr-only` al host.

@@ -1,0 +1,35 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as RatingStories from './rating.stories';
+
+<Meta of={RatingStories} />
+
+# Rating
+
+Evaluación de 1 a 5 estrellas con soporte de teclado (flechas, Home/End),
+hover preview y `ControlValueAccessor`.
+
+<Canvas of={RatingStories.Default} />
+<Controls of={RatingStories.Default} />
+
+<Canvas of={RatingStories.Empty} />
+<Canvas of={RatingStories.Readonly} />
+<Canvas of={RatingStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-rating
+  label="Calidad del servicio"
+  [(ngModel)]="score"
+/>`}
+  language="html"
+/>
+
+| Input      | Tipo                   | Descripción                         |
+| ---------- | ---------------------- | ----------------------------------- |
+| `value`    | `number`               | Valor seleccionado (0 = vacío)      |
+| `max`      | `number`               | Cantidad de estrellas (default `5`) |
+| `size`     | `'sm' \| 'md' \| 'lg'` | Tamaño de las estrellas             |
+| `label`    | `string`               | Etiqueta accesible                  |
+| `readonly` | `boolean`              | Impide cambiar el valor             |
+| `disabled` | `boolean`              | Deshabilita el control              |

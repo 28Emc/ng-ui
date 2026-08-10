@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as PaginationStories from './pagination.stories';
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+Paginación con elipsis inteligente, botones anterior/siguiente e información
+del rango mostrado. El estado es un `model()` bidireccional.
+
+<Canvas of={PaginationStories.Default} />
+<Controls of={PaginationStories.Default} />
+
+<Canvas of={PaginationStories.FirstPage} />
+<Canvas of={PaginationStories.ManyPages} />
+<Canvas of={PaginationStories.NoInfo} />
+
+## Uso
+
+<Source
+  code={`<ui-pagination
+  [(page)]="page"
+  [pageSize]="10"
+  [total]="totalItems"
+/>`}
+  language="html"
+/>
+
+| Input          | Tipo      | Descripción                     |
+| -------------- | --------- | ------------------------------- |
+| `page`         | `number`  | Página actual (bidireccional)   |
+| `pageSize`     | `number`  | Ítems por página (default `10`) |
+| `total`        | `number`  | Total de ítems                  |
+| `siblingCount` | `number`  | Páginas visibles por lado (`1`) |
+| `showInfo`     | `boolean` | Muestra "Mostrando X–Y de Z"    |
+| `ariaLabel`    | `string`  | Etiqueta accesible del nav      |

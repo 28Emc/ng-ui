@@ -1,0 +1,47 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as SparklineStories from './sparkline.stories';
+
+<Meta of={SparklineStories} />
+
+# Sparkline
+
+Mini-gráfico de tendencia renderizado en SVG puro, sin dependencias de charting. Normaliza la serie al alto disponible, dibuja la línea (recta o suave), relleno degradado opcional y un punto terminal. Los tokens del tema controlan el color por defecto.
+
+<Canvas of={SparklineStories.Default} />
+<Controls of={SparklineStories.Default} />
+
+<Canvas of={SparklineStories.Smooth} />
+<Canvas of={SparklineStories.Fill} />
+<Canvas of={SparklineStories.DownTrend} />
+<Canvas of={SparklineStories.Volatile} />
+<Canvas of={SparklineStories.ManyPoints} />
+<Canvas of={SparklineStories.SharedScale} />
+<Canvas of={SparklineStories.SinglePoint} />
+
+## Uso
+
+<Source
+  code={`<ui-sparkline [data]="visitas" [fill]="true" [smooth]="true" label="Visitas mensuales" />`}
+  language="html"
+/>
+
+| Input         | Tipo             | Descripción                                             |
+| ------------- | ---------------- | ------------------------------------------------------- |
+| `data`        | `number[]`       | Serie de valores a dibujar                              |
+| `width`       | `number`         | Ancho del svg (default `120`)                           |
+| `height`      | `number`         | Alto del svg (default `40`)                             |
+| `strokeWidth` | `number`         | Grosor de la línea (default `2`)                        |
+| `fill`        | `boolean`        | Relleno degradado bajo la línea                         |
+| `smooth`      | `boolean`        | Curvas suaves en lugar de segmentos rectos              |
+| `color`       | `string`         | Color de la línea/área (token CSS; default brand-500)   |
+| `min`         | `number \| null` | Límite inferior del eje Y (override)                    |
+| `max`         | `number \| null` | Límite superior del eje Y (override)                    |
+| `label`       | `string`         | `aria-label` accesible (default `Gráfico de tendencia`) |
+
+### Utilidades exportadas
+
+- `computeSparklinePoints(data, width, height, min?, max?)` — devuelve `{ x, y }` normalizados.
+- `buildSparklinePath(points)` / `buildSmoothSparklinePath(points)` — construyen el `d` del path.
+- `SparklinePoint` — tipo `{ x: number; y: number }`.
+
+Los valores no finitos se descartan y las series planas se dibujan a mitad de altura. Con `min`/`max` se pueden comparar series sobre la misma escala.

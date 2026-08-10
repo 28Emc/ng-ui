@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    name: Build, lint & test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.5.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Build library
+        run: pnpm build
+
+      - name: Analyze bundle sizes
+        run: pnpm analyze
+
+      - name: Upload bundle size reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-stats
+          path: |
+            dist/bundle-stats/ng-ui.html
+          if-no-files-found: error
+
+      - name: Build demo
+        run: pnpm build:demo
+
+      - name: Compile ng-ui styles
+        run: pnpm build:styles
+
+      - name: Build Storybook
+        run: pnpm build-storybook
+
+      - name: Chromatic (visual regression)
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        run: pnpm chromatic
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      - name: Run tests
+        run: pnpm test

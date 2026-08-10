@@ -1,0 +1,33 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ProgressStories from './progress.stories';
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+Barra de progreso determinada o indeterminada.
+
+<Canvas of={ProgressStories.Default} />
+<Controls of={ProgressStories.Default} />
+
+<Canvas of={ProgressStories.Small} />
+<Canvas of={ProgressStories.Large} />
+<Canvas of={ProgressStories.Halfway} />
+<Canvas of={ProgressStories.Complete} />
+<Canvas of={ProgressStories.Indeterminate} />
+
+## Uso
+
+<Source
+  code={`<ui-progress [value]="progress" label="Cargando…" />
+<ui-progress [indeterminate]="true" size="lg" />`}
+  language="html"
+/>
+
+| Input           | Tipo                   | Descripción            |
+| --------------- | ---------------------- | ---------------------- |
+| `value`         | `number`               | Valor 0–`max`          |
+| `max`           | `number`               | Máximo (default 100)   |
+| `size`          | `'sm' \| 'md' \| 'lg'` | Grosor                 |
+| `indeterminate` | `boolean`              | Modo indeterminado     |
+| `label`         | `string`               | Texto junto a la barra |

@@ -1,0 +1,99 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as VirtualScrollListStories from './virtual-scroll-list.stories';
+
+<Meta of={VirtualScrollListStories} />
+
+# VirtualScrollList
+
+Lista que renderiza solo los ítems visibles (windowing), pensada para conjuntos de datos grandes:
+el DOM contiene únicamente la ventana actual más un margen (`buffer`) de ítems por arriba y por abajo,
+con spacers que mantienen el tamaño total de scroll correcto.
+
+- Alto rendimiento con miles de ítems sin dependencias externas.
+- `itemHeight` fijo (px) para todos los ítems.
+- Soporte de **selección múltiple** (`selectable` + `selection`/`selectionChange`) con patrón
+  `listbox`/`option`: navegación por teclado (↑/↓, Home/End) y toggle con `Enter`/`Space`.
+- Outputs `rangeChange` (`{ start, end }`) y `endReached` para implementar paginación infinita.
+- Render por defecto con `getLabel`, o template personalizado con `itemTemplate`.
+
+## Lista grande
+
+<Canvas of={VirtualScrollListStories.LargeList} />
+<Controls of={VirtualScrollListStories.LargeList} />
+
+## Selección múltiple
+
+<Canvas of={VirtualScrollListStories.Selectable} />
+
+La selección es un model `T[]`: añade o quita ítems al hacer clic o con teclado. Los ítems
+seleccionados reciben `aria-selected` y un check visual.
+
+## Template personalizado
+
+<Canvas of={VirtualScrollListStories.CustomTemplate} />
+
+## Estado vacío
+
+<Canvas of={VirtualScrollListStories.Empty} />
+
+## Uso
+
+Lista simple con 10.000 registros y carga incremental al llegar al final:
+
+<Source
+  code={`<ui-virtual-scroll-list
+  [items]="rows()"
+  [height]="400"
+  [itemHeight]="40"
+  (rangeChange)="onRange($event)"
+  (endReached)="loadMore()"
+  ariaLabel="Registros"
+/>`}
+  language="html"
+/>
+
+Con selección múltiple:
+
+<Source
+  code={`<ui-virtual-scroll-list
+  [items]="rows()"
+  [selectable]="true"
+  [(selection)]="selectedRows"
+  ariaLabel="Registros"
+/>`}
+  language="html"
+/>
+
+Con template personalizado:
+
+<Source
+  code={`<ui-virtual-scroll-list [items]="rows()" [itemTemplate]="row" [trackBy]="trackById">
+  <ng-template #row let-item>
+    <span>{{ item.title }}</span>
+  </ng-template>
+</ui-virtual-scroll-list>`}
+  language="html"
+/>
+
+## Inputs
+
+| Input          | Tipo                                           | Descripción                                               |
+| -------------- | ---------------------------------------------- | --------------------------------------------------------- |
+| `items`        | `T[]`                                          | Lista de ítems a renderizar                               |
+| `itemHeight`   | `number`                                       | Alto fijo de cada ítem en px (default `40`)               |
+| `height`       | `number`                                       | Alto del viewport con scroll en px (default `320`)        |
+| `buffer`       | `number`                                       | Ítems extra por encima/debajo de la ventana (default `5`) |
+| `selectable`   | `boolean`                                      | Activa la selección múltiple (default `false`)            |
+| `selection`    | `T[]` (model)                                  | Ítems seleccionados; `selectionChange` al togglear        |
+| `itemTemplate` | `TemplateRef<{ $implicit: T; index: number }>` | Template opcional por ítem                                |
+| `getLabel`     | `(item: T) => string`                          | Etiqueta para el render por defecto                       |
+| `trackBy`      | `(item: T) => unknown`                         | Clave estable de seguimiento (default `id ?? item`)       |
+| `emptyText`    | `string`                                       | Texto cuando no hay ítems (default `No hay elementos`)    |
+| `ariaLabel`    | `string`                                       | `aria-label` cuando es seleccionable (default `Lista`)    |
+
+## Outputs
+
+| Output        | Tipo                             | Descripción                                                     |
+| ------------- | -------------------------------- | --------------------------------------------------------------- |
+| `rangeChange` | `{ start: number; end: number }` | Emite la ventana visible actual (útil para paginación infinita) |
+| `endReached`  | `void`                           | Emite cuando la ventana llega al último ítem                    |

@@ -1,0 +1,38 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as TableStories from './table.stories';
+
+<Meta of={TableStories} />
+
+# Table
+
+Tabla de datos con ordenamiento por columna y paginación integradas.
+
+<Canvas of={TableStories.Default} />
+<Controls of={TableStories.Default} />
+
+<Canvas of={TableStories.Striped} />
+<Canvas of={TableStories.WithoutPagination} />
+<Canvas of={TableStories.Empty} />
+
+## Uso
+
+<Source
+  code={`<ui-table
+  [columns]="columns"
+  [data]="rows"
+  [pageSize]="10"
+  [striped]="true"
+  [trackBy]="trackById"
+  (rowClick)="onRow(row)"
+/>`}
+  language="html"
+/>
+
+| Input      | Tipo               | Descripción                                          |
+| ---------- | ------------------ | ---------------------------------------------------- |
+| `columns`  | `TableColumn[]`    | Definición de columnas (`{ key, label, sortable? }`) |
+| `data`     | `T[]`              | Filas                                                |
+| `pageSize` | `number`           | Filas por página                                     |
+| `striped`  | `boolean`          | Rayado zebra                                         |
+| `trackBy`  | `(row) => unknown` | Función de tracking                                  |
+| `rowClick` | `Output`           | Emite al hacer click                                 |

@@ -1,0 +1,64 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as DragDropListStories from './drag-drop-list.stories';
+
+<Meta of={DragDropListStories} />
+
+# DragDropList
+
+Lista ordenable por arrastre construida sobre `@angular/cdk/drag-drop`. Cada fila muestra su posición, un asa de arrastre (`GripVertical`) y el contenido del ítem. Al soltar, el componente emite la nueva lista en tiempo real a través del model `items` (`itemsChange`).
+
+<Canvas of={DragDropListStories.Default} />
+
+El tema por defecto usa `getLabel` para renderizar cada ítem como texto simple.
+
+<Canvas of={DragDropListStories.CustomTemplate} />
+
+Con `itemTemplate` se puede proyectar un `ng-template` por ítem; recibe el ítem como `$implicit` y su índice como `index`.
+
+<Canvas of={DragDropListStories.Disabled} />
+
+## Uso
+
+Lista simple con objetos:
+
+<Source
+  code={`<ui-drag-drop-list
+  [items]="items"
+  (itemsChange)="items.set($event)"
+  [trackBy]="trackById"
+  handleLabel="Mover tarea"
+/>`}
+  language="html"
+/>
+
+Con template personalizado:
+
+<Source
+  code={`<ui-drag-drop-list [items]="items" (itemsChange)="items.set($event)">
+  <ng-template #row let-item>
+    <span>{{ item.title }} — {{ item.status }}</span>
+  </ng-template>
+</ui-drag-drop-list>`}
+  language="html"
+/>
+
+> Nota: para que el template proyectado funcione, enlaza `[itemTemplate]="row"` con la referencia `#row`.
+
+## API
+
+| Input          | Tipo                                           | Descripción                                                           |
+| -------------- | ---------------------------------------------- | --------------------------------------------------------------------- |
+| `items`        | `T[]` (model)                                  | Lista de ítems; `itemsChange` emite una nueva referencia al reordenar |
+| `itemTemplate` | `TemplateRef<{ $implicit: T; index: number }>` | Template opcional por ítem                                            |
+| `getLabel`     | `(item: T) => string`                          | Función de etiqueta para el render por defecto                        |
+| `trackBy`      | `(item: T) => string \| number`                | Clave estable de seguimiento para el reordenado                       |
+| `disabled`     | `boolean`                                      | Desactiva el arrastre (ratón y tacto)                                 |
+| `handleLabel`  | `string`                                       | Prefijo del `aria-label` del asa (por defecto `Arrastrar`)            |
+
+### Utilidades exportadas
+
+- `reorderItem(items, from, to)` — devuelve una copia reordenada sin mutar el original.
+- `defaultItemLabel(item)` — etiqueta por defecto (string/número o `label`/`name`/`title` en objetos).
+- `UiDragDropItemContext<T>` — tipo del contexto del template de ítem.
+
+El preview durante el arrastre y la animación al soltar usan las clases CDK estilizadas en `styles.css` (`.cdk-drag-preview`, `.cdk-drag-placeholder`), adaptadas a los tokens claro/oscuro del tema.

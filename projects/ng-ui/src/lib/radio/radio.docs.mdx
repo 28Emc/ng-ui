@@ -1,0 +1,30 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as RadioStories from './radio-group.stories';
+
+<Meta of={RadioStories} />
+
+# RadioGroup
+
+Grupo de selección única compuesto por `RadioGroup` y `Radio`. Implementa
+`ControlValueAccessor`.
+
+<Canvas of={RadioStories.Default} />
+<Controls of={RadioStories.Default} />
+
+<Canvas of={RadioStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-radio-group [(ngModel)]="plan" label="Plan">
+  <ui-radio value="free" label="Gratis" description="1 proyecto, 1 GB" />
+  <ui-radio value="pro" label="Pro" description="Proyectos ilimitados, 50 GB" />
+</ui-radio-group>`}
+  language="html"
+/>
+
+| Input         | Tipo     | Descripción                |
+| ------------- | -------- | -------------------------- |
+| `label`       | `string` | Label del grupo            |
+| `value`       | `string` | Valor del radio (`Radio`)  |
+| `description` | `string` | Texto secundario (`Radio`) |

@@ -1,0 +1,43 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as CopyToClipboardButtonStories from './copy-to-clipboard-button.stories';
+
+<Meta of={CopyToClipboardButtonStories} />
+
+# CopyToClipboardButton
+
+Botón de solo icono que copia un texto al portapapeles y muestra feedback visual: el ícono cambia a un check verde y el tooltip pasa a "¡Copiado!" durante 2 segundos antes de revertir.
+
+Incluye soporte de fallback: si la API `navigator.clipboard` no está disponible (contextos no seguros), copia mediante un `textarea` temporal con `document.execCommand('copy')`, preservando la selección previa.
+
+<Canvas of={CopyToClipboardButtonStories.Default} />
+<Controls of={CopyToClipboardButtonStories.Default} />
+
+<Canvas of={CopyToClipboardButtonStories.SecondaryWithText} />
+<Canvas of={CopyToClipboardButtonStories.Disabled} />
+
+## Uso
+
+El texto a copiar se pasa con `text`. El tooltip y el `aria-label` muestran `label` ("Copiar") y cambian a `copiedLabel` ("¡Copiado!") mientras el estado de éxito está activo.
+
+<Source
+  code={`<div class="flex items-center gap-2 rounded-lg bg-surface-2 px-3 py-2">
+  <code class="text-sm text-fg">pnpm add emc-ui</code>
+  <ui-copy-button
+    text="pnpm add emc-ui"
+    label="Copiar comando"
+    copiedLabel="¡Copiado!"
+    variant="ghost"
+    size="icon"
+  />
+</div>`}
+  language="html"
+/>
+
+| Input         | Tipo            | Descripción                                                |
+| ------------- | --------------- | ---------------------------------------------------------- |
+| `text`        | `string`        | Texto a copiar (obligatorio)                               |
+| `label`       | `string`        | Tooltip / aria-label en reposo (por defecto "Copiar")      |
+| `copiedLabel` | `string`        | Tooltip / aria-label tras copiar (por defecto "¡Copiado!") |
+| `variant`     | `ButtonVariant` | Variante del botón (por defecto `ghost`)                   |
+| `size`        | `ButtonSize`    | Tamaño del botón (por defecto `icon`)                      |
+| `disabled`    | `boolean`       | Deshabilita el botón                                       |

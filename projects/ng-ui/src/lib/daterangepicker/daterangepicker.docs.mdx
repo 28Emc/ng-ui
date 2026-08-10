@@ -1,0 +1,47 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as DateRangePickerStories from './daterangepicker.stories';
+
+<Meta of={DateRangePickerStories} />
+
+# DateRangePicker
+
+Selector de rango de fechas con dos calendarios en un mismo overlay CDK.
+Se elige inicio y fin en un solo panel; el rango se resalta, con vista
+previa al pasar el mouse. Validación `min`/`max` y `ControlValueAccessor`.
+El valor se guarda como `[startISO, endISO]`.
+
+<Canvas of={DateRangePickerStories.Default} />
+<Controls of={DateRangePickerStories.Default} />
+
+<Canvas of={DateRangePickerStories.WithValue} />
+<Canvas of={DateRangePickerStories.WithMinMax} />
+<Canvas of={DateRangePickerStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-daterangepicker
+  placeholder="Rango de fechas"
+  [min]="minDate"
+  [max]="maxDate"
+  formControlName="period"
+/>`}
+  language="html"
+/>
+
+El campo también acepta escribir ambos extremos separados por `–`,
+`-` o `a` (ej. `10/02/1991 a 15/02/1991`).
+
+| Input         | Tipo                       | Descripción                                                         |
+| ------------- | -------------------------- | ------------------------------------------------------------------- |
+| `value`       | `[string, string] \| null` | Rango `[inicio, fin]` en ISO `YYYY-MM-DD`                           |
+| `placeholder` | `string`                   | Texto del campo vacío                                               |
+| `name`        | `string`                   | Atributo `name`                                                     |
+| `format`      | `string`                   | `'d'…` → `dd/MM/yyyy`, `'m'…` → `MM/dd/yyyy`, `'y'…` → `yyyy/MM/dd` |
+| `min`         | `string`                   | Fecha mínima permitida (ISO)                                        |
+| `max`         | `string`                   | Fecha máxima permitida (ISO)                                        |
+| `invalid`     | `boolean`                  | Estilo de error                                                     |
+| `disabled`    | `boolean`                  | Deshabilita el control                                              |
+
+El input usa `inputmode="numeric"` y `autocomplete="off"`: la máscara inserta los separadores
+automáticamente mientras se escribe.

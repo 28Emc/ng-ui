@@ -1,0 +1,62 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as MaskedInputStories from './masked-input.stories';
+
+<Meta of={MaskedInputStories} />
+
+# MaskedInput
+
+Campo de texto con máscara configurable (teléfono, tarjetas, SSN). Implementa
+`ControlValueAccessor`, por lo que funciona con `formControlName`, `ngModel` o formularios reactivos.
+
+- El carácter `#` de la máscara acepta un dígito; cualquier otro carácter se inserta como literal.
+- Si no se indica `placeholder`, se genera uno dinámico a partir de la máscara (`(___) ___-____`).
+- Por defecto el valor del modelo se guarda **sin formato** (solo dígitos); con `emitMasked` se guarda el valor enmascarado.
+- Los caracteres no válidos se descartan mientras se escribe y el cursor se mantiene en la posición correcta.
+- `Backspace` sobre un literal salta el literal y borra el dígito anterior.
+
+## Teléfono
+
+<Canvas of={MaskedInputStories.Phone} />
+<Controls of={MaskedInputStories.Phone} />
+
+## Tarjeta y SSN
+
+<Canvas of={MaskedInputStories.CreditCard} />
+<Canvas of={MaskedInputStories.SSN} />
+
+## Con Field
+
+<Canvas of={MaskedInputStories.WithField} />
+
+Estados inválido y deshabilitado:
+
+<Canvas of={MaskedInputStories.WithError} />
+<Canvas of={MaskedInputStories.Disabled} />
+
+### Uso
+
+<Source
+  code={`<ui-field label="Teléfono" hint="El modelo guarda solo los dígitos.">
+  <ui-masked-input mask="(###) ###-####" formControlName="phone" />
+</ui-field>`}
+  language="html"
+/>
+
+## Inputs
+
+| Input          | Tipo      | Descripción                                               |
+| -------------- | --------- | --------------------------------------------------------- |
+| `mask`         | `string`  | Máscara: `#` = dígito, resto = literal (requerida)        |
+| `maskChar`     | `string`  | Carácter que representa un dígito (default `#`)           |
+| `placeholder`  | `string`  | Si se omite, se deriva de la máscara                      |
+| `emitMasked`   | `boolean` | Emite el valor enmascarado en el modelo (default `false`) |
+| `id`           | `string`  | Atributo `id` del input                                   |
+| `name`         | `string`  | Atributo `name` del input                                 |
+| `autocomplete` | `string`  | Atributo `autocomplete` del input                         |
+| `invalid`      | `boolean` | Estado de error (borde/ring rojo)                         |
+| `disabled`     | `boolean` | Deshabilitado                                             |
+
+## Utilidades exportadas
+
+`mask-utils` también exporta `formatMask`, `extractMaskDigits`, `placeholderFromMask` y
+`cursorAtRawCount` para reutilizar la lógica de máscara fuera del componente.

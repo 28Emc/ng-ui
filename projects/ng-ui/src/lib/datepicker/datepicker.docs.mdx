@@ -1,0 +1,42 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as DatePickerStories from './datepicker.stories';
+
+<Meta of={DatePickerStories} />
+
+# DatePicker
+
+Selector de fecha con calendario en CDK Overlay, navegación de meses,
+fechas mínimas/máximas y `ControlValueAccessor`. El valor se guarda en
+formato ISO (`YYYY-MM-DD`) y se muestra como `DD/MM/AAAA`.
+
+<Canvas of={DatePickerStories.Default} />
+<Controls of={DatePickerStories.Default} />
+
+<Canvas of={DatePickerStories.WithValue} />
+<Canvas of={DatePickerStories.WithMinMax} />
+<Canvas of={DatePickerStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-datepicker
+  placeholder="Fecha de nacimiento"
+  [min]="minDate"
+  [max]="maxDate"
+  formControlName="birthDate"
+/>`}
+  language="html"
+/>
+
+| Input         | Tipo             | Descripción                  |
+| ------------- | ---------------- | ---------------------------- |
+| `value`       | `string \| null` | Fecha ISO `YYYY-MM-DD`       |
+| `placeholder` | `string`         | Texto del campo vacío        |
+| `name`        | `string`         | Atributo `name`              |
+| `min`         | `string`         | Fecha mínima permitida (ISO) |
+| `max`         | `string`         | Fecha máxima permitida (ISO) |
+| `invalid`     | `boolean`        | Estilo de error              |
+| `disabled`    | `boolean`        | Deshabilita el control       |
+
+El input usa `inputmode="numeric"` y `autocomplete="off"`: la máscara inserta los separadores
+automáticamente mientras se escribe.

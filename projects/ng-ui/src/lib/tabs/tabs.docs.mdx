@@ -1,0 +1,35 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as TabsStories from './tabs.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Navegación por pestañas con estado activo controlado.
+
+<Canvas of={TabsStories.Default} />
+<Controls of={TabsStories.Default} />
+
+<Canvas of={TabsStories.SecondTabActive} />
+
+## Uso
+
+<Source
+  code={`<ui-tabs [defaultIndex]="0" [(activeIndex)]="tab">
+  <ui-tab label="Cuenta">
+    <p>Contenido</p>
+  </ui-tab>
+  <ui-tab label="Perfil">
+    <p>Contenido</p>
+  </ui-tab>
+  <ui-tab label="Deshabilitada" [disabled]="true">…</ui-tab>
+</ui-tabs>`}
+  language="html"
+/>
+
+| Input          | Tipo      | Descripción              |
+| -------------- | --------- | ------------------------ |
+| `defaultIndex` | `number`  | Pestaña inicial          |
+| `activeIndex`  | `number`  | Pestaña activa (two-way) |
+| `label`        | `string`  | Etiqueta (`Tab`)         |
+| `disabled`     | `boolean` | Deshabilita (`Tab`)      |

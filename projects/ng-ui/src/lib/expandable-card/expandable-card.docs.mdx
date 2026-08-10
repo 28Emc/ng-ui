@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ExpandableCardStories from './expandable-card.stories';
+
+<Meta of={ExpandableCardStories} />
+
+# ExpandableCard
+
+Tarjeta que puede colapsarse o expandirse para mostrar más detalle. Se controla por click o tecla Enter (el disparador es un `button` nativo), con animación suave al desplegar el contenido.
+
+<Canvas of={ExpandableCardStories.Default} />
+<Controls of={ExpandableCardStories.Default} />
+
+<Canvas of={ExpandableCardStories.Expanded} />
+<Canvas of={ExpandableCardStories.WithoutSubtitle} />
+<Canvas of={ExpandableCardStories.LongContent} />
+
+## Uso
+
+El estado es un `model` (`open`), por lo que puede persistirse enlazándolo de forma bidireccional.
+
+<Source
+  code={`<ui-expandable-card
+  title="Detalles del pedido"
+  subtitle="Haz clic para expandir"
+  [(open)]="orderOpen"
+>
+  <p class="text-sm text-muted">Contenido colapsable.</p>
+</ui-expandable-card>`}
+  language="html"
+/>
+
+| Input      | Tipo      | Descripción                          |
+| ---------- | --------- | ------------------------------------ |
+| `title`    | `string`  | Título de la tarjeta (obligatorio)   |
+| `subtitle` | `string`  | Subtítulo opcional bajo el título    |
+| `open`     | `boolean` | Estado expandido/colapsado (`model`) |

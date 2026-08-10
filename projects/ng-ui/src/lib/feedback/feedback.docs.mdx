@@ -1,0 +1,56 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as BadgeStories from './badge.stories';
+import * as SpinnerStories from './spinner.stories';
+import * as PageLoaderStories from './page-loader.stories';
+import * as SkeletonStories from './skeleton.stories';
+import * as EmptyStateStories from './empty-state.stories';
+
+<Meta of={BadgeStories} />
+
+# Feedback
+
+Grupo de componentes de estado: `Badge`, `Spinner`, `PageLoader`, `Skeleton` y `EmptyState`.
+
+## Badge
+
+<Canvas of={BadgeStories.Default} />
+<Canvas of={BadgeStories.Brand} />
+<Canvas of={BadgeStories.Green} />
+<Canvas of={BadgeStories.Amber} />
+<Canvas of={BadgeStories.Gray} />
+
+| Input     | Tipo                                                   | Descripción |
+| --------- | ------------------------------------------------------ | ----------- |
+| `variant` | `'default' \| 'brand' \| 'green' \| 'amber' \| 'gray'` | Color       |
+
+## Spinner
+
+<Canvas of={SpinnerStories.Default} />
+<Canvas of={SpinnerStories.Large} />
+<Canvas of={SpinnerStories.Small} />
+
+## PageLoader
+
+<Canvas of={PageLoaderStories.Inline} />
+<Canvas of={PageLoaderStories.WithCustomLabel} />
+
+<Source code={`<ui-page-loader label="Cargando proyectos…" />`} language="html" />
+
+## Skeleton
+
+<Canvas of={SkeletonStories.Card} />
+
+<Source code={`<ui-skeleton class="h-4 w-2/5" />`} language="html" />
+
+## EmptyState
+
+<Canvas of={EmptyStateStories.WithAction} />
+
+<Source
+  code={`<ui-empty-state [icon]="LucideInbox" title="Sin proyectos" description="Crea tu primero.">
+  <div uiEmptyStateAction>
+    <ui-button variant="primary">Nuevo proyecto</ui-button>
+  </div>
+</ui-empty-state>`}
+  language="html"
+/>

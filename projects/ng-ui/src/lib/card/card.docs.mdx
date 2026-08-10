@@ -1,0 +1,49 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as CardStories from './card.stories';
+import * as StatCardStories from './stat-card.stories';
+
+<Meta of={CardStories} />
+
+# Card
+
+Contenedor elevado (`rounded-2xl`, `shadow-card`) con variantes: base, header/body y hover.
+
+<Canvas of={CardStories.Default} />
+<Controls of={CardStories.Default} />
+
+Card con hover (eleva y traslada):
+
+<Canvas of={CardStories.Interactive} />
+
+## Uso
+
+<Source
+  code={`<ui-card [hover]="true">
+  <ui-card-header title="Ingresos" subtitle="Último trimestre">
+    <ui-badge variant="green">+12%</ui-badge>
+  </ui-card-header>
+  <ui-card-body>
+    <p>Contenido</p>
+  </ui-card-body>
+</ui-card>`}
+  language="html"
+/>
+
+# StatCard
+
+Tarjeta de métrica con icono, valor y variantes de acento.
+
+<Canvas of={StatCardStories.Default} />
+<Controls of={StatCardStories.Default} />
+
+<Canvas of={StatCardStories.Green} />
+<Canvas of={StatCardStories.Amber} />
+<Canvas of={StatCardStories.Pink} />
+
+| Input      | Tipo                                      | Descripción             |
+| ---------- | ----------------------------------------- | ----------------------- |
+| `icon`     | `LucideIcon`                              | Icono de lucide-angular |
+| `label`    | `string`                                  | Etiqueta                |
+| `value`    | `string`                                  | Valor principal         |
+| `sublabel` | `string`                                  | Texto secundario        |
+| `accent`   | `'brand' \| 'green' \| 'amber' \| 'pink'` | Color del icono         |

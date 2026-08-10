@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as DrawerStories from './drawer.stories';
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+Panel lateral derecho deslizante sobre CDK Overlay. Mismo comportamiento que Modal
+(`Escape`, click fuera, bloqueo de scroll). El pie se proyecta con `[uiDrawerFooter]`.
+
+<Canvas of={DrawerStories.Default} />
+<Controls of={DrawerStories.Default} />
+
+Panel más ancho:
+
+<Canvas of={DrawerStories.Wide} />
+
+## Uso
+
+<Source
+  code={`<ui-drawer [(open)]="open" title="Ajustes" subtitle="Preferencias" width="w-[22rem]">
+  <p>Contenido</p>
+  <div uiDrawerFooter class="flex items-center justify-end gap-3">
+    <ui-button variant="secondary" (click)="open = false">Cancelar</ui-button>
+    <ui-button variant="primary" (click)="open = false">Guardar</ui-button>
+  </div>
+</ui-drawer>`}
+  language="html"
+/>
+
+| Input      | Tipo      | Descripción                      |
+| ---------- | --------- | -------------------------------- |
+| `open`     | `boolean` | Estado abierto/cerrado (two-way) |
+| `title`    | `string`  | Título del header                |
+| `subtitle` | `string`  | Subtítulo del header             |
+| `width`    | `string`  | Clase de ancho máximo            |

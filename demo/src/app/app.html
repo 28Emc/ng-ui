@@ -1,0 +1,25 @@
+<div class="min-h-dvh bg-app">
+  <header class="sticky top-0 z-10 border-b border-default bg-surface/70 backdrop-blur">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
+      <a
+        routerLink="/"
+        class="text-lg font-semibold tracking-tight text-fg transition-colors duration-150 hover:text-brand-600"
+      >
+        {{ title() }}
+      </a>
+      <div class="flex items-center gap-2">
+        <nav class="flex items-center gap-1">
+          <a routerLink="/inputs" routerLinkActive="nav-link-active" class="nav-link">Inputs</a>
+          <a routerLink="/overlays" routerLinkActive="nav-link-active" class="nav-link">Overlays</a>
+          <a routerLink="/feedback" routerLinkActive="nav-link-active" class="nav-link">Feedback</a>
+          <a routerLink="/layout" routerLinkActive="nav-link-active" class="nav-link">Layout</a>
+          <a routerLink="/advanced" routerLinkActive="nav-link-active" class="nav-link">Advanced</a>
+        </nav>
+        <ui-theme-switcher class="ml-2" />
+      </div>
+    </div>
+  </header>
+  <main class="mx-auto max-w-5xl px-5 py-8 pb-16 text-fg">
+    <router-outlet />
+  </main>
+</div>

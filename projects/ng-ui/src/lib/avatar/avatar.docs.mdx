@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as AvatarStories from './avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+Representación de usuario con iniciales calculadas a partir del nombre.
+
+<Canvas of={AvatarStories.Gallery} />
+<Controls of={AvatarStories.Default} />
+
+<Canvas of={AvatarStories.CustomColor} />
+<Canvas of={AvatarStories.SingleWordName} />
+
+## Uso
+
+<Source code={`<ui-avatar name="Ana López" size="lg" color="#7e6cc0" />`} language="html" />
+
+| Input   | Tipo                   | Descripción                |
+| ------- | ---------------------- | -------------------------- |
+| `name`  | `string`               | Nombre (calcula iniciales) |
+| `color` | `string`               | Hex de fondo               |
+| `size`  | `'sm' \| 'md' \| 'lg'` | Tamaño                     |

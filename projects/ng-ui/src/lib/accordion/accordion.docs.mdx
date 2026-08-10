@@ -1,0 +1,31 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as AccordionStories from './accordion.stories';
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Secciones plegables. Soporta modo acordeón (una abierta) o múltiple.
+
+<Canvas of={AccordionStories.Default} />
+<Controls of={AccordionStories.Default} />
+
+<Canvas of={AccordionStories.Multiple} />
+
+## Uso
+
+<Source
+  code={`<ui-accordion [multiple]="false">
+  <ui-accordion-item title="¿Qué es emc-ui?" description="Pregunta frecuente">
+    <p>Respuesta</p>
+  </ui-accordion-item>
+</ui-accordion>`}
+  language="html"
+/>
+
+| Input         | Tipo      | Descripción             |
+| ------------- | --------- | ----------------------- |
+| `multiple`    | `boolean` | Permite varias abiertas |
+| `title`       | `string`  | Título del ítem         |
+| `description` | `string`  | Subtítulo del ítem      |
+| `disabled`    | `boolean` | Deshabilita el ítem     |

@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as StepperStories from './stepper.stories';
+
+<Meta of={StepperStories} />
+
+# Stepper
+
+Indicador de pasos con conectores y estados completado/activo.
+
+<Canvas of={StepperStories.Default} />
+<Controls of={StepperStories.Default} />
+
+<Canvas of={StepperStories.FirstStep} />
+<Canvas of={StepperStories.LastStep} />
+<Canvas of={StepperStories.WithoutLabels} />
+
+## Uso
+
+<Source
+  code={`<ui-stepper
+  [steps]="3"
+  [labels]="['Paso 1', 'Paso 2', 'Paso 3']"
+  [(activeIndex)]="index"
+/>`}
+  language="html"
+/>
+
+| Input         | Tipo       | Descripción            |
+| ------------- | ---------- | ---------------------- |
+| `steps`       | `number`   | Cantidad de pasos      |
+| `labels`      | `string[]` | Etiquetas de cada paso |
+| `activeIndex` | `number`   | Paso activo (two-way)  |

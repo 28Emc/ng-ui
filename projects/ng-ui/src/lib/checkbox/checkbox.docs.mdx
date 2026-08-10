@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Casilla de verificación que implementa `ControlValueAccessor`.
+
+<Canvas of={CheckboxStories.Default} />
+<Controls of={CheckboxStories.Default} />
+
+<Canvas of={CheckboxStories.WithoutDescription} />
+<Canvas of={CheckboxStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-checkbox label="Acepto los términos" [(ngModel)]="accepted" />`}
+  language="html"
+/>
+
+| Input         | Tipo      | Descripción      |
+| ------------- | --------- | ---------------- |
+| `label`       | `string`  | Etiqueta         |
+| `description` | `string`  | Texto secundario |
+| `disabled`    | `boolean` | Deshabilita      |

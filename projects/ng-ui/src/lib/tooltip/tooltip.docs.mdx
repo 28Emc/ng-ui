@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+Directiva `uiTooltip` que muestra una etiqueta flotante con las cuatro posiciones.
+
+<Canvas of={TooltipStories.Top} />
+<Canvas of={TooltipStories.Bottom} />
+<Canvas of={TooltipStories.Left} />
+<Canvas of={TooltipStories.Right} />
+
+## Uso
+
+<Source
+  code={`<ui-button uiTooltip="Tooltip arriba" placement="top">Hover</ui-button>`}
+  language="html"
+/>
+
+## Inputs de la directiva
+
+| Input       | Tipo                                     | Descripción       |
+| ----------- | ---------------------------------------- | ----------------- |
+| `uiTooltip` | `string`                                 | Texto del tooltip |
+| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | Posición          |

@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.nav-link {
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg);
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
+}
+
+.nav-link:hover {
+  color: var(--color-brand-600);
+}
+
+.nav-link-active {
+  color: var(--color-brand-700);
+  background-color: color-mix(in srgb, var(--color-brand-500) 10%, transparent);
+}
+
+.dark .nav-link:hover {
+  color: var(--color-brand-300);
+}
+
+.dark .nav-link-active {
+  color: var(--color-brand-300);
+}

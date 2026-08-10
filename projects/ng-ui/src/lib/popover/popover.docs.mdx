@@ -1,0 +1,42 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as PopoverStories from './popover.stories';
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+Overlay posicionado relativo a un botón _trigger_, ideal para menús contextuales, acciones rápidas o contenido auxiliar. Cierra al hacer clic fuera o con `Escape`.
+
+<Canvas of={PopoverStories.Default} />
+
+<Controls of={PopoverStories.Default} />
+
+## Uso básico
+
+<Source
+  code={`<ui-popover label="Acciones">
+  <div class="space-y-2">
+    <p class="text-sm font-semibold">Detalles</p>
+    <p class="text-sm text-muted">Contenido libre.</p>
+  </div>
+</ui-popover>`}
+  language="html"
+/>
+
+## Propiedades
+
+| Propiedad   | Tipo                                     | Default    | Descripción                                         |
+| ----------- | ---------------------------------------- | ---------- | --------------------------------------------------- |
+| `label`     | `string`                                 | `''`       | Texto del botón _trigger_.                          |
+| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'bottom'` | Lado por el que se abre; si no hay espacio, voltea. |
+| `align`     | `'start' \| 'center' \| 'end'`           | `'center'` | Alineación del panel respecto al _trigger_.         |
+| `minWidth`  | `string`                                 | `'16rem'`  | Ancho mínimo del panel (CSS).                       |
+| `open`      | `boolean` (model)                        | `false`    | Estado controlado con `[(open)]` y `(openChange)`.  |
+
+## Posiciones
+
+<Canvas of={PopoverStories.Top} />
+
+<Canvas of={PopoverStories.Left} />
+
+<Canvas of={PopoverStories.Right} />

@@ -7,9 +7,6 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "ng-ui": ["./dist/ng-ui"]
-    },
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
@@ -29,6 +26,12 @@
     },
     {
       "path": "./projects/ng-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./demo/tsconfig.app.json"
+    },
+    {
+      "path": "./demo/tsconfig.spec.json"
     }
   ]
 }

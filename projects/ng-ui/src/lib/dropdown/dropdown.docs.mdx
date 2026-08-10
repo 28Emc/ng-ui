@@ -1,0 +1,38 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as DropdownStories from './dropdown.stories';
+
+<Meta of={DropdownStories} />
+
+# Dropdown
+
+Menú flotante que se abre al hacer click. Cierra con click fuera o al seleccionar un ítem.
+Compuesto por `Dropdown`, `MenuItem` y `MenuDivider`.
+
+<Canvas of={DropdownStories.Default} />
+<Controls of={DropdownStories.Default} />
+
+Alineación izquierda:
+
+<Canvas of={DropdownStories.AlignLeft} />
+
+## Uso
+
+<Source
+  code={`<ui-dropdown label="Acciones" align="right">
+  <ui-menu-item (click)="edit()">
+    <svg lucideEdit [size]="14" [strokeWidth]="2" class="text-muted" /> Editar
+  </ui-menu-item>
+  <ui-menu-divider />
+  <ui-menu-item [danger]="true" (click)="remove()">Eliminar</ui-menu-item>
+</ui-dropdown>`}
+  language="html"
+/>
+
+## Inputs
+
+| Input   | Tipo                | Descripción          |
+| ------- | ------------------- | -------------------- |
+| `align` | `'left' \| 'right'` | Alineación del panel |
+| `label` | `string`            | Texto del disparador |
+
+`MenuItem` acepta `[danger]` para acciones destructivas (hover rojo).

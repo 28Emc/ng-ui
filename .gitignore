@@ -10,6 +10,15 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+pnpm-debug.log
+
+# Storybook
+/storybook-static
+/documentation.json
+
+# Local env files
+.env
+.env.*
 
 # IDEs and editors
 .idea/

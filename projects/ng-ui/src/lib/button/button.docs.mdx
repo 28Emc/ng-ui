@@ -1,0 +1,38 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Botón para acciones. Cuenta con variantes visuales, tamaños y estados de carga/deshabilitado.
+Todos los estados incluyen anillo de foco visible (`focus-visible`) en brand-500.
+
+<Canvas of={ButtonStories.Primary} />
+<Controls of={ButtonStories.Primary} />
+
+## Variantes y tamaños
+
+<Canvas of={ButtonStories.Secondary} />
+<Canvas of={ButtonStories.Danger} />
+
+## Estados
+
+<Canvas of={ButtonStories.Loading} />
+<Canvas of={ButtonStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-button variant="primary" size="md" [loading]="loading">Guardar</ui-button>`}
+  language="html"
+/>
+
+## Inputs
+
+| Input      | Tipo                                                                       | Descripción                   |
+| ---------- | -------------------------------------------------------------------------- | ----------------------------- |
+| `variant`  | `'primary' \| 'secondary' \| 'ghost' \| 'danger' \| 'outline' \| 'subtle'` | Estilo visual                 |
+| `size`     | `'sm' \| 'md' \| 'lg' \| 'icon' \| 'icon-sm'`                              | Tamaño                        |
+| `loading`  | `boolean`                                                                  | Muestra spinner y deshabilita |
+| `disabled` | `boolean`                                                                  | Deshabilita el botón          |

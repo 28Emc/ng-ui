@@ -1,0 +1,37 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as BreadcrumbStories from './breadcrumb.stories';
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumb
+
+Ruta jerárquica de navegación con enlaces clicables, separadores y colapso responsivo con menú desplegable.
+
+<Canvas of={BreadcrumbStories.Default} />
+<Controls of={BreadcrumbStories.Default} />
+
+<Canvas of={BreadcrumbStories.Collapsed} />
+
+## Uso
+
+<Source code={`<ui-breadcrumb [items]="items" />`} language="html" />
+
+## Tipo `UiBreadcrumbItem`
+
+| Propiedad    | Tipo                          | Descripción                      |
+| ------------ | ----------------------------- | -------------------------------- |
+| `label`      | `string`                      | Texto visible del ítem           |
+| `href`       | `string`                      | Enlace nativo (`<a href>`)       |
+| `routerLink` | `string \| unknown[]`         | Enlace del router de Angular     |
+| `onClick`    | `(event: MouseEvent) => void` | Acción al hacer click            |
+| `disabled`   | `boolean`                     | Deshabilita el ítem              |
+| `ariaLabel`  | `string`                      | Etiqueta accesible personalizada |
+
+## Inputs
+
+| Input        | Tipo                 | Descripción                                      |
+| ------------ | -------------------- | ------------------------------------------------ |
+| `items`      | `UiBreadcrumbItem[]` | Ítems de la ruta, en orden jerárquico            |
+| `ariaLabel`  | `string`             | Etiqueta ARIA del `<nav>`                        |
+| `maxItems`   | `number \| null`     | Colapso fijo: mantiene primero y último visibles |
+| `responsive` | `boolean`            | Colapso automático al desbordar el contenedor    |

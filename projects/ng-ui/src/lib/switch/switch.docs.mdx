@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as SwitchStories from './switch.stories';
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+Toggle personalizado (no usa checkbox nativo) que implementa `ControlValueAccessor`,
+compatible con `formControlName` y `ngModel`.
+
+<Canvas of={SwitchStories.Default} />
+<Controls of={SwitchStories.Default} />
+
+<Canvas of={SwitchStories.WithoutDescription} />
+<Canvas of={SwitchStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-switch
+  label="Activar notificaciones"
+  description="Email semanal con el resumen"
+  formControlName="digest"
+/>`}
+  language="html"
+/>
+
+| Input         | Tipo      | Descripción      |
+| ------------- | --------- | ---------------- |
+| `label`       | `string`  | Etiqueta         |
+| `description` | `string`  | Texto secundario |
+| `disabled`    | `boolean` | Deshabilita      |

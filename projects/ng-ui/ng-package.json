@@ -3,5 +3,24 @@
   "dest": "../../dist/ng-ui",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["clsx", "tailwind-merge"],
+  "assets": [
+    {
+      "glob": "styles.css",
+      "input": ".",
+      "output": "."
+    },
+    "src/lib/styles/theme.css",
+    {
+      "glob": "LICENSE",
+      "input": ".",
+      "output": "."
+    },
+    {
+      "glob": "README.md",
+      "input": ".",
+      "output": "."
+    }
+  ]
 }

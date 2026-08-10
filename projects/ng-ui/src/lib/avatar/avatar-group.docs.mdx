@@ -1,0 +1,34 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as AvatarGroupStories from './avatar-group.stories';
+
+<Meta of={AvatarGroupStories} />
+
+# AvatarGroup
+
+Conjunto de avatares superpuestos. Cuando la lista supera el límite `max`, se muestra un contador "+N" con el resto de participantes.
+
+<Canvas of={AvatarGroupStories.Default} />
+<Controls of={AvatarGroupStories.Default} />
+
+<Canvas of={AvatarGroupStories.Small} />
+<Canvas of={AvatarGroupStories.LimitThree} />
+<Canvas of={AvatarGroupStories.CustomColors} />
+
+## Uso
+
+Cada avatar muestra un tooltip con el nombre del usuario, y el contador "+N" muestra el total de usuarios del stack (p. ej. "10 usuarios").
+
+<Source
+  code={`<ui-avatar-group
+  [avatars]="[{ name: 'Ana López', color: '#15a18b' }, { name: 'Juan Pérez' }]"
+  [max]="5"
+  size="md"
+/>`}
+  language="html"
+/>
+
+| Input     | Tipo                                     | Descripción                                    |
+| --------- | ---------------------------------------- | ---------------------------------------------- |
+| `avatars` | `AvatarGroupUser[]` (`{ name, color? }`) | Lista de usuarios (obligatorio)                |
+| `max`     | `number`                                 | Máximo de avatares visibles antes del "+N" (5) |
+| `size`    | `'sm' \| 'md' \| 'lg'`                   | Tamaño de los avatares                         |

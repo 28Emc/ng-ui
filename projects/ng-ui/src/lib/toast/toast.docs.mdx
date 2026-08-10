@@ -1,0 +1,71 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ToastStories from './toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+Notificaciones transitorias manejadas por `ToastService`. Para usarlas:
+
+1. Montar `ui-toast-host` una vez en el root.
+2. Inyectar `ToastService` y llamar `info / success / warning / error` o `toast`.
+
+<Canvas of={ToastStories.Default} />
+
+<Source
+  code={`// app.component.html
+<ui-toast-host />
+
+// componente
+import { ToastService } from 'emc-ui';
+
+private readonly toast = inject(ToastService);
+
+this.toast.success('Éxito', 'Datos guardados');
+this.toast.error('Error', 'No se pudo guardar');`}
+language="ts"
+/>
+
+## Opciones
+
+`toast(options)` acepta:
+
+| Propiedad     | Tipo                                             | Default     | Descripción                                             |
+| ------------- | ------------------------------------------------ | ----------- | ------------------------------------------------------- |
+| `title`       | `string`                                         | —           | Título del toast.                                       |
+| `description` | `string?`                                        | —           | Descripción opcional.                                   |
+| `variant`     | `'default' \| 'success' \| 'error' \| 'warning'` | `'default'` | Estilo del toast.                                       |
+| `duration`    | `number`                                         | `5000`      | Milisegundos antes del auto-dismiss. `0` = persistente. |
+| `action`      | `{ label, onClick }`                             | —           | Botón de acción que se cierra al pulsarlo.              |
+
+## Acciones
+
+Un botón de acción se ejecuta y cierra el toast. `onClick` recibe el `id` del toast.
+
+<Source
+  code={`this.toast.toast({
+  title: 'Documento borrado',
+  description: 'Se moverá a la papelera',
+  variant: 'warning',
+  action: {
+    label: 'Deshacer',
+    onClick: (id) => this.toast.success('Restaurado', 'El documento se recuperó.'),
+  },
+});`}
+  language="ts"
+/>
+
+## Límite y posición
+
+- `maxToasts` (signal, default `5`) limita los toasts simultáneos; al excederse se descarta el más antiguo. Valores `<= 0` desactivan el límite.
+- `position` (signal, default `'bottom-right'`) mueve la pila: `'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'`.
+
+<Source
+  code={`this.toast.maxToasts.set(3);
+this.toast.position.set('top-right');`}
+  language="ts"
+/>
+
+## Pausa al hover
+
+El temporizador de auto-dismiss se pausa al pasar el cursor sobre un toast y se reanuda al salir. También puedes controlarlo manualmente con `pause(id)` y `resume(id)`.

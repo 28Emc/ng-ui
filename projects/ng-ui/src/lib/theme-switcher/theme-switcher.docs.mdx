@@ -1,0 +1,55 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ThemeSwitcherStories from './theme-switcher.stories';
+
+<Meta of={ThemeSwitcherStories} />
+
+# ThemeSwitcher
+
+Botón de solo icono que alterna entre modo claro y oscuro. Muestra una luna en modo claro y un sol en modo oscuro, con tooltip y `aria-label` dinámicos ("Cambiar a tema oscuro" / "Cambiar a tema claro").
+
+El tema seleccionado se guarda en `localStorage` bajo la clave `storageKey` (por defecto `emc-ui-theme`) y se aplica añadiendo la clase `dark` al `<html>`. Al inicializarse, el componente restaura el valor guardado o usa `defaultTheme` si no hay ninguno.
+
+Todos los `ui-theme-switcher` de la página comparten el mismo estado vía `ThemeService`, de modo que si hay varios, se mantienen sincronizados.
+
+<Canvas of={ThemeSwitcherStories.Default} />
+<Controls of={ThemeSwitcherStories.Default} />
+
+<Canvas of={ThemeSwitcherStories.Variants} />
+<Canvas of={ThemeSwitcherStories.Sizes} />
+<Canvas of={ThemeSwitcherStories.CustomLabels} />
+
+## Uso
+
+Basta con colocar el componente en el shell de la aplicación (o donde se desee) para obtener un toggle de tema con persistencia:
+
+<Source code={`<ui-theme-switcher />`} language="html" />
+
+Con opciones personalizadas:
+
+<Source
+  code={`<ui-theme-switcher
+  storageKey="mi-app-theme"
+  defaultTheme="dark"
+  variant="secondary"
+  labelLight="Activar modo oscuro"
+  labelDark="Activar modo claro"
+/>`}
+  language="html"
+/>
+
+| Input          | Tipo                | Descripción                                                                |
+| -------------- | ------------------- | -------------------------------------------------------------------------- |
+| `storageKey`   | `string`            | Clave de `localStorage` (por defecto `emc-ui-theme`)                       |
+| `defaultTheme` | `'light' \| 'dark'` | Tema aplicado si no hay nada guardado (por defecto `light`)                |
+| `variant`      | `ButtonVariant`     | Variante del botón (por defecto `ghost`)                                   |
+| `size`         | `ButtonSize`        | Tamaño del botón (por defecto `icon`)                                      |
+| `labelLight`   | `string`            | Tooltip / `aria-label` en modo claro (por defecto "Cambiar a tema oscuro") |
+| `labelDark`    | `string`            | Tooltip / `aria-label` en modo oscuro (por defecto "Cambiar a tema claro") |
+
+### Salida
+
+`themeChange` se emite con `'light' | 'dark'` después de cada toggle.
+
+### `ThemeService`
+
+`ThemeService` es un servicio `providedIn: 'root'` que centraliza el estado del tema (`dark` signal, `setDark()`, `toggle()`). Puede inyectarse en la aplicación para aplicar o leer el tema programáticamente; el switcher y los consumidores del servicio comparten el mismo estado.

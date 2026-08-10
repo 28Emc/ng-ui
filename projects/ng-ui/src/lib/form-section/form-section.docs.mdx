@@ -1,0 +1,42 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as FormSectionStories from './form-section.stories';
+
+<Meta of={FormSectionStories} />
+
+# FormSection
+
+Contenedor que agrupa campos de un formulario con título, descripción opcional y estado de validación. Aporta un borde estilizado, espaciado consistente y un mensaje de error con borde rojo cuando la sección falla la validación.
+
+<Canvas of={FormSectionStories.Default} />
+<Controls of={FormSectionStories.Default} />
+
+<Canvas of={FormSectionStories.WithError} />
+<Canvas of={FormSectionStories.WithoutDescription} />
+
+## Uso
+
+El contenido se proyecta con `<ng-content />` dentro del cuerpo de la sección. Usa `invalid` para marcar el borde en rojo y `error` para mostrar el mensaje de validación (el mensaje también activa el borde rojo automáticamente).
+
+<Source
+  code={`<ui-form-section
+  title="Datos personales"
+  description="Completa tu información de contacto"
+  [invalid]="form.invalid"
+  [error]="formError"
+>
+  <ui-field label="Nombre completo">
+    <ui-input formControlName="name" />
+  </ui-field>
+  <ui-field label="Email" [required]="true">
+    <ui-input type="email" formControlName="email" />
+  </ui-field>
+</ui-form-section>`}
+  language="html"
+/>
+
+| Input         | Tipo      | Descripción                                                      |
+| ------------- | --------- | ---------------------------------------------------------------- |
+| `title`       | `string`  | Título de la sección (obligatorio)                               |
+| `description` | `string`  | Descripción opcional bajo el título                              |
+| `invalid`     | `boolean` | Pinta el borde en rojo (`border-red-500`)                        |
+| `error`       | `string`  | Mensaje de error; al estar presente también activa el borde rojo |

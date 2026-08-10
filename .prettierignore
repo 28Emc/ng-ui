@@ -1,0 +1,10 @@
+node_modules
+dist
+.angular
+out-tsc
+storybook-static
+pnpm-lock.yaml
+CHANGELOG.md
+docs
+projects/ng-ui/styles.css
+documentation.json

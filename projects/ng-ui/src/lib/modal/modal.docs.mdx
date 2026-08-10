@@ -1,0 +1,39 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ModalStories from './modal.stories';
+import * as ConfirmModalStories from './confirm-modal.stories';
+
+<Meta of={ModalStories} />
+
+# Modal
+
+Diálogo modal sobre CDK Overlay. Cierra con `Escape`, click fuera y bloquea el scroll del body.
+El pie se proyecta con la directiva `[uiModalFooter]`.
+
+<Canvas of={ModalStories.Default} />
+<Controls of={ModalStories.Default} />
+
+Tamaños:
+
+<Canvas of={ModalStories.Small} />
+<Canvas of={ModalStories.Large} />
+<Canvas of={ModalStories.ExtraLarge} />
+
+## Uso
+
+<Source
+  code={`<ui-modal [(open)]="open" size="lg" title="Nuevo proyecto" subtitle="Detalles básicos">
+  <p>Contenido</p>
+  <div uiModalFooter class="flex items-center justify-end gap-3">
+    <ui-button variant="secondary" (click)="open = false">Cancelar</ui-button>
+    <ui-button variant="primary" (click)="open = false">Crear</ui-button>
+  </div>
+</ui-modal>`}
+  language="html"
+/>
+
+## ConfirmModal
+
+Variante de confirmación con botones Cancelar/Confirmar y modo `danger`.
+
+<Canvas of={ConfirmModalStories.Default} />
+<Canvas of={ConfirmModalStories.Danger} />

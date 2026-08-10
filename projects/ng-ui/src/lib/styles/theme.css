@@ -1,0 +1,257 @@
+@import 'tailwindcss';
+@import '@angular/cdk/overlay-prebuilt.css';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source "../..";
+@source "../../../..";
+@source "projects/**/*.ts";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-brand-50: #e8f7f4;
+  --color-brand-100: #c7ece5;
+  --color-brand-200: #95dccd;
+  --color-brand-300: #5cc8b4;
+  --color-brand-400: #32b49f;
+  --color-brand-500: #15a18b;
+  --color-brand-600: #0c8b7c;
+  --color-brand-700: #0b7064;
+  --color-brand-800: #0c5a51;
+  --color-brand-900: #0c4a43;
+
+  --color-accent-gold: #bfa23a;
+  --color-accent-coral: #c2706a;
+  --color-accent-purple: #7e6cc0;
+  --color-accent-blue: #6f86c9;
+
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+
+  --shadow-soft: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.01);
+  --shadow-card: 0 1px 3px rgba(16, 24, 40, 0.05), 0 12px 32px -12px rgba(16, 24, 40, 0.12);
+  --shadow-pop: 0 12px 40px -8px rgba(16, 24, 40, 0.22);
+
+  --animate-fade-in: fade-in 0.25s ease-out;
+  --animate-slide-up: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-scale-in: scale-in 0.18s ease-out;
+  --animate-pop: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-slide-in-right: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-indeterminate: indeterminate-short 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes indeterminate-short {
+  0% {
+    left: -35%;
+    right: 100%;
+  }
+
+  60%,
+  100% {
+    left: 100%;
+    right: -90%;
+  }
+}
+
+@keyframes indeterminate-long {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+
+  60%,
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(to right, #32b49f 0%, #0c8b7c 100%);
+}
+
+@utility text-brand-gradient {
+  background-image: linear-gradient(145deg, #32b49f, #0c8b7c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@theme inline {
+  --color-app: var(--app-bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-default: var(--border);
+}
+
+:root {
+  color-scheme: light;
+  --app-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --border: #e8ebf0;
+  --fg: #0f172a;
+  --fg-muted: #64748b;
+}
+
+.dark {
+  color-scheme: dark;
+  --app-bg: #0a0c12;
+  --surface: #12151d;
+  --surface-2: #171b25;
+  --border: #232936;
+  --fg: #e9edf4;
+  --fg-muted: #8a93a6;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--app-bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-brand-500);
+    color: white;
+  }
+
+  option {
+    background-color: var(--surface);
+    color: var(--fg);
+  }
+}
+
+@utility glass {
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+
+@utility scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Override Tailwind utility .animate-indeterminate with dual-phase left/right animation */
+.animate-indeterminate {
+  animation:
+    indeterminate-short 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite,
+    indeterminate-long 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite 1.15s;
+}
+
+/* CDK DragDrop preview / placeholder styling for ui-drag-drop-list */
+.cdk-drag-preview {
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-card);
+  opacity: 0.95;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drop-list-dragging .cdk-drag,
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0.2, 0, 0, 1);
+}

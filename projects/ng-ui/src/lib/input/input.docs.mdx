@@ -1,0 +1,78 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as InputStories from './input.stories';
+import * as TextareaStories from './textarea.stories';
+import * as SelectStories from './select.stories';
+import * as LabelStories from './label.stories';
+import * as FieldErrorStories from './field-error.stories';
+
+<Meta of={InputStories} />
+
+# Inputs
+
+Grupo de campos de formulario: `Input`, `Textarea`, `Select`, `Label`, `Field`, `FieldError`,
+`MaskedInput` y `PasswordStrengthMeter` (estos dos últimos documentados en su propia página). Los
+controles implementan `ControlValueAccessor`, por lo que funcionan con `formControlName`, `ngModel`
+o formularios reactivos.
+
+## Input
+
+<Canvas of={InputStories.WithField} />
+<Controls of={InputStories.WithField} />
+
+Estados inválido y deshabilitado:
+
+<Canvas of={InputStories.Invalid} />
+<Canvas of={InputStories.Disabled} />
+
+### Uso
+
+<Source
+  code={`<ui-field label="Email" [required]="true" [error]="emailError">
+  <ui-input type="email" formControlName="email" [invalid]="emailInvalid" />
+</ui-field>`}
+  language="html"
+/>
+
+## Textarea
+
+<Canvas of={TextareaStories.WithField} />
+<Controls of={TextareaStories.WithField} />
+
+## Select
+
+<Canvas of={SelectStories.WithField} />
+<Controls of={SelectStories.WithField} />
+
+## Label
+
+<Canvas of={LabelStories.Required} />
+<Controls of={LabelStories.Required} />
+
+## FieldError
+
+<Canvas of={FieldErrorStories.Default} />
+
+## Inputs compartidos (Field)
+
+| Input      | Tipo             | Descripción                        |
+| ---------- | ---------------- | ---------------------------------- |
+| `label`    | `string`         | Etiqueta visible                   |
+| `hint`     | `string`         | Texto de ayuda bajo el control     |
+| `error`    | `string \| null` | Mensaje de error (borde/ring rojo) |
+| `required` | `boolean`        | Marca el label con asterisco       |
+
+## Inputs de los controles
+
+`Input`, `Textarea`, `Select` y `MaskedInput` comparten estos inputs de atributos HTML:
+
+| Input          | Tipo      | Descripción                         |
+| -------------- | --------- | ----------------------------------- |
+| `id`           | `string`  | Atributo `id`                       |
+| `name`         | `string`  | Atributo `name` (para envío nativo) |
+| `autocomplete` | `string`  | Atributo `autocomplete`             |
+| `invalid`      | `boolean` | Estado de error (borde/ring rojo)   |
+| `disabled`     | `boolean` | Deshabilitado                       |
+
+> En `Combobox`, `Multiselect`, `DatePicker`, `TimePicker` y `DateRangePicker` el atributo
+> `autocomplete` está fijo en `"off"` y los pickers de fecha/hora usan `inputmode="numeric"` porque
+> su máscara inserta los separadores automáticamente.

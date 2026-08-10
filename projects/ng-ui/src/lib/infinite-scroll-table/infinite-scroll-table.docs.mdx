@@ -1,0 +1,82 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as InfiniteScrollTableStories from './infinite-scroll-table.stories';
+
+<Meta of={InfiniteScrollTableStories} />
+
+# InfiniteScrollTable
+
+Tabla con **carga bajo demanda**: emite `loadMore` cuando el scroll se acerca al final, ideal para
+datasets grandes paginados desde el servidor.
+
+- **Encabezados fijos** (`sticky`) mientras se hace scroll vertical.
+- **Sorting** por columna (asc/desc) con doble flecha y `aria-sort`.
+- Fila de **carga** con spinner (`loading`), estado vacío y rayado zebra opcional.
+- Solo emite `loadMore` si `hasMore` es `true` y no está en `loading`, evitando peticiones duplicadas.
+
+## Básico
+
+<Canvas of={InfiniteScrollTableStories.Basic} />
+<Controls of={InfiniteScrollTableStories.Basic} />
+
+## Carga simulada
+
+Al llegar al final de la ventana (o si el contenido no la llena) se dispara `loadMore`; el demo
+simula una respuesta asíncrona que añade 20 filas hasta llegar a 500.
+
+<Canvas of={InfiniteScrollTableStories.Interactive} />
+
+<Canvas of={InfiniteScrollTableStories.Striped} />
+<Canvas of={InfiniteScrollTableStories.Loading} />
+<Canvas of={InfiniteScrollTableStories.Empty} />
+
+## Uso
+
+```html
+<ui-infinite-scroll-table
+  [columns]="columns"
+  [data]="rows()"
+  [loading]="loading()"
+  [hasMore]="hasMore()"
+  [height]="400"
+  [striped]="true"
+  (loadMore)="loadNext()"
+/>
+```
+
+```ts
+columns: TableColumn<Row>[] = [
+  { key: 'name', label: 'Nombre', sortable: true },
+  { key: 'amount', label: 'Monto', align: 'right' },
+];
+
+loadNext(): void {
+  this.loading.set(true);
+  this.api.fetch(this.rows().length).subscribe((page) => {
+    this.rows.update((r) => [...r, ...page]);
+    this.hasMore.set(page.length > 0);
+    this.loading.set(false);
+  });
+}
+```
+
+## Inputs
+
+| Input              | Tipo                | Descripción                                                   |
+| ------------------ | ------------------- | ------------------------------------------------------------- |
+| `columns`          | `TableColumn[]`     | Definición de columnas (`{ key, label, sortable?, render? }`) |
+| `data`             | `T[]`               | Filas cargadas hasta el momento                               |
+| `loading`          | `boolean`           | Muestra la fila de carga con spinner                          |
+| `hasMore`          | `boolean`           | Si hay más datos que cargar; controla las emisiones           |
+| `height`           | `number`            | Alto máximo del contenedor con scroll (default `400`)         |
+| `loadMoreDistance` | `number`            | Distancia al final que dispara `loadMore` (default `120`)     |
+| `trackBy`          | `(row) => unknown`  | Función de tracking                                           |
+| `emptyMessage`     | `string`            | Texto cuando no hay filas (default `No hay datos`)            |
+| `striped`          | `boolean`           | Rayado zebra                                                  |
+| `sortState`        | `TableSort` (model) | Columna y dirección de orden (`column`, `direction`)          |
+
+## Outputs
+
+| Output     | Tipo   | Descripción                               |
+| ---------- | ------ | ----------------------------------------- |
+| `loadMore` | `void` | Se emite al acercarse al final del scroll |
+| `rowClick` | `T`    | Se emite al hacer click en una fila       |

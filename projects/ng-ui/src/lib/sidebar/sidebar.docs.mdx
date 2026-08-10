@@ -1,0 +1,55 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as SidebarStories from './sidebar.stories';
+
+<Meta of={SidebarStories} />
+
+# Sidebar
+
+Barra de navegación lateral con sub-menús plegables, modo mini colapsado con flyout, badges, soporte de rutas y teclado accesible.
+
+<Canvas of={SidebarStories.Default} />
+<Controls of={SidebarStories.Default} />
+
+<Canvas of={SidebarStories.Collapsed} />
+<Canvas of={SidebarStories.WithoutIcons} />
+
+## Uso
+
+<Source
+  code={`<ui-sidebar [items]="items" [(activeKey)]="activeKey" [(collapsed)]="collapsed" [(openKeys)]="openKeys" />`}
+  language="html"
+/>
+
+El estado se puede persistir con los modelos bidireccionales (`collapsed`, `activeKey` y `openKeys`), por ejemplo en `localStorage`.
+
+## Tipo `UiSidebarItem`
+
+| Propiedad    | Tipo                          | Descripción                                                 |
+| ------------ | ----------------------------- | ----------------------------------------------------------- |
+| `key`        | `string`                      | Identificador estable del ítem                              |
+| `label`      | `string`                      | Texto visible del ítem                                      |
+| `icon`       | `Type<unknown>`               | Icono standalone (p. ej. `LucideHome` de `@lucide/angular`) |
+| `badge`      | `string \| number`            | Valor mostrado a la derecha                                 |
+| `routerLink` | `string \| unknown[]`         | Ruta interna del router de Angular                          |
+| `href`       | `string`                      | URL externa nativa                                          |
+| `onClick`    | `(event: MouseEvent) => void` | Acción al hacer click (ítems hoja)                          |
+| `disabled`   | `boolean`                     | Deshabilita el ítem                                         |
+| `ariaLabel`  | `string`                      | Etiqueta accesible personalizada                            |
+| `children`   | `UiSidebarItem[]`             | Sub-ítems: convierte el ítem en grupo plegable              |
+
+## Inputs y modelos
+
+| Nombre        | Tipo                    | Descripción                                   |
+| ------------- | ----------------------- | --------------------------------------------- |
+| `items`       | `UiSidebarItem[]`       | Ítems de navegación (anidados por `children`) |
+| `ariaLabel`   | `string`                | Etiqueta ARIA del `<nav>`                     |
+| `collapsible` | `boolean`               | Muestra el botón de colapsar                  |
+| `collapsed`   | `model<boolean>`        | Colapsa a modo mini (solo iconos)             |
+| `activeKey`   | `model<string \| null>` | Ítem activo resaltado                         |
+| `openKeys`    | `model<string[]>`       | Grupos plegables abiertos                     |
+
+## Comportamiento
+
+- **Modo mini**: al colapsar se muestran solo los iconos; los grupos abren un flyout con sus sub-ítems.
+- **Teclado**: flechas `↑`/`↓`/`Home`/`End` para mover el foco, `→` para abrir un grupo (o su flyout), `←`/`Esc` para cerrarlo.
+- **Auto-apertura**: al activar un ítem anidado se abren automáticamente sus ancestros.

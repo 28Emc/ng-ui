@@ -1,0 +1,48 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as MultiSelectStories from './multiselect.stories';
+
+<Meta of={MultiSelectStories} />
+
+# MultiSelect
+
+Lista de opciones con casillas de verificación, búsqueda integrada y chips de
+valores seleccionados. Implementa `ControlValueAccessor`, usa CDK Overlay y
+navegación completa por teclado (Flechas, Enter, Escape, Backspace).
+
+<Canvas of={MultiSelectStories.Default} />
+<Controls of={MultiSelectStories.Default} />
+
+<Canvas of={MultiSelectStories.WithValue} />
+<Canvas of={MultiSelectStories.WithDisabledOption} />
+<Canvas of={MultiSelectStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-multiselect
+  [options]="frameworks"
+  placeholder="Elige frameworks…"
+  [(ngModel)]="selected"
+  [maxVisibleOptions]="6"
+  [maxChips]="3"
+/>
+
+frameworks = [
+{ label: 'Angular', value: 'angular' },
+{ label: 'React', value: 'react', disabled: true },
+];
+selected: string[] = [];`}
+language="typescript"
+/>
+
+| Input               | Tipo                                   | Descripción                                        |
+| ------------------- | -------------------------------------- | -------------------------------------------------- |
+| `options`           | `(string \| {label,value,disabled})[]` | Opciones del listado                               |
+| `value`             | `string[]`                             | Valores seleccionados                              |
+| `placeholder`       | `string`                               | Texto del campo vacío                              |
+| `id`                | `string`                               | Id del input                                       |
+| `name`              | `string`                               | Atributo `name`                                    |
+| `invalid`           | `boolean`                              | Estilo de error                                    |
+| `disabled`          | `boolean`                              | Deshabilita el control                             |
+| `maxVisibleOptions` | `number`                               | Máximo de opciones visibles en el listado (scroll) |
+| `maxChips`          | `number`                               | Chips visibles antes de colapsar en "+N"           |

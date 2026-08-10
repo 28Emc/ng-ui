@@ -1,0 +1,48 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as TimePickerStories from './timepicker.stories';
+
+<Meta of={TimePickerStories} />
+
+# TimePicker
+
+Selector de hora con overlay CDK, formato 24h/12h según locale,
+rangos mínimos/máximos y `ControlValueAccessor`. El valor se guarda
+siempre en formato 24h (`HH:mm`) y se muestra según el locale (por
+defecto es‑PE → 24h) o el input `format`.
+
+<Canvas of={TimePickerStories.Default} />
+<Controls of={TimePickerStories.Default} />
+
+<Canvas of={TimePickerStories.WithValue} />
+<Canvas of={TimePickerStories.Format12h} />
+<Canvas of={TimePickerStories.WithMinMax} />
+<Canvas of={TimePickerStories.WithMinuteStep} />
+<Canvas of={TimePickerStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-timepicker
+  placeholder="Hora de entrada"
+  [min]="minTime"
+  [max]="maxTime"
+  [format]="'h:mm a'"
+  formControlName="startTime"
+/>`}
+  language="html"
+/>
+
+| Input         | Tipo             | Descripción                                   |
+| ------------- | ---------------- | --------------------------------------------- |
+| `value`       | `string \| null` | Hora en formato `HH:mm` (24h)                 |
+| `placeholder` | `string`         | Texto del campo vacío                         |
+| `name`        | `string`         | Atributo `name`                               |
+| `format`      | `string`         | `'h…'` → 12h, cualquier otro → 24h            |
+| `min`         | `string`         | Hora mínima permitida (`HH:mm`)               |
+| `max`         | `string`         | Hora máxima permitida (`HH:mm`)               |
+| `minuteStep`  | `number`         | Incremento de minutos en la lista (default 1) |
+| `invalid`     | `boolean`        | Estilo de error                               |
+
+El input usa `inputmode="numeric"` y `autocomplete="off"`: la máscara inserta los separadores
+automáticamente mientras se escribe.
+| `disabled` | `boolean` | Deshabilita el control |

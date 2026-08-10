@@ -1,0 +1,11 @@
+{
+  "extends": "../projects/ng-ui/tsconfig.lib.json",
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "outDir": null,
+    "noEmit": true
+  },
+  "include": ["*.ts", "../projects/ng-ui/src/lib/**/*.stories.ts"]
+}

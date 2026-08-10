@@ -1,0 +1,48 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as TagInputStories from './taginput.stories';
+
+<Meta of={TagInputStories} />
+
+# TagInput
+
+Campo que transforma palabras separadas por **Enter**, **coma**, **punto y coma**
+o pegado en etiquetas visuales. Implementa `ControlValueAccessor`.
+
+- Agregar etiqueta con Enter, coma o al hacer blur.
+- Eliminar con el botón ✕ o con Backspace sobre el input vacío.
+- Rechaza duplicados (case-insensitive) y etiquetas vacías.
+- `maxTags` limita la cantidad de etiquetas.
+- `validator` permite validación personalizada por etiqueta.
+
+<Canvas of={TagInputStories.Default} />
+<Controls of={TagInputStories.Default} />
+
+<Canvas of={TagInputStories.Empty} />
+<Canvas of={TagInputStories.WithMaxTags} />
+<Canvas of={TagInputStories.Disabled} />
+
+## Uso
+
+<Source
+  code={`<ui-taginput
+  [(ngModel)]="tags"
+  placeholder="Escribe y presiona Enter…"
+  [maxTags]="10"
+  [validator]="rejectSpecial"
+/>
+
+tags: string[] = [];
+rejectSpecial = (tag: string) =>
+/[!@#]/.test(tag) ? 'No se permiten caracteres especiales' : null;`}
+language="typescript"
+/>
+
+| Input         | Tipo                              | Descripción                             |
+| ------------- | --------------------------------- | --------------------------------------- |
+| `value`       | `string[]`                        | Etiquetas actuales                      |
+| `placeholder` | `string`                          | Texto del campo vacío                   |
+| `id`          | `string`                          | Id del input                            |
+| `invalid`     | `boolean`                         | Estilo de error                         |
+| `disabled`    | `boolean`                         | Deshabilita el control                  |
+| `maxTags`     | `number \| null`                  | Límite de etiquetas                     |
+| `validator`   | `(tag: string) => string \| null` | Validación personalizada (msg de error) |

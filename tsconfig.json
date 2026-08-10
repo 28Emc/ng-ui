@@ -26,12 +26,6 @@
     },
     {
       "path": "./projects/ng-ui/tsconfig.spec.json"
-    },
-    {
-      "path": "./demo/tsconfig.app.json"
-    },
-    {
-      "path": "./demo/tsconfig.spec.json"
     }
   ]
 }

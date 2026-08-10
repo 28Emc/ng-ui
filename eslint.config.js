@@ -41,19 +41,6 @@ module.exports = tseslint.config(
     },
   },
   {
-    files: ['demo/**/*.ts'],
-    rules: {
-      '@angular-eslint/directive-selector': [
-        'error',
-        { type: 'attribute', prefix: 'app', style: 'camelCase' },
-      ],
-      '@angular-eslint/component-selector': [
-        'error',
-        { type: 'element', prefix: 'app', style: 'kebab-case' },
-      ],
-    },
-  },
-  {
     files: ['**/*.spec.ts'],
     rules: {
       '@angular-eslint/component-selector': 'off',

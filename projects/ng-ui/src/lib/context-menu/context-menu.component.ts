@@ -10,6 +10,7 @@ import {
   signal,
   viewChild,
   type Type,
+  HostListener,
 } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
@@ -41,6 +42,7 @@ export interface UiContextMenuItem {
       [attr.aria-expanded]="open()"
       (contextmenu)="onContextMenu($event)"
       (keydown)="onTriggerKeydown($event)"
+      (click)="onTriggerClick($event)"
     >
       <ng-content />
     </div>
@@ -51,7 +53,7 @@ export interface UiContextMenuItem {
         role="menu"
         tabindex="-1"
         [attr.aria-label]="label()"
-        class="min-w-44 animate-scale-in rounded-xl border border-default bg-surface p-1.5 shadow-pop"
+        class="min-w-44 max-w-72 animate-scale-in rounded-xl border border-default bg-surface p-1.5 shadow-pop"
         (keydown)="onPanelKeydown($event)"
       >
         @for (item of items(); track item.id) {
@@ -75,9 +77,9 @@ export interface UiContextMenuItem {
                   />
                 }
               </span>
-              <span class="flex-1 text-left">{{ item.label }}</span>
+              <span class="flex-1 text-left truncate">{{ item.label }}</span>
               @if (item.shortcut) {
-                <span class="text-xs text-muted">{{ item.shortcut }}</span>
+                <span class="text-xs text-muted shrink-0">{{ item.shortcut }}</span>
               }
             </button>
           }
@@ -97,11 +99,19 @@ export class ContextMenuComponent {
   private readonly panelTemplate = viewChild.required<TemplateRef<unknown>>('panel');
   private readonly overlay = inject(Overlay);
   private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly destroyRef = inject(DestroyRef);
 
   private overlayRef: OverlayRef | null = null;
 
   constructor() {
-    inject(DestroyRef).onDestroy(() => this.close());
+    this.destroyRef.onDestroy(() => this.close());
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (this.open() && !this.isTrigger(event.target)) {
+      this.close();
+    }
   }
 
   protected itemClasses(item: UiContextMenuItem): string {
@@ -115,6 +125,16 @@ export class ContextMenuComponent {
   protected onContextMenu(event: MouseEvent): void {
     event.preventDefault();
     this.openPanel(event.clientX, event.clientY);
+  }
+
+  protected onTriggerClick(event: MouseEvent): void {
+    event.preventDefault();
+    if (this.open()) {
+      this.close();
+    } else {
+      const rect = this.triggerEl()?.nativeElement.getBoundingClientRect();
+      this.openPanel(rect?.left ?? 0, rect?.bottom ?? 0);
+    }
   }
 
   protected onTriggerKeydown(event: KeyboardEvent): void {
@@ -174,8 +194,8 @@ export class ContextMenuComponent {
     this.overlayRef = this.overlay.create({
       positionStrategy: this.overlay.position().global().left(`${x}px`).top(`${y}px`),
       scrollStrategy: this.overlay.scrollStrategies.close(),
-      usePopover: false,
     });
+
     this.overlayRef
       .outsidePointerEvents()
       .pipe(filter((event) => !this.isTrigger(event.target)))
@@ -185,8 +205,13 @@ export class ContextMenuComponent {
       .pipe(filter((event) => event.key === 'Escape'))
       .subscribe(() => this.close());
     this.overlayRef.detachments().subscribe(() => this.onOverlayDetached());
-    this.overlayRef.attach(new TemplatePortal(this.panelTemplate(), this.viewContainerRef));
-    this.clampToViewport(x, y);
+
+    const portal = new TemplatePortal(this.panelTemplate(), this.viewContainerRef);
+    this.overlayRef.attach(portal);
+
+    // Clamp after the overlay is rendered
+    queueMicrotask(() => this.clampToViewport(x, y));
+
     this.open.set(true);
     this.focusFirstItem();
   }
@@ -197,14 +222,21 @@ export class ContextMenuComponent {
     const el = ref.overlayElement;
     const rect = el.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return;
-    const left = Math.max(0, Math.min(x, window.innerWidth - rect.width));
-    const top = Math.max(0, Math.min(y, window.innerHeight - rect.height));
-    el.style.left = `${left}px`;
-    el.style.top = `${top}px`;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const maxLeft = viewportWidth - rect.width - 8;
+    const maxTop = viewportHeight - rect.height - 8;
+    const left = Math.max(8, Math.min(x, maxLeft));
+    const top = Math.max(8, Math.min(y, maxTop));
+    if (left !== x || top !== y) {
+      ref.updatePositionStrategy(
+        this.overlay.position().global().left(`${left}px`).top(`${top}px`)
+      );
+    }
   }
 
   private focusFirstItem(): void {
-    this.enabledItems()[0]?.focus();
+    queueMicrotask(() => this.enabledItems()[0]?.focus());
   }
 
   private enabledItems(): HTMLButtonElement[] {

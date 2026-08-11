@@ -1,5 +1,13 @@
 # @emc-dev/ng-ui
 
+## 1.3.1
+
+### Patch Changes
+
+- fix(context-menu): viewport clamping + max-width + click toggle + external close
+  fix(stepper): clamp activeIndex internally via effect
+  feat(skeleton): add width/height/variant inputs with circular/rectangular variants
+
 ## 1.3.0
 
 ### Minor Changes

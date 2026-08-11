@@ -1,4 +1,4 @@
-import { Component, computed, input, model } from '@angular/core';
+import { Component, computed, input, model, effect } from '@angular/core';
 import { LucideCheck } from '@lucide/angular';
 import { cn } from '../utils/cn';
 
@@ -39,6 +39,15 @@ export class StepperComponent {
   readonly activeIndex = model(0);
 
   protected readonly indices = computed(() => Array.from({ length: this.steps() }, (_, i) => i));
+
+  constructor() {
+    effect(() => {
+      const idx = this.activeIndex();
+      const max = this.steps() - 1;
+      if (idx < 0) this.activeIndex.set(0);
+      else if (idx > max) this.activeIndex.set(max);
+    });
+  }
 
   protected readonly stepClasses = (index: number) =>
     cn(

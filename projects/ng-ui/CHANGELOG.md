@@ -1,5 +1,18 @@
 # @emc-dev/ng-ui
 
+## 1.3.0
+
+### Minor Changes
+
+- 606aac6: New `ui-carousel` component: `index` two-way model, `loop` with wrap-around, `autoplay` (min 500ms interval, pause on hover), `showArrows`/`showDots`, swipe gestures with a 50px threshold, `aria-current`/`aria-live` announcements, and an automatic index clamp when projected slides shrink.
+- 606aac6: Container queries: `ui-card` and `ui-table` now act as query containers (`container-type: inline-size`). `ui-card-header`/`ui-card-body` stack and tighten padding below 24rem and expand above it (`@sm:` variants); `ui-table` cells scale with `@narrow`/`@wide` tokens (new `--container-narrow: 22.5rem` and `--container-wide: 44rem`), the table text compacts under 22.5rem, and the pagination bar stacks on narrow containers and lays out inline above 44rem. New `Responsive` stories demonstrate both behaviors.
+- 606aac6: New `ui-context-menu` component: opens on right-click (or `ContextMenu`/`Shift+F10`/arrow keys from the trigger) positioned at the pointer with viewport clamping, `UiContextMenuItem` model with `label`/`icon`/`shortcut`/`danger`/`disabled`/`separator`, `itemSelected` output, WAI-ARIA `menu`/`menuitem` roles, full keyboard navigation (arrows, Home/End, Enter, Space, Escape) and close on outside click.
+- 606aac6: New `ui-file-upload` component: drag & drop or click-to-browse dropzone with type/size/count validation (`accept`, `maxSize`, `maxFiles`), image previews via object URLs, reorderable file list (reuses `ui-drag-drop-list`), per-file progress (`ui-progress`), `upload`/`rejected`/`fileRemoved` outputs, and rejection toasts via `ToastService`. New public helpers: `validateUploadFiles`, `matchesAccept`, `fileSizeLabel`, `buildUploadFile`.
+- 606aac6: New `ui-image` component (Next.js-style): lazy/eager loading, `priority` (fetchpriority high + sync decoding), responsive `srcset`/`sizes`, blur-up placeholder via `blurSrc`, aspect-ratio reservation from `width`/`height` to avoid CLS, `objectFit`/`objectPosition`, fade-in on load and a localizable failure fallback.
+- 606aac6: New `ui-otp-input` component: two-way `value`, configurable `length`, numeric-only or alphanumeric modes, auto-focus, auto-advance while typing, backspace/arrow navigation, paste support, `complete` output when every box is filled, `disabled` state and per-box `aria-label`s in a `role="group"`.
+- 606aac6: Design-system maturity: semantic color tokens (`--color-success`/`--color-warning`/`--color-info`/`--color-danger` with automatic light/dark values), motion tokens (`duration-fast/normal/slow`, `ease-standard/emphasized/out-expo`), a display/heading/body/caption typography scale, and `@layer components` primitives (`.kicker`, `.page-title`, `.card-surface`). `ui-badge`, `ui-stat-card`, `ui-toast`, `ui-button` (danger) and field invalid states now use semantic tokens. Density variants via `data-density="compact|spacious"` added to `ui-button` and `ui-input`.
+- 606aac6: New `ui-tree-view` component: nested `UiTreeNode` model with `id`/`label`/`children`/`disabled`/`initiallyExpanded`, two-way `selection` (single or multi) and `expandedIds` models, recursive expansion/collapse, WAI-ARIA `tree`/`treeitem` roles with `aria-level`/`aria-expanded`/`aria-selected`, full keyboard navigation (arrows, Enter, Space), and an optional custom `itemTemplate` with `$implicit` node and `depth`.
+
 ## 1.2.1
 
 ### Patch Changes

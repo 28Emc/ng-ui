@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
+import { userEvent, within, expect } from '@storybook/test';
 import { LucidePencil, LucideCopy, LucideTrash2 } from '@lucide/angular';
 import { DropdownComponent } from './dropdown.component';
 import { MenuItemComponent } from './menu-item.component';
@@ -41,8 +42,17 @@ const meta: Meta<DropdownComponent> = {
 export default meta;
 type Story = StoryObj<DropdownComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole('button', { name: 'Acciones' }));
+    await expect(await within(document.body).findByText('Editar')).toBeVisible();
+  },
+};
 
 export const AlignLeft: Story = {
   args: { align: 'left' },
+  play: async ({ canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByRole('button', { name: 'Acciones' }));
+    await expect(await within(document.body).findByText('Editar')).toBeVisible();
+  },
 };

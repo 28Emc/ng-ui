@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
+import { userEvent, within } from '@storybook/test';
 import { TreeViewComponent, type UiTreeNode } from './tree-view.component';
 
 const nodes: UiTreeNode[] = [
@@ -45,7 +46,14 @@ const meta: Meta<TreeViewComponent> = {
 export default meta;
 type Story = StoryObj<TreeViewComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const pedidos = canvas.getByRole('treeitem', { name: 'Pedidos' });
+    const toggle = pedidos.querySelector('[data-toggle]') as HTMLButtonElement;
+    await userEvent.click(toggle);
+  },
+};
 
 export const MultiSelect: Story = {
   args: { multiSelect: true },

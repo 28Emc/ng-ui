@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
+import { userEvent, within, expect } from '@storybook/test';
 import { ComboboxComponent } from './combobox.component';
 
 const FRAMEWORKS = [
@@ -31,7 +32,14 @@ const meta: Meta<ComboboxComponent> = {
 export default meta;
 type Story = StoryObj<ComboboxComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    await userEvent.click(
+      within(canvasElement).getByRole('combobox', { name: /Buscar framework/ }),
+    );
+    await expect(await within(document.body).findByText('Vue')).toBeVisible();
+  },
+};
 
 export const WithValue: Story = {
   args: { value: 'angular' },

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
+import { userEvent, within, expect } from '@storybook/test';
 import { TooltipDirective } from './tooltip.directive';
 import { ButtonComponent } from '../button/button.component';
 
@@ -28,7 +29,15 @@ const meta: Meta<TooltipDirective> = {
 export default meta;
 type Story = StoryObj<TooltipDirective>;
 
-export const Top: Story = {};
+export const Top: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByRole('button', { name: 'Guardar cambios' }));
+    await expect(
+      await within(document.body).findByText('Guarda los cambios realizados'),
+    ).toBeVisible();
+  },
+};
 
 export const Bottom: Story = {
   args: { placement: 'bottom' },

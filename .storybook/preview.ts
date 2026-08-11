@@ -11,6 +11,12 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    chromatic: {
+      modes: {
+        light: { theme: 'light' },
+        dark: { theme: 'dark' },
+      },
+    },
   },
   decorators: [
     applicationConfig({ providers: [provideRouter([])] }),

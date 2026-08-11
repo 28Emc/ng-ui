@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
+import { userEvent, within } from '@storybook/test';
 import { Component, signal } from '@angular/core';
 import { CarouselComponent } from './carousel.component';
 
@@ -33,7 +34,13 @@ const meta: Meta<CarouselComponent> = {
 export default meta;
 type Story = StoryObj<CarouselComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    await userEvent.click(
+      within(canvasElement).getByRole('button', { name: 'Diapositiva siguiente' }),
+    );
+  },
+};
 
 export const LoopDisabled: Story = {
   render: () => ({

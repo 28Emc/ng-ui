@@ -3,6 +3,10 @@
   "version": "1.2.1",
   "description": "Angular UI component library with CDK, Forms, Overlay, and Router.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/28Emc/ng-ui.git"
+  },
   "keywords": [
     "angular",
     "ui",

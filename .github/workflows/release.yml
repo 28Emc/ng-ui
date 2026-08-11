@@ -41,6 +41,5 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm release
-          enableGitHubTrustedPublish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

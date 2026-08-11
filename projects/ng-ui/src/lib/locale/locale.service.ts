@@ -94,6 +94,7 @@ export class LocaleService {
       return pattern;
     }
     try {
+      new Intl.Locale(locale);
       const formatter = new Intl.DateTimeFormat(locale);
       const order = formatter
         .formatToParts(new Date(2026, 11, 31))

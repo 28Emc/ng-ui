@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { InputComponent, InputType } from './input.component';
+import { InputComponent, InputDensity, InputType } from './input.component';
 
 @Component({
   selector: 'input-host',
@@ -17,6 +17,7 @@ import { InputComponent, InputType } from './input.component';
       [autocomplete]="autocomplete()"
       [invalid]="invalid()"
       [disabled]="disabled()"
+      [density]="density()"
       [(ngModel)]="value"
     />
   `,
@@ -29,6 +30,7 @@ class InputHost {
   readonly autocomplete = signal('');
   readonly invalid = signal(false);
   readonly disabled = signal(false);
+  readonly density = signal<InputDensity>('comfortable');
   value = '';
 }
 
@@ -101,5 +103,20 @@ describe('InputComponent', () => {
     comp.registerOnTouched(touched);
     input.dispatchEvent(new Event('blur'));
     expect(touched).toHaveBeenCalled();
+  });
+
+  it('reflects the density on the host and applies compact/spacious classes', () => {
+    const hostEl = fixture.nativeElement.querySelector('ui-input') as HTMLElement;
+    expect(hostEl.getAttribute('data-density')).toBe('comfortable');
+
+    host.density.set('compact');
+    fixture.detectChanges();
+    expect(hostEl.getAttribute('data-density')).toBe('compact');
+    expect(input.classList.contains('density-compact:py-2')).toBe(true);
+
+    host.density.set('spacious');
+    fixture.detectChanges();
+    expect(hostEl.getAttribute('data-density')).toBe('spacious');
+    expect(input.classList.contains('density-spacious:py-3')).toBe(true);
   });
 });

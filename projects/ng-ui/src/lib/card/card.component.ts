@@ -15,7 +15,7 @@ export class CardComponent {
 
   protected readonly classes = computed(() =>
     cn(
-      'rounded-2xl border border-default bg-surface text-fg shadow-soft',
+      '@container rounded-2xl border border-default bg-surface text-fg shadow-soft',
       this.hover()
         ? 'transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-card'
         : '',

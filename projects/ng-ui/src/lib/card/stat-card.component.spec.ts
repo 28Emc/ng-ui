@@ -64,14 +64,30 @@ describe('StatCardComponent', () => {
 
   it('applies accent-specific classes', () => {
     const iconWrap = () => el().querySelector('span') as HTMLElement;
-    host.accent.set('green');
+    host.accent.set('success');
     fixture.detectChanges();
-    expect(iconWrap().classList.contains('bg-emerald-500/10')).toBe(true);
-    host.accent.set('amber');
+    expect(iconWrap().classList.contains('bg-success/10')).toBe(true);
+    host.accent.set('warning');
     fixture.detectChanges();
-    expect(iconWrap().classList.contains('bg-amber-500/10')).toBe(true);
+    expect(iconWrap().classList.contains('bg-warning/10')).toBe(true);
+    host.accent.set('info');
+    fixture.detectChanges();
+    expect(iconWrap().classList.contains('bg-info/10')).toBe(true);
+    host.accent.set('danger');
+    fixture.detectChanges();
+    expect(iconWrap().classList.contains('bg-danger/10')).toBe(true);
     host.accent.set('pink');
     fixture.detectChanges();
     expect(iconWrap().classList.contains('bg-pink-500/10')).toBe(true);
+  });
+
+  it('maps legacy green/amber accents to semantic tokens', () => {
+    const iconWrap = () => el().querySelector('span') as HTMLElement;
+    host.accent.set('green');
+    fixture.detectChanges();
+    expect(iconWrap().classList.contains('bg-success/10')).toBe(true);
+    host.accent.set('amber');
+    fixture.detectChanges();
+    expect(iconWrap().classList.contains('bg-warning/10')).toBe(true);
   });
 });

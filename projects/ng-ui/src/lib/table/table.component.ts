@@ -26,8 +26,8 @@ export interface TableSort {
   standalone: true,
   imports: [LucideArrowUp, LucideArrowDown, LucideChevronLeft, LucideChevronRight, ButtonComponent],
   template: `
-    <div class="overflow-x-auto rounded-xl border border-default">
-      <table class="w-full text-sm">
+    <div class="@container overflow-x-auto rounded-xl border border-default">
+      <table class="w-full text-sm @narrow:text-xs">
         <thead class="bg-surface-2">
           <tr>
             @for (col of columns(); track col.key) {
@@ -89,7 +89,9 @@ export interface TableSort {
     </div>
 
     @if (showPagination()) {
-      <div class="flex items-center justify-between gap-4 mt-4 px-1">
+      <div
+        class="@container flex flex-col items-start gap-3 px-1 mt-4 @wide:flex-row @wide:items-center @wide:justify-between"
+      >
         <div class="text-sm text-muted">
           Mostrando {{ (page() - 1) * pageSize() + 1 }}–{{
             Math.min(page() * pageSize(), total())
@@ -226,14 +228,14 @@ export class TableComponent<T = any> {
 
   protected thClasses(col: TableColumn): string {
     return cn(
-      'px-4 py-3 text-left font-medium text-muted',
+      'px-4 py-3 text-left font-medium text-muted @narrow:px-3 @narrow:py-2 @wide:px-6',
       col.sortable && 'cursor-pointer select-none hover:text-fg',
       col.align && `text-${col.align}`,
     );
   }
 
   protected tdClasses(col: TableColumn): string {
-    return cn('px-4 py-3', col.align && `text-${col.align}`);
+    return cn('px-4 py-3 @narrow:px-3 @narrow:py-2 @wide:px-6', col.align && `text-${col.align}`);
   }
 
   protected trClasses(): string {

@@ -4,7 +4,9 @@ import { Component, input } from '@angular/core';
   selector: 'ui-card-header',
   standalone: true,
   template: `
-    <header class="flex items-center justify-between gap-4 px-6 pt-6">
+    <header
+      class="flex flex-col items-start gap-3 px-4 pt-4 @sm:flex-row @sm:items-center @sm:justify-between @sm:gap-4 @sm:px-6 @sm:pt-6"
+    >
       <div class="space-y-0.5">
         @if (title()) {
           <h3 class="text-balance text-base font-semibold text-fg">{{ title() }}</h3>

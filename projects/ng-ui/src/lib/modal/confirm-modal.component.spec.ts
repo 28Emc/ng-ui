@@ -108,6 +108,6 @@ describe('ConfirmModalComponent', () => {
     host.danger.set(true);
     host.open.set(true);
     fixture.detectChanges();
-    expect(footerButtons()[1].classList.contains('bg-red-500')).toBe(true);
+    expect(footerButtons()[1].classList.contains('bg-danger')).toBe(true);
   });
 });

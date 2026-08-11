@@ -39,6 +39,10 @@ describe('CardComponent', () => {
     expect(card.classList.contains('shadow-soft')).toBe(true);
   });
 
+  it('sets up the card as a query container', () => {
+    expect(card.classList.contains('@container')).toBe(true);
+  });
+
   it('does not add hover classes by default', () => {
     expect(card.classList.contains('hover:shadow-card')).toBe(false);
   });
@@ -73,6 +77,19 @@ describe('CardHeaderComponent', () => {
     expect(header().querySelector('p')?.textContent).toBe('Subtítulo');
   });
 
+  it('stacks the header by default and switches to a row at container sm', () => {
+    expect(header().classList.contains('flex-col')).toBe(true);
+    expect(header().classList.contains('@sm:flex-row')).toBe(true);
+    expect(header().classList.contains('@sm:items-center')).toBe(true);
+  });
+
+  it('reduces the header padding for narrow containers', () => {
+    expect(header().classList.contains('px-4')).toBe(true);
+    expect(header().classList.contains('pt-4')).toBe(true);
+    expect(header().classList.contains('@sm:px-6')).toBe(true);
+    expect(header().classList.contains('@sm:pt-6')).toBe(true);
+  });
+
   it('projects the trailing action content', () => {
     expect(header().textContent).toContain('Acción');
   });
@@ -90,5 +107,11 @@ describe('CardBodyComponent', () => {
   it('projects body content', () => {
     const body = fixture.nativeElement.querySelector('ui-card-body div') as HTMLElement;
     expect(body.textContent).toContain('Contenido');
+  });
+
+  it('reduces the body padding for narrow containers', () => {
+    const body = fixture.nativeElement.querySelector('ui-card-body div') as HTMLElement;
+    expect(body.classList.contains('p-4')).toBe(true);
+    expect(body.classList.contains('@sm:p-6')).toBe(true);
   });
 });

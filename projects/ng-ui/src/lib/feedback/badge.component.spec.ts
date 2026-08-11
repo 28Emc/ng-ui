@@ -40,16 +40,35 @@ describe('BadgeComponent', () => {
     expect(span().classList.contains('bg-brand-500/10')).toBe(true);
     expect(span().classList.contains('text-brand-700')).toBe(true);
 
-    host.variant.set('green');
+    host.variant.set('success');
     fixture.detectChanges();
-    expect(span().classList.contains('bg-emerald-500/10')).toBe(true);
+    expect(span().classList.contains('bg-success/10')).toBe(true);
+    expect(span().classList.contains('text-success')).toBe(true);
 
-    host.variant.set('amber');
+    host.variant.set('warning');
     fixture.detectChanges();
-    expect(span().classList.contains('bg-amber-500/10')).toBe(true);
+    expect(span().classList.contains('bg-warning/10')).toBe(true);
+
+    host.variant.set('info');
+    fixture.detectChanges();
+    expect(span().classList.contains('bg-info/10')).toBe(true);
+
+    host.variant.set('danger');
+    fixture.detectChanges();
+    expect(span().classList.contains('bg-danger/10')).toBe(true);
 
     host.variant.set('gray');
     fixture.detectChanges();
-    expect(span().classList.contains('bg-slate-500/10')).toBe(true);
+    expect(span().classList.contains('bg-muted/10')).toBe(true);
+  });
+
+  it('maps legacy green/amber variants to semantic tokens', () => {
+    host.variant.set('green');
+    fixture.detectChanges();
+    expect(span().classList.contains('bg-success/10')).toBe(true);
+
+    host.variant.set('amber');
+    fixture.detectChanges();
+    expect(span().classList.contains('bg-warning/10')).toBe(true);
   });
 });

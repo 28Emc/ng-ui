@@ -57,6 +57,32 @@ type Story = StoryObj<TableComponent<DemoRow>>;
 
 export const Default: Story = {};
 
+export const Responsive: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="flex flex-col gap-6">
+        <div class="w-64">
+          <ui-table
+            [columns]="columns"
+            [data]="data"
+            [pageSize]="5"
+            [showPagination]="true"
+          />
+        </div>
+        <div class="w-full">
+          <ui-table
+            [columns]="columns"
+            [data]="data"
+            [pageSize]="5"
+            [showPagination]="true"
+          />
+        </div>
+      </div>
+    `,
+  }),
+};
+
 export const Striped: Story = {
   args: { striped: true },
 };

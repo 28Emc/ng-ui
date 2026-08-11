@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'ui-card-body',
   standalone: true,
   template: `
-    <div class="p-6">
+    <div class="p-4 @sm:p-6">
       <ng-content />
     </div>
   `,

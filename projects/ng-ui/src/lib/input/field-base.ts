@@ -6,4 +6,4 @@ export const FIELD_CLASSES =
   'disabled:cursor-not-allowed disabled:opacity-60';
 
 export const FIELD_INVALID_CLASSES =
-  'border-red-500 hover:border-red-500 focus-within:border-red-500 focus-within:ring-red-500/15';
+  'border-danger hover:border-danger focus-within:border-danger focus-within:ring-danger/15';

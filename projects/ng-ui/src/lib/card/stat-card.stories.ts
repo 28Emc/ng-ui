@@ -20,7 +20,8 @@ const meta: Meta<StatCardComponent> = {
   render: (args) => ({
     props: args,
     template: `
-      <div class="w-72">
+      <div class="w-72 p-2">
+        <p class="kicker">Key metric</p>
         <ui-stat-card [icon]="icon" [label]="label" [value]="value" [sublabel]="sublabel" [accent]="accent" />
       </div>
     `,
@@ -32,23 +33,43 @@ type Story = StoryObj<StatCardComponent>;
 
 export const Default: Story = {};
 
-export const Green: Story = {
+export const Success: Story = {
   args: {
     icon: LucideTrendingUp,
-    accent: 'green',
+    accent: 'success',
     label: 'Ingresos',
     value: '$48.9k',
     sublabel: '+8.2% este mes',
   },
 };
 
-export const Amber: Story = {
+export const Warning: Story = {
   args: {
     icon: LucideAlertTriangle,
-    accent: 'amber',
+    accent: 'warning',
     label: 'Alertas abiertas',
     value: '17',
     sublabel: '3 requieren atención',
+  },
+};
+
+export const Info: Story = {
+  args: {
+    icon: LucideUsers,
+    accent: 'info',
+    label: 'Usuarios activos',
+    value: '1,284',
+    sublabel: '+12% vs mes anterior',
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    icon: LucideAlertTriangle,
+    accent: 'danger',
+    label: 'Errores en 24h',
+    value: '7',
+    sublabel: 'Revisar logs',
   },
 };
 

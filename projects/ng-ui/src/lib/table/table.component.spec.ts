@@ -143,4 +143,28 @@ describe('TableComponent', () => {
     fixture.detectChanges();
     expect(host.page()).toBe(1);
   });
+
+  it('sets up the scroll wrapper as a query container', () => {
+    const wrapper = fixture.nativeElement.querySelector('div.overflow-x-auto') as HTMLElement;
+    expect(wrapper.classList.contains('@container')).toBe(true);
+  });
+
+  it('adds container-query sizing to cells', () => {
+    const th = fixture.nativeElement.querySelector('th') as HTMLElement;
+    const td = fixture.nativeElement.querySelector('td') as HTMLElement;
+    expect(th.classList.contains('@narrow:px-3')).toBe(true);
+    expect(th.classList.contains('@wide:px-6')).toBe(true);
+    expect(td.classList.contains('@narrow:px-3')).toBe(true);
+    expect(td.classList.contains('@wide:px-6')).toBe(true);
+  });
+
+  it('stacks the pagination bar and widens it at container wide', () => {
+    const prevBtn = fixture.nativeElement.querySelector(
+      '[aria-label="Página anterior"]',
+    ) as HTMLElement;
+    const bar = prevBtn.closest('.\\@container') as HTMLElement;
+    expect(bar).toBeTruthy();
+    expect(bar.classList.contains('flex-col')).toBe(true);
+    expect(bar.classList.contains('@wide:flex-row')).toBe(true);
+  });
 });

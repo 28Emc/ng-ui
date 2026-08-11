@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { ButtonComponent, ButtonSize, ButtonVariant } from './button.component';
+import { ButtonComponent, ButtonDensity, ButtonSize, ButtonVariant } from './button.component';
 
 @Component({
   selector: 'button-host',
@@ -11,6 +11,7 @@ import { ButtonComponent, ButtonSize, ButtonVariant } from './button.component';
       [type]="type()"
       [variant]="variant()"
       [size]="size()"
+      [density]="density()"
       [loading]="loading()"
       [disabled]="disabled()"
       [ariaLabel]="ariaLabel()"
@@ -26,6 +27,7 @@ class ButtonHost {
   readonly type = signal<'button' | 'submit' | 'reset'>('button');
   readonly variant = signal<ButtonVariant>('primary');
   readonly size = signal<ButtonSize>('md');
+  readonly density = signal<ButtonDensity>('comfortable');
   readonly loading = signal(false);
   readonly disabled = signal(false);
   readonly ariaLabel = signal('');
@@ -110,5 +112,20 @@ describe('ButtonComponent', () => {
     fixture.detectChanges();
     btn.click();
     expect(host.clicks).toBe(0);
+  });
+
+  it('reflects the density on the host and applies compact/spacious sizing', () => {
+    const hostEl = fixture.nativeElement.querySelector('ui-button') as HTMLElement;
+    expect(hostEl.getAttribute('data-density')).toBe('comfortable');
+
+    host.density.set('compact');
+    fixture.detectChanges();
+    expect(hostEl.getAttribute('data-density')).toBe('compact');
+    expect(btn.classList.contains('density-compact:h-9')).toBe(true);
+
+    host.density.set('spacious');
+    fixture.detectChanges();
+    expect(hostEl.getAttribute('data-density')).toBe('spacious');
+    expect(btn.classList.contains('density-spacious:h-11')).toBe(true);
   });
 });

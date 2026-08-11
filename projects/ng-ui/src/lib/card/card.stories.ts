@@ -42,3 +42,37 @@ export const Default: Story = {};
 export const Interactive: Story = {
   args: { hover: true },
 };
+
+export const Responsive: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="flex flex-wrap items-start gap-6">
+        <div class="w-64">
+          <ui-card [hover]="hover">
+            <ui-card-header title="Narrow" subtitle="El header se apila.">
+              <ui-badge variant="success">Compact</ui-badge>
+            </ui-card-header>
+            <ui-card-body>
+              <p class="text-sm text-muted">
+                Bajo 24rem el título y la acción quedan en columna con menos padding.
+              </p>
+            </ui-card-body>
+          </ui-card>
+        </div>
+        <div class="w-[32rem]">
+          <ui-card [hover]="hover">
+            <ui-card-header title="Wide" subtitle="El header vuelve a una fila.">
+              <ui-badge variant="brand">Comfortable</ui-badge>
+            </ui-card-header>
+            <ui-card-body>
+              <p class="text-sm text-muted">
+                Sobre 24rem el título y la acción se alinean en una fila con el padding completo.
+              </p>
+            </ui-card-body>
+          </ui-card>
+        </div>
+      </div>
+    `,
+  }),
+};

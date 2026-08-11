@@ -2,13 +2,18 @@ import { Component, computed, input, Type } from '@angular/core';
 import { NgComponentOutlet } from '@angular/common';
 import { cn } from '../utils/cn';
 
-export type StatCardAccent = 'brand' | 'green' | 'amber' | 'pink';
+export type StatCardAccent =
+  'brand' | 'success' | 'warning' | 'info' | 'danger' | 'pink' | 'green' | 'amber';
 
 const ACCENT_CLASSES: Record<StatCardAccent, string> = {
   brand: 'bg-brand-500/10 text-brand-700 dark:text-brand-300',
-  green: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300',
-  amber: 'bg-amber-500/10 text-amber-700 dark:text-amber-300',
+  success: 'bg-success/10 text-success',
+  warning: 'bg-warning/10 text-warning',
+  info: 'bg-info/10 text-info',
+  danger: 'bg-danger/10 text-danger',
   pink: 'bg-pink-500/10 text-pink-700 dark:text-pink-300',
+  green: 'bg-success/10 text-success',
+  amber: 'bg-warning/10 text-warning',
 };
 
 @Component({

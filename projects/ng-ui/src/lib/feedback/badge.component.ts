@@ -1,14 +1,19 @@
 import { Component, computed, input } from '@angular/core';
 import { cn } from '../utils/cn';
 
-export type BadgeVariant = 'default' | 'brand' | 'green' | 'amber' | 'gray';
+export type BadgeVariant =
+  'default' | 'brand' | 'success' | 'warning' | 'info' | 'danger' | 'gray' | 'green' | 'amber';
 
 const VARIANT_CLASSES: Record<BadgeVariant, string> = {
   default: 'bg-surface-2 text-fg',
   brand: 'bg-brand-500/10 text-brand-700 dark:text-brand-300',
-  green: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300',
-  amber: 'bg-amber-500/10 text-amber-700 dark:text-amber-300',
-  gray: 'bg-slate-500/10 text-slate-600 dark:text-slate-300',
+  success: 'bg-success/10 text-success',
+  warning: 'bg-warning/10 text-warning',
+  info: 'bg-info/10 text-info',
+  danger: 'bg-danger/10 text-danger',
+  gray: 'bg-muted/10 text-muted',
+  green: 'bg-success/10 text-success',
+  amber: 'bg-warning/10 text-warning',
 };
 
 @Component({

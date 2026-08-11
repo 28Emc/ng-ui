@@ -198,7 +198,7 @@ describe('PasswordStrengthMeterComponent', () => {
   it('marks the input as invalid', () => {
     host.invalid.set(true);
     fixture.detectChanges();
-    expect(input().className).toContain('border-red-500');
+    expect(input().className).toContain('border-danger');
   });
 
   it('disables the input and the toggle', () => {

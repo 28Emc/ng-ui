@@ -19,9 +19,9 @@ const ICON_MAP: Record<ToastVariant, any> = {
 
 const VARIANT_CLASSES: Record<ToastVariant, string> = {
   default: 'border-default',
-  success: 'border-green-500/30',
-  error: 'border-red-500/30',
-  warning: 'border-amber-500/30',
+  success: 'border-success/30',
+  error: 'border-danger/30',
+  warning: 'border-warning/30',
 };
 
 @Component({
@@ -95,9 +95,9 @@ export class ToastComponent {
   protected readonly iconClasses = computed(() =>
     cn(
       'flex shrink-0 h-5 w-5 items-center justify-center rounded-lg',
-      this.toast().variant === 'success' && 'bg-green-500/10 text-green-600 dark:text-green-400',
-      this.toast().variant === 'error' && 'bg-red-500/10 text-red-600 dark:text-red-400',
-      this.toast().variant === 'warning' && 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+      this.toast().variant === 'success' && 'bg-success/10 text-success',
+      this.toast().variant === 'error' && 'bg-danger/10 text-danger',
+      this.toast().variant === 'warning' && 'bg-warning/10 text-warning',
       this.toast().variant === 'default' && 'bg-brand-500/10 text-brand-600 dark:text-brand-400',
     ),
   );

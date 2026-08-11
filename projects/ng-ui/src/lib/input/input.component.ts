@@ -13,6 +13,7 @@ import { FIELD_CLASSES, FIELD_INVALID_CLASSES } from './field-base';
 import { FIELD_CONTEXT } from './field-context.token';
 
 export type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search';
+export type InputDensity = 'comfortable' | 'compact' | 'spacious';
 
 @Component({
   selector: 'ui-input',
@@ -24,6 +25,9 @@ export type InputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url'
       multi: true,
     },
   ],
+  host: {
+    '[attr.data-density]': 'density()',
+  },
   template: `
     <input
       [class]="classes()"
@@ -50,6 +54,7 @@ export class InputComponent implements ControlValueAccessor {
   readonly autocomplete = input<string>();
   readonly invalid = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
+  readonly density = input<InputDensity>('comfortable');
 
   private readonly field = inject(FIELD_CONTEXT);
   protected readonly describedBy = computed(() => {
@@ -64,7 +69,11 @@ export class InputComponent implements ControlValueAccessor {
   protected readonly formDisabled = signal(false);
 
   protected readonly classes = computed(() =>
-    cn(FIELD_CLASSES, this.invalid() ? FIELD_INVALID_CLASSES : ''),
+    cn(
+      FIELD_CLASSES,
+      'density-compact:px-3 density-compact:py-2 density-spacious:px-4 density-spacious:py-3',
+      this.invalid() ? FIELD_INVALID_CLASSES : '',
+    ),
   );
 
   writeValue(value: string | null): void {

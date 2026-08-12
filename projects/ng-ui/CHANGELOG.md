@@ -1,5 +1,11 @@
 # @emc-dev/ng-ui
 
+## 1.3.2
+
+### Patch Changes
+
+- fix: regenerate styles.css so the published package includes all utility classes used by context-menu, dropdown, modal, drawer and other overlays. Also add `tw:build`/`prebuild` so the CSS is regenerated on every build and can never go stale again.
+
 ## 1.3.1
 
 ### Patch Changes

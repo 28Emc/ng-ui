@@ -10,9 +10,11 @@
   ],
   "scripts": {
     "ng": "ng",
+    "tw:build": "tailwindcss -i ./projects/ng-ui/src/lib/styles/theme.css -o ./projects/ng-ui/styles.css --minify",
+    "prebuild": "pnpm tw:build",
     "build": "ng build ng-ui",
     "postbuild": "node scripts/patch-ng-ui-exports.mjs",
-    "build:prod": "ng build ng-ui --configuration production",
+    "build:prod": "pnpm tw:build && ng build ng-ui --configuration production",
     "analyze": "node scripts/analyze-ng-ui.mjs",
     "test": "ng test ng-ui",
     "lint": "ng lint",

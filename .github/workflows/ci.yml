@@ -37,6 +37,9 @@ jobs:
       - name: Build library
         run: pnpm build
 
+      - name: Check styles.css is up to date
+        run: git diff --exit-code -- projects/ng-ui/styles.css
+
       - name: Analyze bundle sizes
         run: pnpm analyze
 

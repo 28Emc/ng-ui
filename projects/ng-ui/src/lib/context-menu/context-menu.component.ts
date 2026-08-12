@@ -53,12 +53,12 @@ export interface UiContextMenuItem {
         role="menu"
         tabindex="-1"
         [attr.aria-label]="label()"
-        class="min-w-44 max-w-72 animate-scale-in rounded-xl border border-default bg-surface p-1.5 shadow-pop"
+        class="min-w-40 max-w-56 animate-scale-in rounded-xl border border-default bg-surface p-1 shadow-pop"
         (keydown)="onPanelKeydown($event)"
       >
         @for (item of items(); track item.id) {
           @if (item.separator) {
-            <div role="separator" class="mx-1 my-1 h-px bg-border-default"></div>
+            <div role="separator" class="mx-1 my-0.5 h-px bg-border-default"></div>
           } @else {
             <button
               type="button"
@@ -116,7 +116,7 @@ export class ContextMenuComponent {
 
   protected itemClasses(item: UiContextMenuItem): string {
     return cn(
-      'flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm text-fg transition-colors',
+      'flex w-full items-center gap-2 rounded-lg px-2 py-1 text-sm text-fg transition-colors',
       item.danger ? 'text-danger hover:bg-danger/10' : 'hover:bg-surface-2',
       item.disabled && 'cursor-not-allowed opacity-50 hover:bg-transparent',
     );

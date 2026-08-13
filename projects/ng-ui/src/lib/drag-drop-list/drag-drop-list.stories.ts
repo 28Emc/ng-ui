@@ -43,7 +43,7 @@ class DragListBasic {
         <ng-template #row let-item>
           <div class="flex flex-1 items-center gap-3">
             <span
-              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-sm font-semibold text-brand-600"
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-sm font-semibold text-brand-700"
             >
               {{ initials(item.title) }}
             </span>

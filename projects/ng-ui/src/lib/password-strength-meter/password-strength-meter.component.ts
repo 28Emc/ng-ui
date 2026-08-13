@@ -22,10 +22,10 @@ import {
 
 const LEVEL_TEXT_CLASSES: Record<PasswordStrengthLevel, string> = {
   empty: 'text-muted',
-  weak: 'text-red-600 dark:text-red-400',
-  fair: 'text-amber-600 dark:text-amber-400',
-  good: 'text-lime-600 dark:text-lime-400',
-  strong: 'text-green-600 dark:text-green-400',
+  weak: 'text-red-700 dark:text-red-400',
+  fair: 'text-amber-700 dark:text-amber-400',
+  good: 'text-lime-700 dark:text-lime-400',
+  strong: 'text-green-700 dark:text-green-400',
 };
 
 const LEVEL_BAR_CLASSES: Record<PasswordStrengthLevel, string> = {
@@ -55,7 +55,7 @@ const LEVEL_BAR_CLASSES: Record<PasswordStrengthLevel, string> = {
           [type]="revealed() ? 'text' : 'password'"
           [value]="password()"
           [placeholder]="placeholder()"
-          [id]="id() || null"
+          [attr.id]="id() || null"
           [disabled]="disabled() || formDisabled()"
           [attr.autocomplete]="autocomplete()"
           [attr.aria-invalid]="invalid() || null"
@@ -118,7 +118,7 @@ const LEVEL_BAR_CLASSES: Record<PasswordStrengthLevel, string> = {
                     lucideCheck
                     [size]="13"
                     [strokeWidth]="2.5"
-                    class="shrink-0 text-green-600 dark:text-green-400"
+                    class="shrink-0 text-green-700 dark:text-green-400"
                   />
                 } @else {
                   <span class="h-1.5 w-1.5 shrink-0 rounded-full border border-default"></span>

@@ -6,7 +6,7 @@ import { LucideCircleAlert } from '@lucide/angular';
   standalone: true,
   imports: [LucideCircleAlert],
   template: `
-    <p [id]="id() || null" class="flex items-center gap-1.5 text-sm text-red-600">
+    <p [attr.id]="id() || null" class="flex items-center gap-1.5 text-sm text-red-600">
       <svg lucideCircleAlert [size]="14" [strokeWidth]="2" />
       <ng-content />
     </p>

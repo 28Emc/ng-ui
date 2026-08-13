@@ -60,7 +60,7 @@ export class BreadcrumbItemComponent {
         : 'px-2 py-1 text-sm font-medium',
       this.item().disabled
         ? 'cursor-not-allowed text-muted/50 hover:bg-transparent hover:text-muted/50'
-        : 'text-muted hover:text-brand-600 hover:bg-brand-500/5 dark:hover:text-brand-400',
+        : 'text-muted hover:text-brand-700 hover:bg-brand-500/5 dark:hover:text-brand-400',
     ),
   );
 

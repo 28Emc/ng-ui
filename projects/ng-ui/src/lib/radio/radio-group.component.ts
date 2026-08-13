@@ -28,6 +28,7 @@ import { RADIO_GROUP_CONTEXT } from './radio-group.token';
       role="radiogroup"
       [class]="classes()"
       [attr.aria-labelledby]="label() ? labelId : null"
+      [attr.aria-disabled]="disabled() || formDisabled() || null"
     >
       @if (label()) {
         <legend [id]="labelId" class="text-sm font-medium text-fg mb-2">
@@ -63,9 +64,7 @@ export class RadioGroupComponent implements ControlValueAccessor {
     this.touch();
   };
 
-  protected readonly classes = computed(() =>
-    cn('space-y-1', this.disabled() || this.formDisabled() ? 'opacity-50' : ''),
-  );
+  protected readonly classes = computed(() => cn('space-y-1'));
 
   private _onChange: (value: string) => void = () => {};
   protected onTouchedFn: () => void = () => {};

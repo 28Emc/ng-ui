@@ -43,7 +43,7 @@ describe('BadgeComponent', () => {
     host.variant.set('success');
     fixture.detectChanges();
     expect(span().classList.contains('bg-success/10')).toBe(true);
-    expect(span().classList.contains('text-success')).toBe(true);
+    expect(span().classList.contains('text-success-strong')).toBe(true);
 
     host.variant.set('warning');
     fixture.detectChanges();

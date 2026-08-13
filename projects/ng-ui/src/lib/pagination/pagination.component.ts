@@ -98,7 +98,7 @@ export class PaginationComponent {
 
   protected pageButtonActiveClass(): string {
     return cn(
-      'bg-brand-500/10 text-brand-600 dark:text-brand-400',
+      'bg-brand-500/10 text-brand-700 dark:text-brand-400',
       'focus-visible:ring-brand-500/50',
     );
   }

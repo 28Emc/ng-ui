@@ -185,7 +185,7 @@ describe('PasswordStrengthMeterComponent', () => {
     const unmet = items.filter((item) => item.classList.contains('text-muted')).length;
     expect(met).toBe(3);
     expect(unmet).toBe(2);
-    const checks = fixture.nativeElement.querySelectorAll('svg.text-green-600');
+    const checks = fixture.nativeElement.querySelectorAll('svg.text-green-700');
     expect(checks.length).toBe(3);
   });
 

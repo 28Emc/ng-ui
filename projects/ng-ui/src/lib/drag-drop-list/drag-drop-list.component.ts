@@ -44,6 +44,7 @@ export function defaultItemLabel(item: unknown): string {
         <div
           cdkDrag
           [cdkDragDisabled]="disabled()"
+          [attr.aria-disabled]="disabled() || null"
           [class.opacity-50]="disabled()"
           class="group flex items-center gap-3 rounded-xl border border-default bg-surface p-3 shadow-soft transition-colors hover:border-brand-400/60"
         >

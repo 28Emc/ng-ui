@@ -4,7 +4,7 @@ import { Component, input } from '@angular/core';
   selector: 'ui-card-header',
   standalone: true,
   template: `
-    <header
+    <div
       class="flex flex-col items-start gap-3 px-4 pt-4 @sm:flex-row @sm:items-center @sm:justify-between @sm:gap-4 @sm:px-6 @sm:pt-6"
     >
       <div class="space-y-0.5">
@@ -16,7 +16,7 @@ import { Component, input } from '@angular/core';
         }
       </div>
       <ng-content />
-    </header>
+    </div>
   `,
 })
 export class CardHeaderComponent {

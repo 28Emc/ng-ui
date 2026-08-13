@@ -1,5 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { cn } from '../utils/cn';
+import { ensureContrast } from '../utils/color';
 
 export type AvatarSize = 'sm' | 'md' | 'lg';
 
@@ -16,7 +17,7 @@ const SIZE_CLASSES: Record<AvatarSize, string> = {
     <span
       [class]="classes()"
       [class.bg-brand-gradient]="!color()"
-      [style.background]="color() || null"
+      [style.background]="backgroundColor()"
     >
       {{ initials() }}
     </span>
@@ -33,6 +34,11 @@ export class AvatarComponent {
       SIZE_CLASSES[this.size()],
     ),
   );
+
+  protected readonly backgroundColor = computed(() => {
+    const color = this.color();
+    return color ? ensureContrast(color) : null;
+  });
 
   protected readonly initials = computed(() => {
     const name = this.name().trim();

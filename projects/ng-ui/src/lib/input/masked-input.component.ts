@@ -29,7 +29,7 @@ import { cursorAtRawCount, extractMaskDigits, formatMask, placeholderFromMask } 
       type="text"
       [value]="display()"
       [placeholder]="placeholder() || derivedPlaceholder()"
-      [id]="id() || null"
+      [attr.id]="id() || null"
       [attr.name]="name() || null"
       [attr.autocomplete]="autocomplete() || null"
       [disabled]="disabled() || formDisabled()"

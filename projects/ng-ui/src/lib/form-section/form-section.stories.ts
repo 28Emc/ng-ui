@@ -21,12 +21,16 @@ const meta: Meta<FormSectionComponent> = {
         >
           <div class="space-y-4">
             <div>
-              <label class="mb-1 block text-sm font-medium text-fg">Nombre</label>
-              <input class="w-full rounded-lg border border-default bg-surface-2 px-3 py-2 text-sm text-fg outline-none focus:border-primary" />
+              <label class="mb-1 block text-sm font-medium text-fg">
+                Nombre
+                <input class="mt-1 w-full rounded-lg border border-default bg-surface-2 px-3 py-2 text-sm text-fg outline-none focus:border-primary" />
+              </label>
             </div>
             <div>
-              <label class="mb-1 block text-sm font-medium text-fg">Email</label>
-              <input class="w-full rounded-lg border border-default bg-surface-2 px-3 py-2 text-sm text-fg outline-none focus:border-primary" />
+              <label class="mb-1 block text-sm font-medium text-fg">
+                Email
+                <input class="mt-1 w-full rounded-lg border border-default bg-surface-2 px-3 py-2 text-sm text-fg outline-none focus:border-primary" />
+              </label>
             </div>
           </div>
         </ui-form-section>

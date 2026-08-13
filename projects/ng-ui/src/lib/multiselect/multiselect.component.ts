@@ -52,7 +52,7 @@ let uidCounter = 0;
         >
           @for (chip of visibleChips(); track chip.value) {
             <span
-              class="inline-flex items-center gap-1 rounded-md bg-brand-500/10 px-2 py-0.5 text-xs font-medium text-brand-600 dark:text-brand-400"
+              class="inline-flex items-center gap-1 rounded-md bg-brand-500/10 px-2 py-0.5 text-xs font-medium text-brand-700 dark:text-brand-400"
             >
               {{ chip.label }}
               <button
@@ -81,6 +81,7 @@ let uidCounter = 0;
             autocomplete="off"
             [attr.id]="id() || null"
             [attr.name]="name() || null"
+            [attr.aria-label]="ariaLabel() || null"
             [attr.aria-expanded]="isOpen()"
             [attr.aria-controls]="listboxId"
             [attr.aria-activedescendant]="activeDescendant()"
@@ -147,6 +148,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
   readonly placeholder = input('');
   readonly id = input<string>();
   readonly name = input<string>();
+  readonly ariaLabel = input('Seleccionar opciones');
   readonly invalid = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly maxVisibleOptions = input(6);

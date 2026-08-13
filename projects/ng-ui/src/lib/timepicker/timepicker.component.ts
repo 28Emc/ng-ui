@@ -29,6 +29,8 @@ function pad(value: number): string {
   return value < 10 ? `0${value}` : `${value}`;
 }
 
+let timepickerPanelSeq = 0;
+
 function toMinutes(value: string | undefined): number | null {
   if (!value) {
     return null;
@@ -124,6 +126,9 @@ function parseTimeText(text: string): string | null {
           [value]="displayText()"
           [disabled]="disabled() || formDisabled()"
           [attr.aria-label]="'Seleccionar hora'"
+          role="combobox"
+          aria-haspopup="dialog"
+          [attr.aria-controls]="panelId"
           [attr.aria-expanded]="isOpen()"
           (input)="onInput($event)"
           (focus)="open()"
@@ -144,7 +149,10 @@ function parseTimeText(text: string): string | null {
     </div>
 
     <ng-template #panel>
-      <div class="w-60 rounded-xl border border-default bg-surface p-4 shadow-pop animate-scale-in">
+      <div
+        [id]="panelId"
+        class="w-60 rounded-xl border border-default bg-surface p-4 shadow-pop animate-scale-in"
+      >
         <div class="mb-3 flex items-center justify-between">
           <span class="text-sm font-semibold text-fg">{{
             displayText() || 'Seleccionar hora'
@@ -215,7 +223,7 @@ function parseTimeText(text: string): string | null {
             (mousedown)="$event.preventDefault()"
             (click)="selectNow()"
             [disabled]="isNowDisabled()"
-            class="text-xs font-medium text-brand-600 transition-colors duration-150 hover:text-brand-700 dark:text-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 rounded-md px-2 py-1"
+            class="text-xs font-medium text-brand-700 transition-colors duration-150 hover:text-brand-700 dark:text-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 rounded-md px-2 py-1"
           >
             Ahora
           </button>
@@ -239,6 +247,7 @@ export class TimePickerComponent implements ControlValueAccessor {
   protected readonly formDisabled = signal(false);
   protected readonly editing = signal(false);
   protected readonly query = signal('');
+  protected readonly panelId = `ui-timepicker-panel-${++timepickerPanelSeq}`;
 
   private readonly triggerEl = viewChild.required<ElementRef<HTMLInputElement>>('triggerEl');
   private readonly panelTemplate = viewChild.required<TemplateRef<unknown>>('panel');

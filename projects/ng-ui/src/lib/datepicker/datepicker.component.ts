@@ -164,7 +164,7 @@ let datepickerPanelSeq = 0;
             type="button"
             (mousedown)="$event.preventDefault()"
             (click)="selectToday()"
-            class="text-xs font-medium text-brand-600 transition-colors duration-150 hover:text-brand-700 dark:text-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 rounded-md px-2 py-1"
+            class="text-xs font-medium text-brand-700 transition-colors duration-150 hover:text-brand-700 dark:text-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 rounded-md px-2 py-1"
           >
             {{ t('today') }}
           </button>
@@ -314,7 +314,7 @@ export class DatePickerComponent implements ControlValueAccessor {
       selected
         ? 'bg-brand-500 font-medium text-white'
         : this.isToday(cell)
-          ? 'font-semibold text-brand-600 dark:text-brand-400 hover:bg-brand-500/10'
+          ? 'font-semibold text-brand-700 dark:text-brand-400 hover:bg-brand-500/10'
           : 'text-fg hover:bg-surface-2',
       !selected && !this.isCurrentMonth(cell) ? 'text-muted/60' : '',
       this.isDisabled(cell) ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',

@@ -35,7 +35,7 @@ import { FIELD_CLASSES, FIELD_INVALID_CLASSES } from '../input/field-base';
         >
           @for (tag of value(); track tag; let i = $index) {
             <span
-              class="inline-flex items-center gap-1 rounded-md bg-brand-500/10 px-2 py-0.5 text-xs font-medium text-brand-600 dark:text-brand-400"
+              class="inline-flex items-center gap-1 rounded-md bg-brand-500/10 px-2 py-0.5 text-xs font-medium text-brand-700 dark:text-brand-400"
             >
               {{ tag }}
               <button

@@ -104,7 +104,7 @@ export interface TableSort {
             size="sm"
             [disabled]="page() === 1"
             (click)="prevPage()"
-            [attr.aria-label]="'Página anterior'"
+            [ariaLabel]="'Página anterior'"
           >
             <svg lucideChevronLeft [size]="16" [strokeWidth]="2" />
           </ui-button>
@@ -112,7 +112,7 @@ export interface TableSort {
             <ui-button
               variant="ghost"
               size="sm"
-              [class]="p === page() ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400' : ''"
+              [class]="p === page() ? 'bg-brand-500/10 text-brand-700 dark:text-brand-400' : ''"
               (click)="goToPage(p)"
               [attr.aria-current]="p === page() ? 'page' : null"
             >
@@ -124,7 +124,7 @@ export interface TableSort {
             size="sm"
             [disabled]="page() === totalPages()"
             (click)="nextPage()"
-            [attr.aria-label]="'Página siguiente'"
+            [ariaLabel]="'Página siguiente'"
           >
             <svg lucideChevronRight [size]="16" [strokeWidth]="2" />
           </ui-button>
@@ -206,7 +206,7 @@ export class TableComponent<T = any> {
     const { column, direction } = this.sortState();
     return cn(
       'text-muted transition-colors',
-      column === this.sortState().column && direction === dir ? 'text-brand-600' : '',
+      column === this.sortState().column && direction === dir ? 'text-brand-700' : '',
     );
   }
 

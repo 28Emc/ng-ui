@@ -70,7 +70,7 @@ describe('CardHeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  const header = () => fixture.nativeElement.querySelector('ui-card-header header') as HTMLElement;
+  const header = () => fixture.nativeElement.querySelector('ui-card-header div') as HTMLElement;
 
   it('renders title and subtitle', () => {
     expect(header().querySelector('h3')?.textContent).toBe('Título');

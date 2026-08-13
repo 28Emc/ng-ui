@@ -297,7 +297,7 @@ export class ComboboxComponent implements ControlValueAccessor {
       'cursor-pointer rounded-lg px-3 py-2 text-sm transition-colors duration-150',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50',
       opt && opt.value === this.value()
-        ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400'
+        ? 'bg-brand-500/10 text-brand-700 dark:text-brand-400'
         : index === this.activeIndex()
           ? 'bg-surface-2 text-fg'
           : 'text-fg',

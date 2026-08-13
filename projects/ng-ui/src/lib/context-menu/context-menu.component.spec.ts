@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { LucideCopy } from '@lucide/angular';
 import { ContextMenuComponent, type UiContextMenuItem } from './context-menu.component';
 
 @Component({
@@ -16,7 +15,7 @@ import { ContextMenuComponent, type UiContextMenuItem } from './context-menu.com
 class CtxHost {
   readonly items = signal<UiContextMenuItem[]>([
     { id: 'rename', label: 'Renombrar', shortcut: 'F2' },
-    { id: 'copy', label: 'Copiar', icon: LucideCopy, shortcut: 'Ctrl+C' },
+    { id: 'copy', label: 'Copiar', icon: 'file-text', shortcut: 'Ctrl+C' },
     { id: 'sep', separator: true },
     { id: 'delete', label: 'Eliminar', danger: true, disabled: true },
   ]);

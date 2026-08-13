@@ -42,6 +42,8 @@ export type DateRangeValue = [string, string] | null;
 type Side = 'start' | 'end';
 type Mode = 'day' | 'month' | 'year';
 
+let daterangepickerPanelSeq = 0;
+
 function splitRange(text: string): [string, string] | [] {
   const parts = text.split(/\s+a\s+|[–—]|\s+-\s+/i);
   if (parts.length !== 2) {
@@ -106,6 +108,9 @@ function maskRange(digits: string, pattern: DateFormatPattern, isDeleting: boole
           [value]="displayText()"
           [disabled]="disabled() || formDisabled()"
           [attr.aria-label]="t('selectRange')"
+          role="combobox"
+          aria-haspopup="dialog"
+          [attr.aria-controls]="panelId"
           [attr.aria-expanded]="isOpen()"
           (input)="onInput($event)"
           (focus)="open()"
@@ -127,6 +132,7 @@ function maskRange(digits: string, pattern: DateFormatPattern, isDeleting: boole
 
     <ng-template #panel>
       <div
+        [id]="panelId"
         class="w-full rounded-xl border border-default bg-surface p-4 shadow-pop animate-scale-in"
       >
         <div class="flex gap-4">
@@ -295,7 +301,7 @@ function maskRange(digits: string, pattern: DateFormatPattern, isDeleting: boole
             type="button"
             (mousedown)="$event.preventDefault()"
             (click)="clear()"
-            class="text-xs font-medium text-brand-600 transition-colors duration-150 hover:text-brand-700 dark:text-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 rounded-md px-2 py-1"
+            class="text-xs font-medium text-brand-700 transition-colors duration-150 hover:text-brand-700 dark:text-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 rounded-md px-2 py-1"
           >
             {{ t('clear') }}
           </button>
@@ -316,6 +322,7 @@ export class DateRangePickerComponent implements ControlValueAccessor {
   readonly name = input<string>();
 
   protected readonly isOpen = signal(false);
+  protected readonly panelId = `ui-daterangepicker-panel-${++daterangepickerPanelSeq}`;
   protected readonly formDisabled = signal(false);
   protected readonly editing = signal(false);
   protected readonly query = signal('');
@@ -471,9 +478,9 @@ export class DateRangePickerComponent implements ControlValueAccessor {
       isStart || isEnd
         ? 'bg-brand-500 font-medium text-white'
         : inRange || hoverRange
-          ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400'
+          ? 'bg-brand-500/10 text-brand-700 dark:text-brand-400'
           : this.isToday(cell)
-            ? 'font-semibold text-brand-600 dark:text-brand-400 hover:bg-brand-500/10'
+            ? 'font-semibold text-brand-700 dark:text-brand-400 hover:bg-brand-500/10'
             : 'text-fg hover:bg-surface-2',
       !isStart && !isEnd && !this.isCurrentMonth(cell, view) ? 'text-muted/60' : '',
       this.isDisabled(cell) ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',

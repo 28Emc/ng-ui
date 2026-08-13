@@ -48,7 +48,7 @@ let modalUid = 0;
         tabindex="-1"
         [attr.aria-labelledby]="title() ? titleId : null"
       >
-        <header class="flex items-start justify-between gap-4 px-6 pt-6">
+        <div class="flex items-start justify-between gap-4 px-6 pt-6">
           <div class="space-y-0.5">
             <h2 [id]="titleId" class="text-balance text-lg font-semibold text-fg">{{ title() }}</h2>
             @if (subtitle()) {
@@ -58,19 +58,19 @@ let modalUid = 0;
           <ui-button
             variant="ghost"
             size="icon-sm"
-            [attr.aria-label]="t('close')"
+            [ariaLabel]="t('close')"
             (click)="requestClose()"
           >
             <svg lucideX [size]="16" [strokeWidth]="2" />
           </ui-button>
-        </header>
+        </div>
         <div class="flex-1 overflow-y-auto overscroll-contain px-6 py-4 scrollbar-thin">
           <ng-content />
         </div>
         @if (hasFooter()) {
-          <footer class="flex items-center justify-end gap-3 border-t border-default px-6 py-4">
+          <div class="flex items-center justify-end gap-3 border-t border-default px-6 py-4">
             <ng-content select="[uiModalFooter]" />
-          </footer>
+          </div>
         }
       </div>
     </ng-template>

@@ -11,7 +11,7 @@ import { TabComponent } from './tab.component';
     <div
       role="tablist"
       class="flex gap-1 border-b border-default"
-      aria-label="{{ label() || null }}"
+      [attr.aria-label]="label() || null"
     >
       @for (tab of tabs(); track $index) {
         <button
@@ -58,7 +58,7 @@ export class TabsComponent {
       'px-4 py-2 text-sm font-medium rounded-t-xl transition-colors duration-150',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50',
       this.activeIndex() === index
-        ? 'text-brand-600 dark:text-brand-400 border-b-2 border-brand-500 -mb-px'
+        ? 'text-brand-700 dark:text-brand-400 border-b-2 border-brand-500 -mb-px'
         : 'text-muted hover:text-fg',
     );
 

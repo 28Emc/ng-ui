@@ -51,8 +51,14 @@ describe('AvatarComponent', () => {
   it('applies a custom background color', () => {
     host.color.set('#6f86c9');
     fixture.detectChanges();
-    expect(span().style.background).toBe('rgb(111, 134, 201)');
+    expect(span().style.background).toBe('rgb(90, 109, 163)');
     expect(span().classList.contains('bg-brand-gradient')).toBe(false);
+  });
+
+  it('keeps an already-accessible background color unchanged', () => {
+    host.color.set('#0b7064');
+    fixture.detectChanges();
+    expect(span().style.background).toBe('rgb(11, 112, 100)');
   });
 
   it('switches between sizes', () => {

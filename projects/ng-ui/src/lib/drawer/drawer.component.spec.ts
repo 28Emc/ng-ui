@@ -53,7 +53,7 @@ describe('DrawerComponent', () => {
     document.querySelector('.cdk-overlay-container [role="dialog"]') as HTMLElement | null;
   const backdrop = () => document.querySelector('.cdk-overlay-backdrop') as HTMLElement | null;
   const closeButton = () =>
-    dialog()?.querySelector('ui-button[aria-label="Cerrar"] button') as HTMLButtonElement | null;
+    dialog()?.querySelector('ui-button button[aria-label="Cerrar"]') as HTMLButtonElement | null;
 
   it('does not render the overlay when closed', () => {
     expect(dialog()).toBeNull();

@@ -175,7 +175,7 @@ export class InfiniteScrollTableComponent<T = any> {
     const { column, direction } = this.sortState();
     return cn(
       'text-muted transition-colors',
-      column === this.sortState().column && direction === dir ? 'text-brand-600' : '',
+      column === this.sortState().column && direction === dir ? 'text-brand-700' : '',
     );
   }
 

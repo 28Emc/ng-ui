@@ -165,7 +165,7 @@
 }
 
 @utility bg-brand-gradient {
-  background-image: linear-gradient(to right, #32b49f 0%, #0c8b7c 100%);
+  background-image: linear-gradient(to right, #0b7064 0%, #0c5a51 100%);
 }
 
 @utility text-brand-gradient {
@@ -187,6 +187,12 @@
   --color-warning: var(--warning);
   --color-info: var(--info);
   --color-danger: var(--danger);
+
+  --color-success-strong: var(--success-strong);
+  --color-warning-strong: var(--warning-strong);
+  --color-info-strong: var(--info-strong);
+  --color-danger-strong: var(--danger-strong);
+  --color-muted-strong: var(--muted-strong);
 }
 
 :root {
@@ -202,6 +208,12 @@
   --warning: #d97706;
   --info: #2563eb;
   --danger: #dc2626;
+
+  --success-strong: #166534;
+  --warning-strong: #b45309;
+  --info-strong: #1d4ed8;
+  --danger-strong: #b91c1c;
+  --muted-strong: #475569;
 }
 
 .dark {
@@ -217,6 +229,12 @@
   --warning: #fbbf24;
   --info: #60a5fa;
   --danger: #f87171;
+
+  --success-strong: #4ade80;
+  --warning-strong: #fbbf24;
+  --info-strong: #60a5fa;
+  --danger-strong: #f87171;
+  --muted-strong: #94a3b8;
 }
 
 @layer base {

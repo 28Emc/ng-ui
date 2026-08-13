@@ -28,7 +28,7 @@ import { FIELD_CONTEXT } from './field-context.token';
       [rows]="rows()"
       [value]="value()"
       [placeholder]="placeholder() || null"
-      [id]="id() || null"
+      [attr.id]="id() || null"
       [attr.name]="name() || null"
       [attr.autocomplete]="autocomplete() || null"
       [disabled]="disabled() || formDisabled()"

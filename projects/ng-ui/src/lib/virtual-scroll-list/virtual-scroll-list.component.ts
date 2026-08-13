@@ -47,7 +47,7 @@ function positiveNumber(fallback: number) {
       [attr.role]="selectable() ? 'listbox' : null"
       [attr.aria-label]="selectable() ? ariaLabel() : null"
       [attr.aria-multiselectable]="selectable() ? 'true' : null"
-      [attr.tabindex]="selectable() ? 0 : null"
+      tabindex="0"
       [style.height.px]="height()"
       class="overflow-y-auto rounded-xl border border-default bg-surface shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/40"
       (scroll)="onScroll()"

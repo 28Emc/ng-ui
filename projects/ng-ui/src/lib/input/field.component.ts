@@ -31,7 +31,7 @@ let fieldUid = 0;
       @if (error()) {
         <ui-field-error [id]="errorId() || undefined">{{ error() }}</ui-field-error>
       } @else if (hint()) {
-        <p [id]="hintId() || undefined" class="text-sm text-muted">{{ hint() }}</p>
+        <p [attr.id]="hintId() || null" class="text-sm text-muted">{{ hint() }}</p>
       }
     </label>
   `,

@@ -98,13 +98,13 @@ export class ToastComponent {
       this.toast().variant === 'success' && 'bg-success/10 text-success',
       this.toast().variant === 'error' && 'bg-danger/10 text-danger',
       this.toast().variant === 'warning' && 'bg-warning/10 text-warning',
-      this.toast().variant === 'default' && 'bg-brand-500/10 text-brand-600 dark:text-brand-400',
+      this.toast().variant === 'default' && 'bg-brand-500/10 text-brand-700 dark:text-brand-400',
     ),
   );
 
   protected readonly actionClasses = computed(() =>
     cn(
-      'mt-2 inline-flex items-center rounded-lg bg-brand-500/10 px-2 py-1 text-xs font-semibold text-brand-600',
+      'mt-2 inline-flex items-center rounded-lg bg-brand-500/10 px-2 py-1 text-xs font-semibold text-brand-700',
       'transition-colors duration-150 hover:bg-brand-500/20 dark:text-brand-400',
     ),
   );

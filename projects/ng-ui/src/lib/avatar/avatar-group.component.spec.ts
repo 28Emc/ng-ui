@@ -100,7 +100,7 @@ describe('AvatarGroupComponent', () => {
     fixture.detectChanges();
     expect(first.classList.contains('h-12')).toBe(true);
     const second = avatars()[1].querySelector('span') as HTMLElement;
-    expect(second.style.background).toBe('rgb(111, 134, 201)');
+    expect(second.style.background).toBe('rgb(90, 109, 163)');
   });
 
   it('applies size classes to the counter', () => {

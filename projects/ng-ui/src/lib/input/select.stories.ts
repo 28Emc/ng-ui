@@ -23,10 +23,11 @@ const meta: Meta<SelectComponent> = {
     disabled: false,
     name: 'country',
     autocomplete: 'country-name',
+    ariaLabel: 'País',
   },
   render: (args) => ({
     props: args,
-    template: `<ui-select [placeholder]="placeholder" [invalid]="invalid" [disabled]="disabled" [name]="name" [autocomplete]="autocomplete">${OPTIONS}</ui-select>`,
+    template: `<ui-select [placeholder]="placeholder" [invalid]="invalid" [disabled]="disabled" [name]="name" [autocomplete]="autocomplete" [ariaLabel]="ariaLabel">${OPTIONS}</ui-select>`,
   }),
 };
 

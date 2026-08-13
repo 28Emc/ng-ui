@@ -1,5 +1,11 @@
 # @emc-dev/ng-ui
 
+## 1.3.3
+
+### Patch Changes
+
+- fix(context-menu): replace `NgComponentOutlet`-based icons with a new `ui-icon` component that renders inline SVG paths, so icon size and stroke width apply correctly. `UiContextMenuItem.icon` is now a string icon name. Add `class` field to `UiContextMenuItem` for custom item styling. Align icons with the label text via a fixed-width icon slot.
+
 ## 1.3.2
 
 ### Patch Changes

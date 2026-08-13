@@ -85,3 +85,4 @@ export * from './lib/carousel/carousel.component';
 export * from './lib/tree-view/tree-view.component';
 export * from './lib/otp-input/otp-input.component';
 export * from './lib/context-menu/context-menu.component';
+export * from './lib/icon/ui-icon.component';

@@ -9,29 +9,29 @@ import {
   output,
   signal,
   viewChild,
-  type Type,
   HostListener,
 } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { NgComponentOutlet } from '@angular/common';
 import { filter } from 'rxjs';
 import { cn } from '../utils/cn';
+import { UiIconComponent } from '../icon/ui-icon.component';
 
 export interface UiContextMenuItem {
   id: string;
   label?: string;
-  icon?: Type<unknown>;
+  icon?: string;
   disabled?: boolean;
   danger?: boolean;
   shortcut?: string;
   separator?: boolean;
+  class?: string;
 }
 
 @Component({
   selector: 'ui-context-menu',
   standalone: true,
-  imports: [NgComponentOutlet],
+  imports: [UiIconComponent],
   template: `
     <div
       #trigger
@@ -53,7 +53,7 @@ export interface UiContextMenuItem {
         role="menu"
         tabindex="-1"
         [attr.aria-label]="label()"
-        class="min-w-40 max-w-56 animate-scale-in rounded-xl border border-default bg-surface p-1 shadow-pop"
+        class="min-w-40 max-w-52 animate-scale-in rounded-xl border border-default bg-surface p-1 shadow-pop"
         (keydown)="onPanelKeydown($event)"
       >
         @for (item of items(); track item.id) {
@@ -71,13 +71,10 @@ export interface UiContextMenuItem {
             >
               <span data-ctx-icon class="flex w-4 shrink-0 items-center justify-center">
                 @if (item.icon) {
-                  <svg
-                    [ngComponentOutlet]="item.icon"
-                    [ngComponentOutletInputs]="{ size: 16, strokeWidth: 2 }"
-                  />
+                  <ui-icon [name]="item.icon" [size]="14" [strokeWidth]="2" />
                 }
               </span>
-              <span class="flex-1 text-left truncate">{{ item.label }}</span>
+              <span class="min-w-0 flex-1 text-left truncate">{{ item.label }}</span>
               @if (item.shortcut) {
                 <span class="text-xs text-muted shrink-0">{{ item.shortcut }}</span>
               }
@@ -116,9 +113,10 @@ export class ContextMenuComponent {
 
   protected itemClasses(item: UiContextMenuItem): string {
     return cn(
-      'flex w-full items-center gap-2 rounded-lg px-2 py-1 text-sm text-fg transition-colors',
+      'flex w-full items-center gap-1.5 rounded-lg px-2 py-1 text-sm text-fg transition-colors',
       item.danger ? 'text-danger hover:bg-danger/10' : 'hover:bg-surface-2',
       item.disabled && 'cursor-not-allowed opacity-50 hover:bg-transparent',
+      item.class,
     );
   }
 

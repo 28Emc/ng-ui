@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { ModalComponent } from './modal.component';
 import { UiModalFooterDirective } from './modal-footer.directive';
 import { ButtonComponent } from '../button/button.component';
@@ -17,6 +18,25 @@ const meta: Meta<ModalComponent> = {
     title: 'Nueva solicitud',
     subtitle: 'Completa la información para continuar.',
     open: true,
+  },
+  argTypes: {
+    open: {
+      description: 'Controla la visibilidad del modal.',
+      control: { type: 'boolean' },
+    },
+    size: {
+      description: 'Ancho máximo del modal.',
+      options: ['sm', 'md', 'lg', 'xl', 'full'],
+      control: { type: 'select' },
+    },
+    title: {
+      description: 'Título mostrado en la cabecera.',
+      control: { type: 'text' },
+    },
+    subtitle: {
+      description: 'Subtítulo mostrado bajo el título.',
+      control: { type: 'text' },
+    },
   },
   render: (args) => ({
     props: args,
@@ -38,7 +58,15 @@ const meta: Meta<ModalComponent> = {
 export default meta;
 type Story = StoryObj<ModalComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async () => {
+    await within(document.body).findByRole('dialog', { hidden: true });
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => {
+      expect(within(document.body).queryByRole('dialog', { hidden: true })).toBeNull();
+    });
+  },
+};
 
 export const Small: Story = {
   args: { size: 'sm' },

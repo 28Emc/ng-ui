@@ -5,6 +5,13 @@ const meta: Meta<BadgeComponent> = {
   title: 'Feedback/Badge',
   component: BadgeComponent,
   args: { variant: 'default' },
+  argTypes: {
+    variant: {
+      description: 'Variante semántica del badge.',
+      options: ['default', 'brand', 'success', 'warning', 'info', 'danger', 'gray'],
+      control: { type: 'select' },
+    },
+  },
   render: (args) => ({
     props: args,
     template: `<ui-badge [variant]="variant">Badge</ui-badge>`,

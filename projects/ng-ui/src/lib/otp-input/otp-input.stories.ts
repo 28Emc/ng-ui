@@ -1,14 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
+import { fn } from 'storybook/test';
 import { OtpInputComponent } from './otp-input.component';
 
 const meta: Meta<OtpInputComponent> = {
   title: 'Inputs/OtpInput',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: OtpInputComponent,
   args: {
     length: 6,
     numeric: true,
     autoFocus: false,
     disabled: false,
+    complete: fn(),
+  },
+  argTypes: {
+    complete: {
+      description: 'Se emite cuando el código se completa.',
+      table: { disable: true },
+    },
   },
   render: (args) => ({
     props: args,
@@ -19,6 +30,7 @@ const meta: Meta<OtpInputComponent> = {
           [numeric]="numeric"
           [autoFocus]="autoFocus"
           [disabled]="disabled"
+          (complete)="complete($event)"
         />
       </div>
     `,

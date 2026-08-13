@@ -3,6 +3,9 @@ import { PageLoaderComponent } from './page-loader.component';
 
 const meta: Meta<PageLoaderComponent> = {
   title: 'Feedback/PageLoader',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: PageLoaderComponent,
   args: { label: 'Cargando…', fullScreen: false },
   render: (args) => ({

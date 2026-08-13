@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { DatePickerComponent } from './datepicker.component';
 
 const meta: Meta<DatePickerComponent> = {
-  title: 'Input/DatePicker',
+  title: 'Pickers/DatePicker',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: DatePickerComponent,
   args: {
     placeholder: 'Selecciona una fecha',

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
+import { fn } from 'storybook/test';
 import { ConfirmModalComponent } from './confirm-modal.component';
 
 const meta: Meta<ConfirmModalComponent> = {
@@ -12,6 +13,18 @@ const meta: Meta<ConfirmModalComponent> = {
     danger: false,
     size: 'sm',
     open: true,
+    confirm: fn(),
+    cancelled: fn(),
+  },
+  argTypes: {
+    confirm: {
+      description: 'Se emite al confirmar la acción.',
+      table: { disable: true },
+    },
+    cancelled: {
+      description: 'Se emite al cancelar o cerrar.',
+      table: { disable: true },
+    },
   },
   render: (args) => ({
     props: args,
@@ -24,6 +37,8 @@ const meta: Meta<ConfirmModalComponent> = {
         [cancelLabel]="cancelLabel"
         [danger]="danger"
         [size]="size"
+        (confirm)="confirm($event)"
+        (cancelled)="cancelled($event)"
       />
     `,
   }),

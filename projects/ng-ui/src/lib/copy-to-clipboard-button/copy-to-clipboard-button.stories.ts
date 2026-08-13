@@ -3,6 +3,9 @@ import { CopyToClipboardButtonComponent } from './copy-to-clipboard-button.compo
 
 const meta: Meta<CopyToClipboardButtonComponent> = {
   title: 'Actions/CopyToClipboardButton',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: CopyToClipboardButtonComponent,
   args: {
     text: 'pnpm add emc-ui',

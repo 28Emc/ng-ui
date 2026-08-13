@@ -1,0 +1,24 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Utilities" />
+
+# Utilidades
+
+Pequeños helpers de la librería exportados para uso en aplicaciones consumidoras.
+
+## cn
+
+Combina clases condicionalmente y resuelve conflictos de Tailwind. Es un *thin wrapper* sobre
+`clsx` + `tailwind-merge`, el mismo que usan internamente los componentes.
+
+<Source
+  code={`import { cn } from 'ng-ui';
+
+cn('px-2', condition && 'px-4'); // gana 'px-4' si condition es true`}
+  language="typescript"
+/>
+
+## focus
+
+Helper para gestionar el foco programático sobre contenedores (por ejemplo, restaurar el foco al
+cerrar modales o menús), respetando `prefers-reduced-motion`.

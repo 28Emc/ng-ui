@@ -31,19 +31,10 @@ Card con hover (eleva y traslada):
 
 # StatCard
 
-Tarjeta de métrica con icono, valor y variantes de acento.
+Tarjeta de métrica con icono, valor y variantes de acento. Documentación completa en su propia
+página `Data Display/StatCard`.
 
 <Canvas of={StatCardStories.Default} />
-<Controls of={StatCardStories.Default} />
-
-<Canvas of={StatCardStories.Green} />
-<Canvas of={StatCardStories.Amber} />
+<Canvas of={StatCardStories.Success} />
+<Canvas of={StatCardStories.Warning} />
 <Canvas of={StatCardStories.Pink} />
-
-| Input      | Tipo                                      | Descripción             |
-| ---------- | ----------------------------------------- | ----------------------- |
-| `icon`     | `LucideIcon`                              | Icono de lucide-angular |
-| `label`    | `string`                                  | Etiqueta                |
-| `value`    | `string`                                  | Valor principal         |
-| `sublabel` | `string`                                  | Texto secundario        |
-| `accent`   | `'brand' \| 'green' \| 'amber' \| 'pink'` | Color del icono         |

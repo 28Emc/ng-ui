@@ -1,0 +1,23 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as UiIconStories from './ui-icon.stories';
+
+<Meta of={UiIconStories} />
+
+# Icon
+
+Icono SVG por nombre. Las rutas se resuelven desde `ICON_PATHS` y se renderizan como trazo
+corriente (hereda `currentColor`), por lo que se colorea con la clase de texto del padre.
+
+<Canvas of={UiIconStories.Default} />
+<Controls of={UiIconStories.Default} />
+
+## Galería
+
+<Canvas of={UiIconStories.Gallery} />
+
+## Uso
+
+<Source
+  code={`<ui-icon name="settings" [size]="20" [strokeWidth]="2" />`}
+  language="html"
+/>

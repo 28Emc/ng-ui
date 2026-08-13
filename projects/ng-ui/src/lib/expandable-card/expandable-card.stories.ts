@@ -3,6 +3,9 @@ import { ExpandableCardComponent } from './expandable-card.component';
 
 const meta: Meta<ExpandableCardComponent> = {
   title: 'Data Display/ExpandableCard',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: ExpandableCardComponent,
   args: {
     title: 'Detalles del proyecto',

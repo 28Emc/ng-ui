@@ -3,6 +3,9 @@ import { SpinnerComponent } from './spinner.component';
 
 const meta: Meta<SpinnerComponent> = {
   title: 'Feedback/Spinner',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: SpinnerComponent,
   args: { size: 24 },
   render: (args) => ({

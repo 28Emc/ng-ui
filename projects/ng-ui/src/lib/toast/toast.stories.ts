@@ -43,6 +43,9 @@ import { ButtonComponent } from '../button/button.component';
         (click)="
           toastService.toast({
             title: 'Documento borrado',
+            parameters: {
+              a11y: { test: 'error' },
+            },
             description: 'Se moverá a la papelera',
             variant: 'warning',
             action: {

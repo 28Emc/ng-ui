@@ -1,8 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
+import { fn } from 'storybook/test';
 import { ThemeSwitcherComponent } from './theme-switcher.component';
 
 const meta: Meta<ThemeSwitcherComponent> = {
   title: 'Actions/ThemeSwitcher',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: ThemeSwitcherComponent,
   args: {
     storageKey: 'emc-ui-theme',
@@ -11,6 +15,13 @@ const meta: Meta<ThemeSwitcherComponent> = {
     size: 'icon',
     labelLight: 'Cambiar a tema oscuro',
     labelDark: 'Cambiar a tema claro',
+    themeChange: fn(),
+  },
+  argTypes: {
+    themeChange: {
+      description: 'Se emite al cambiar el tema.',
+      table: { disable: true },
+    },
   },
   render: (args) => ({
     props: args,
@@ -23,6 +34,7 @@ const meta: Meta<ThemeSwitcherComponent> = {
           [size]="size"
           [labelLight]="labelLight"
           [labelDark]="labelDark"
+          (themeChange)="themeChange($event)"
         />
         <span class="text-sm text-muted">
           Pulsa para alternar el modo oscuro. La elección se guarda en

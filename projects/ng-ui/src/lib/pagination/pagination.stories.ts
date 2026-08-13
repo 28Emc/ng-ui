@@ -3,6 +3,9 @@ import { PaginationComponent } from './pagination.component';
 
 const meta: Meta<PaginationComponent> = {
   title: 'Data Display/Pagination',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: PaginationComponent,
   args: {
     page: 3,

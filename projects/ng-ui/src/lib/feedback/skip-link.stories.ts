@@ -3,6 +3,9 @@ import { SkipLinkComponent } from './skip-link.component';
 
 const meta: Meta<SkipLinkComponent> = {
   title: 'Feedback/SkipLink',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: SkipLinkComponent,
   render: () => ({
     template: `

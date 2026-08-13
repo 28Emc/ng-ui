@@ -1,0 +1,33 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './select.stories';
+
+<Meta of={SelectStories} />
+
+# Select
+
+Campo desplegable nativo estilizado. Implementa `ControlValueAccessor`, por lo que funciona con
+`formControlName`, `ngModel` y formularios reactivos.
+
+<Canvas of={SelectStories.Default} />
+<Controls of={SelectStories.Default} />
+
+## Estados
+
+<Canvas of={SelectStories.Invalid} />
+<Canvas of={SelectStories.Disabled} />
+
+## Con Field
+
+<Canvas of={SelectStories.WithField} />
+
+## Uso
+
+<Source
+  code={`<ui-field label="País">
+  <ui-select name="country" placeholder="Selecciona un país">
+    <option value="es">España</option>
+    <option value="mx">México</option>
+  </ui-select>
+</ui-field>`}
+  language="html"
+/>

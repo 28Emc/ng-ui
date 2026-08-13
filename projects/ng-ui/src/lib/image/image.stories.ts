@@ -3,6 +3,9 @@ import { ImageComponent } from './image.component';
 
 const meta: Meta<ImageComponent> = {
   title: 'Data Display/Image',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: ImageComponent,
   args: {
     src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',

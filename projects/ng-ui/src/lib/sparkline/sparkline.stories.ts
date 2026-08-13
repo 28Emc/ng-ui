@@ -3,6 +3,9 @@ import { SparklineComponent } from './sparkline.component';
 
 const meta: Meta<SparklineComponent> = {
   title: 'Data Display/Sparkline',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: SparklineComponent,
   args: {
     data: [12, 18, 15, 22, 28, 25, 34, 31, 42],

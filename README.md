@@ -21,7 +21,7 @@ pnpm storybook  # Storybook dev server (port 6006)
 | Script              | Description                                                 |
 | ------------------- | ----------------------------------------------------------- |
 | `pnpm build`        | Build `@emc-dev/ng-ui` (`ng build ng-ui`)                   |
-| `pnpm build:styles` | Compile the Tailwind theme -> `projects/ng-ui/styles.css`   |
+| `pnpm tw:build`       | Compile the Tailwind theme -> `projects/ng-ui/styles.css`   |
 | `pnpm analyze`      | Bundle-size report from `dist/ng-ui` -> `dist/bundle-stats` |
 | `pnpm test`         | Run unit tests (vitest)                                     |
 | `pnpm lint`         | ESLint                                                      |

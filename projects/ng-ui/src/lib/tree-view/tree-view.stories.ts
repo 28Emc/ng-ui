@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
-import { userEvent, within } from '@storybook/test';
+import { userEvent, within } from 'storybook/test';
 import { TreeViewComponent, type UiTreeNode } from './tree-view.component';
 
 const nodes: UiTreeNode[] = [
@@ -27,6 +27,9 @@ const nodes: UiTreeNode[] = [
 
 const meta: Meta<TreeViewComponent> = {
   title: 'Data Display/TreeView',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: TreeViewComponent,
   args: {
     nodes,

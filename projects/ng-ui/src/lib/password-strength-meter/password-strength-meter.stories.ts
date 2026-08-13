@@ -5,7 +5,7 @@ import { PasswordStrengthMeterComponent } from './password-strength-meter.compon
 import { FieldComponent } from '../input/field.component';
 
 const meta: Meta<PasswordStrengthMeterComponent> = {
-  title: 'Input/PasswordStrengthMeter',
+  title: 'Inputs/PasswordStrengthMeter',
   component: PasswordStrengthMeterComponent,
   decorators: [
     moduleMetadata({

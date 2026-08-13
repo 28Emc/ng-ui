@@ -4,7 +4,10 @@ import { TextareaComponent } from './textarea.component';
 import { FieldComponent } from './field.component';
 
 const meta: Meta<TextareaComponent> = {
-  title: 'Input/Textarea',
+  title: 'Inputs/Textarea',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: TextareaComponent,
   decorators: [
     moduleMetadata({

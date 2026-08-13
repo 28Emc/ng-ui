@@ -4,7 +4,10 @@ import { InputComponent } from './input.component';
 import { FieldComponent } from './field.component';
 
 const meta: Meta<InputComponent> = {
-  title: 'Input/Input',
+  title: 'Inputs/Input',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: InputComponent,
   decorators: [
     moduleMetadata({
@@ -18,6 +21,25 @@ const meta: Meta<InputComponent> = {
     disabled: false,
     name: 'email',
     autocomplete: 'email',
+  },
+  argTypes: {
+    type: {
+      description: 'Tipo de input nativo.',
+      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
+      control: { type: 'select' },
+    },
+    placeholder: {
+      description: 'Texto de marcador de posición.',
+      control: { type: 'text' },
+    },
+    invalid: {
+      description: 'Aplica estilos de estado inválido y `aria-invalid`.',
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      description: 'Deshabilita el input.',
+      control: { type: 'boolean' },
+    },
   },
   render: (args) => ({
     props: args,

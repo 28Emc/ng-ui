@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ContextMenuStories from './context-menu.stories';
+
+<Meta of={ContextMenuStories} />
+
+# ContextMenu
+
+Menú contextual abierto con clic derecho sobre su contenido. Los elementos se definen con
+`UiContextMenuItem` y emiten `itemSelected` al elegir una opción.
+
+<Canvas of={ContextMenuStories.Default} />
+<Controls of={ContextMenuStories.Default} />
+
+## Elemento deshabilitado
+
+<Canvas of={ContextMenuStories.DisabledItem} />
+
+## Uso
+
+<Source
+  code={`<ui-context-menu [items]="items" (itemSelected)="onItemSelected($event)">
+  <div class="p-8 border rounded-lg">Haz clic derecho</div>
+</ui-context-menu>`}
+  language="html"
+/>

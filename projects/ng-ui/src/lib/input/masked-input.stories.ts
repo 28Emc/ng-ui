@@ -5,7 +5,10 @@ import { MaskedInputComponent } from './masked-input.component';
 import { FieldComponent } from './field.component';
 
 const meta: Meta<MaskedInputComponent> = {
-  title: 'Input/MaskedInput',
+  title: 'Inputs/MaskedInput',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: MaskedInputComponent,
   decorators: [
     moduleMetadata({

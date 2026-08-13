@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
-import { userEvent, within } from '@storybook/test';
+import { userEvent, within } from 'storybook/test';
 import { Component, signal } from '@angular/core';
 import { CarouselComponent } from './carousel.component';
 
@@ -26,6 +26,9 @@ class CarouselDemoComponent {
 
 const meta: Meta<CarouselComponent> = {
   title: 'Data Display/Carousel',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: CarouselComponent,
   decorators: [moduleMetadata({ imports: [CarouselDemoComponent] })],
   render: () => ({ template: `<carousel-demo />` }),

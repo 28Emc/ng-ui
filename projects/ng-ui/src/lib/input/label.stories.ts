@@ -4,7 +4,10 @@ import { LabelComponent } from './label.component';
 import { InputComponent } from './input.component';
 
 const meta: Meta<LabelComponent> = {
-  title: 'Input/Label',
+  title: 'Inputs/Label',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: LabelComponent,
   decorators: [
     moduleMetadata({

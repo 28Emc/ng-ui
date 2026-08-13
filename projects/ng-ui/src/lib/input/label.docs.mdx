@@ -1,0 +1,22 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as LabelStories from './label.stories';
+
+<Meta of={LabelStories} />
+
+# Label
+
+Etiqueta de formulario con soporte de marcado de campo obligatorio.
+
+<Canvas of={LabelStories.Default} />
+<Controls of={LabelStories.Default} />
+
+## Obligatorio
+
+<Canvas of={LabelStories.Required} />
+
+## Uso
+
+<Source
+  code={`<ui-label [htmlFor]="inputId" required>Nombre completo</ui-label>`}
+  language="html"
+/>

@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as CarouselStories from './carousel.stories';
+
+<Meta of={CarouselStories} />
+
+# Carousel
+
+Carrusel de contenido con desplazamiento libre, paginación, bucle opcional y autoplay configurable.
+
+<Canvas of={CarouselStories.Default} />
+<Controls of={CarouselStories.Default} />
+
+## Variantes
+
+<Canvas of={CarouselStories.LoopDisabled} />
+<Canvas of={CarouselStories.Autoplay} />
+
+## Uso
+
+<Source
+  code={`<ui-carousel [autoplay]="true" [interval]="4000">
+  <div uiCarouselItem>Slide 1</div>
+  <div uiCarouselItem>Slide 2</div>
+</ui-carousel>`}
+  language="html"
+/>

@@ -78,6 +78,9 @@ class InfiniteScrollDemoComponent {
 
 const meta: Meta<InfiniteScrollTableComponent<DemoRow>> = {
   title: 'Data Display/InfiniteScrollTable',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: InfiniteScrollTableComponent<DemoRow>,
   decorators: [moduleMetadata({ imports: [InfiniteScrollTableComponent] })],
   args: {

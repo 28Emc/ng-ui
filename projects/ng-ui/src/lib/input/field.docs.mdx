@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as FieldStories from './field.stories';
+
+<Meta of={FieldStories} />
+
+# Field
+
+Contenedor de formulario que agrupa etiqueta, control proyectado, texto de ayuda y mensaje de
+error. Gestiona la accesibilidad automáticamente: el `label` envuelve el control proyectado y los
+ids de `hint`/`error` se propagan al `aria-describedby` del control mediante `FIELD_CONTEXT`.
+
+<Canvas of={FieldStories.Default} />
+<Controls of={FieldStories.Default} />
+
+## Estados
+
+<Canvas of={FieldStories.WithHint} />
+<Canvas of={FieldStories.Required} />
+<Canvas of={FieldStories.WithError} />
+<Canvas of={FieldStories.RequiredWithError} />
+
+## Uso
+
+<Source
+  code={`<ui-field label="Correo electrónico" hint="Usaremos este correo para enviarte el acceso.">
+  <ui-input placeholder="tu@correo.com" />
+</ui-field>`}
+  language="html"
+/>

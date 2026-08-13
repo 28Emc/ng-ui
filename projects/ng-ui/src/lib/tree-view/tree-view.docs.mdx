@@ -1,0 +1,23 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as TreeViewStories from './tree-view.stories';
+
+<Meta of={TreeViewStories} />
+
+# TreeView
+
+Árbol de navegación colapsable con selección simple o múltiple y plantilla de nodo personalizada.
+Expone `aria-expanded`, `aria-selected` y la navegación por teclado esperada en un widget de árbol.
+
+<Canvas of={TreeViewStories.Default} />
+<Controls of={TreeViewStories.Default} />
+
+## Selección múltiple
+
+<Canvas of={TreeViewStories.MultiSelect} />
+
+## Uso
+
+<Source
+  code={`<ui-tree-view [nodes]="nodes" [multiSelect]="true" />`}
+  language="html"
+/>

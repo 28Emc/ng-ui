@@ -9,6 +9,9 @@ import { StatCardComponent } from './stat-card.component';
 
 const meta: Meta<StatCardComponent> = {
   title: 'Data Display/StatCard',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: StatCardComponent,
   args: {
     icon: LucideUsers,

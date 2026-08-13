@@ -1,0 +1,25 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ImageStories from './image.stories';
+
+<Meta of={ImageStories} />
+
+# Image
+
+Imagen optimizada con `loading`/`priority` controlados, `srcset` responsivo y placeholder
+difuminado (blur-up) mientras carga.
+
+<Canvas of={ImageStories.Default} />
+<Controls of={ImageStories.Default} />
+
+## Variantes
+
+<Canvas of={ImageStories.EagerPriority} />
+<Canvas of={ImageStories.WithBlurPlaceholder} />
+<Canvas of={ImageStories.ResponsiveSrcset} />
+
+## Uso
+
+<Source
+  code={`<ui-image src="foto.jpg" alt="Descripción" width="640" height="480" />`}
+  language="html"
+/>

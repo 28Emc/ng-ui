@@ -3,6 +3,9 @@ import { ScreenReaderOnlyComponent } from './screen-reader-only.component';
 
 const meta: Meta<ScreenReaderOnlyComponent> = {
   title: 'Accessibility/ScreenReaderOnly',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: ScreenReaderOnlyComponent,
   render: () => ({
     template: `

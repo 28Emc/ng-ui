@@ -52,7 +52,16 @@ class FileUploadDemoComponent {
 
 const meta: Meta<FileUploadComponent> = {
   title: 'Inputs/FileUpload',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: FileUploadComponent,
+  args: {
+    accept: ['image/*', 'application/pdf', '.csv'],
+    maxSize: 5 * 1024 * 1024,
+    multiple: false,
+    autoUpload: false,
+  },
   render: (args) => ({
     props: args,
     template: `

@@ -1,0 +1,31 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as ConfirmModalStories from './confirm-modal.stories';
+
+<Meta of={ConfirmModalStories} />
+
+# ConfirmModal
+
+Modal de confirmación accesible con descripción, botones de confirmar/cancelar y variante de
+peligro. Emite `confirm` y `cancelled`. Cierra con Escape o clic en el backdrop.
+
+<Canvas of={ConfirmModalStories.Default} />
+<Controls of={ConfirmModalStories.Default} />
+
+## Variante de peligro
+
+<Canvas of={ConfirmModalStories.Danger} />
+
+## Uso
+
+<Source
+  code={`<ui-confirm-modal
+  [open]="open"
+  title="Eliminar usuario"
+  description="Esta acción no se puede deshacer."
+  confirmLabel="Eliminar"
+  danger
+  (confirm)="onConfirm()"
+  (cancelled)="onCancel()"
+/>`}
+  language="html"
+/>

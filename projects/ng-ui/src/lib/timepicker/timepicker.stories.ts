@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { TimePickerComponent } from './timepicker.component';
 
 const meta: Meta<TimePickerComponent> = {
-  title: 'Input/TimePicker',
+  title: 'Pickers/TimePicker',
   component: TimePickerComponent,
   args: {
     placeholder: 'Selecciona una hora',

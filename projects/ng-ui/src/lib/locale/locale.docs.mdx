@@ -1,0 +1,38 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Localization" />
+
+# Localización
+
+`ng-ui` incluye un `LocaleService` (raíz, `providedIn: 'root'`) usado por los componentes de
+fecha y hora (`DatePicker`, `DateRangePicker`, `TimePicker`) para formatear días, meses y etiquetas
+según el idioma. El locale por defecto se toma de `LOCALE_ID` de Angular y cae en `es-PE`.
+
+## API
+
+| Método                                    | Descripción                                              |
+| ----------------------------------------- | -------------------------------------------------------- |
+| `datePattern(locale, customFormat?)`      | Patrón de máscara de fecha para un locale (`MM/dd/yyyy`). |
+| `monthNames(locale)`                      | Nombres de los 12 meses localizados.                     |
+| `weekdayLabels(locale)`                   | Etiquetas cortas de los días de la semana.               |
+| `translate(key: UiStringKey, locale?)`    | Textos de UI localizados (`selectDate`, `today`, …).     |
+
+<Source
+  code={`import { inject } from '@angular/core';
+import { LocaleService } from 'ng-ui';
+
+const locale = inject(LocaleService);
+const months = locale.monthNames('es-ES'); // ['Enero', 'Febrero', …]
+const today = locale.translate('today');   // 'Hoy'`}
+  language="typescript"
+/>
+
+## Uso en componentes
+
+Los pickers aceptan un input `locale` para anular el idioma por componente; si no se indica, usan
+`LocaleService`:
+
+<Source
+  code={`<ui-datepicker [locale]="'en-US'" />`}
+  language="html"
+/>

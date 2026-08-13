@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as TextareaStories from './textarea.stories';
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+Área de texto de varias líneas estilizada. Implementa `ControlValueAccessor` y comparte la API y
+la integración con `ui-field` del resto de controles de formulario.
+
+<Canvas of={TextareaStories.Default} />
+<Controls of={TextareaStories.Default} />
+
+## Estados
+
+<Canvas of={TextareaStories.Invalid} />
+
+## Con Field
+
+<Canvas of={TextareaStories.WithField} />
+
+## Uso
+
+<Source
+  code={`<ui-field label="Descripción" hint="Máximo 500 caracteres.">
+  <ui-textarea placeholder="Escribe aquí…" />
+</ui-field>`}
+  language="html"
+/>

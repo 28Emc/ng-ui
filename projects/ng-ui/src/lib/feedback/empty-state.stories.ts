@@ -4,6 +4,9 @@ import { EmptyStateComponent } from './empty-state.component';
 
 const meta: Meta<EmptyStateComponent> = {
   title: 'Feedback/EmptyState',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: EmptyStateComponent,
   args: {
     title: 'No hay resultados',

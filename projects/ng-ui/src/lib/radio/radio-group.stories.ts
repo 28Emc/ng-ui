@@ -4,7 +4,7 @@ import { RadioGroupComponent } from './radio-group.component';
 import { RadioComponent } from './radio.component';
 
 const meta: Meta<RadioGroupComponent> = {
-  title: 'Input/RadioGroup',
+  title: 'Inputs/RadioGroup',
   component: RadioGroupComponent,
   decorators: [
     moduleMetadata({

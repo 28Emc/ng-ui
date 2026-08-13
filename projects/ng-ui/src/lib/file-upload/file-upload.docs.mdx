@@ -1,0 +1,23 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as FileUploadStories from './file-upload.stories';
+
+<Meta of={FileUploadStories} />
+
+# FileUpload
+
+Zona de arrastre y selección de archivos con validación, barra de progreso y emisión de eventos
+`upload`, `rejected` y `fileRemoved`.
+
+<Canvas of={FileUploadStories.Default} />
+<Controls of={FileUploadStories.Default} />
+
+## Demo con progreso
+
+<Canvas of={FileUploadStories.DemoWithProgress} />
+
+## Uso
+
+<Source
+  code={`<ui-file-upload (upload)="onUpload($event)" (rejected)="onRejected($event)" />`}
+  language="html"
+/>

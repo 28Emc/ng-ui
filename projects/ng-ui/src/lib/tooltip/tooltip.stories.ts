@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
-import { userEvent, within, expect } from '@storybook/test';
+import { userEvent, within, expect } from 'storybook/test';
 import { TooltipDirective } from './tooltip.directive';
 import { ButtonComponent } from '../button/button.component';
 
 const meta: Meta<TooltipDirective> = {
   title: 'Data Display/Tooltip',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: TooltipDirective,
   decorators: [
     moduleMetadata({
@@ -15,6 +18,17 @@ const meta: Meta<TooltipDirective> = {
   args: {
     uiTooltip: 'Guarda los cambios realizados',
     placement: 'top',
+  },
+  argTypes: {
+    uiTooltip: {
+      description: 'Texto del tooltip.',
+      control: { type: 'text' },
+    },
+    placement: {
+      description: 'Posición del tooltip respecto al elemento.',
+      options: ['top', 'bottom', 'left', 'right'],
+      control: { type: 'select' },
+    },
   },
   render: (args) => ({
     props: args,

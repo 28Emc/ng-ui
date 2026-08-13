@@ -3,6 +3,9 @@ import { SkeletonComponent } from './skeleton.component';
 
 const meta: Meta<SkeletonComponent> = {
   title: 'Feedback/Skeleton',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: SkeletonComponent,
   render: () => ({
     template: `

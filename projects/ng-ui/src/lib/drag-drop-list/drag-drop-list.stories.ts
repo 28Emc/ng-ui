@@ -93,7 +93,7 @@ class DragListDisabled {
 }
 
 const meta: Meta<DragDropListComponent> = {
-  title: 'Actions/DragDropList',
+  title: 'Data Display/DragDropList',
   component: DragDropListComponent,
   decorators: [moduleMetadata({ imports: [DragListBasic, DragListCustom, DragListDisabled] })],
   render: () => ({ template: '<drag-list-basic />' }),

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
-import { userEvent, within, expect } from '@storybook/test';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { PopoverComponent } from './popover.component';
 
 const meta: Meta<PopoverComponent> = {
@@ -41,7 +41,9 @@ type Story = StoryObj<PopoverComponent>;
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     await userEvent.click(within(canvasElement).getByRole('button', { name: 'Abrir popover' }));
-    await expect(await within(document.body).findByText('Detalles')).toBeVisible();
+    await waitFor(async () => {
+      await expect(await within(document.body).findByText('Detalles')).toBeVisible();
+    });
   },
 };
 

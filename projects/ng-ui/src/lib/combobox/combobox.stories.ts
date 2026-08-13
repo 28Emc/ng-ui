@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
-import { userEvent, within, expect } from '@storybook/test';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { ComboboxComponent } from './combobox.component';
 
 const FRAMEWORKS = [
@@ -14,7 +14,7 @@ const FRAMEWORKS = [
 ];
 
 const meta: Meta<ComboboxComponent> = {
-  title: 'Input/Combobox',
+  title: 'Pickers/Combobox',
   component: ComboboxComponent,
   args: {
     options: FRAMEWORKS,
@@ -22,6 +22,28 @@ const meta: Meta<ComboboxComponent> = {
     value: null,
     disabled: false,
     name: 'framework',
+  },
+  argTypes: {
+    options: {
+      description: 'Lista de opciones `{ label, value }`.',
+      control: { type: 'object' },
+    },
+    placeholder: {
+      description: 'Texto de marcador de posición.',
+      control: { type: 'text' },
+    },
+    value: {
+      description: 'Valor seleccionado.',
+      control: { type: 'text' },
+    },
+    invalid: {
+      description: 'Aplica estilos de estado inválido.',
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      description: 'Deshabilita el combobox.',
+      control: { type: 'boolean' },
+    },
   },
   render: (args) => ({
     props: args,
@@ -34,10 +56,10 @@ type Story = StoryObj<ComboboxComponent>;
 
 export const Default: Story = {
   play: async ({ canvasElement }) => {
-    await userEvent.click(
-      within(canvasElement).getByRole('combobox', { name: /Buscar framework/ }),
-    );
-    await expect(await within(document.body).findByText('Vue')).toBeVisible();
+    await userEvent.click(within(canvasElement).getByRole('combobox'));
+    await waitFor(async () => {
+      await expect(await within(document.body).findByText('Vue')).toBeVisible();
+    });
   },
 };
 

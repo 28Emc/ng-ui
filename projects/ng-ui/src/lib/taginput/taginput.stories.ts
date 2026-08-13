@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { TagInputComponent } from './taginput.component';
 
 const meta: Meta<TagInputComponent> = {
-  title: 'Input/TagInput',
+  title: 'Pickers/TagInput',
   component: TagInputComponent,
   args: {
     placeholder: 'Escribe y presiona Enter…',

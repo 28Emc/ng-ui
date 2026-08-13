@@ -10,7 +10,7 @@ const projects = Array.from({ length: 60 }, (_, i) => ({
 }));
 
 const meta: Meta<VirtualScrollListComponent> = {
-  title: 'Lists/VirtualScrollList',
+  title: 'Data Display/VirtualScrollList',
   component: VirtualScrollListComponent,
   decorators: [moduleMetadata({ imports: [VirtualScrollListComponent] })],
   args: {

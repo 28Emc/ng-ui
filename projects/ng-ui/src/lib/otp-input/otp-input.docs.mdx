@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as OtpInputStories from './otp-input.stories';
+
+<Meta of={OtpInputStories} />
+
+# OtpInput
+
+Campo de código de un solo uso (OTP) con entrada segmentada, autofoco automático entre celdas y
+emisión del evento `complete` cuando se rellena el código.
+
+<Canvas of={OtpInputStories.Default} />
+<Controls of={OtpInputStories.Default} />
+
+## Variantes
+
+<Canvas of={OtpInputStories.FourDigits} />
+<Canvas of={OtpInputStories.Alphanumeric} />
+
+## Uso
+
+<Source
+  code={`<ui-otp-input [length]="6" (complete)="onComplete($event)" />`}
+  language="html"
+/>

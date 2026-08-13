@@ -1,0 +1,19 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as FieldErrorStories from './field-error.stories';
+
+<Meta of={FieldErrorStories} />
+
+# FieldError
+
+Mensaje de error accesible que se asocia al control mediante `aria-describedby`. Se usa de forma
+automática dentro de `ui-field` cuando su input `error` tiene valor.
+
+<Canvas of={FieldErrorStories.Default} />
+<Controls of={FieldErrorStories.Default} />
+
+## Uso
+
+<Source
+  code={`<ui-field-error>Este campo es obligatorio.</ui-field-error>`}
+  language="html"
+/>

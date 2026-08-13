@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { DateRangePickerComponent } from './daterangepicker.component';
 
 const meta: Meta<DateRangePickerComponent> = {
-  title: 'Input/DateRangePicker',
+  title: 'Pickers/DateRangePicker',
   component: DateRangePickerComponent,
   args: {
     placeholder: 'Selecciona un rango',

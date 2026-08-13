@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
-import { userEvent, within, expect } from '@storybook/test';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { AccordionComponent } from './accordion.component';
 import { AccordionItemComponent } from './accordion-item.component';
 
@@ -48,6 +48,8 @@ export const Multiple: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: '¿Qué planes están disponibles?' }));
-    await expect(canvas.getByText('Ofrecemos planes Gratuito, Pro y Empresa.')).toBeVisible();
+    await waitFor(async () => {
+      await expect(canvas.getByText('Ofrecemos planes Gratuito, Pro y Empresa.')).toBeVisible();
+    });
   },
 };

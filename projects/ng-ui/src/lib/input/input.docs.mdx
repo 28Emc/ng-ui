@@ -52,27 +52,6 @@ Estados inválido y deshabilitado:
 
 <Canvas of={FieldErrorStories.Default} />
 
-## Inputs compartidos (Field)
-
-| Input      | Tipo             | Descripción                        |
-| ---------- | ---------------- | ---------------------------------- |
-| `label`    | `string`         | Etiqueta visible                   |
-| `hint`     | `string`         | Texto de ayuda bajo el control     |
-| `error`    | `string \| null` | Mensaje de error (borde/ring rojo) |
-| `required` | `boolean`        | Marca el label con asterisco       |
-
-## Inputs de los controles
-
-`Input`, `Textarea`, `Select` y `MaskedInput` comparten estos inputs de atributos HTML:
-
-| Input          | Tipo      | Descripción                         |
-| -------------- | --------- | ----------------------------------- |
-| `id`           | `string`  | Atributo `id`                       |
-| `name`         | `string`  | Atributo `name` (para envío nativo) |
-| `autocomplete` | `string`  | Atributo `autocomplete`             |
-| `invalid`      | `boolean` | Estado de error (borde/ring rojo)   |
-| `disabled`     | `boolean` | Deshabilitado                       |
-
 > En `Combobox`, `Multiselect`, `DatePicker`, `TimePicker` y `DateRangePicker` el atributo
 > `autocomplete` está fijo en `"off"` y los pickers de fecha/hora usan `inputmode="numeric"` porque
 > su máscara inserta los separadores automáticamente.

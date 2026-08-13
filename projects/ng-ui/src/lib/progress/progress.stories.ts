@@ -3,6 +3,9 @@ import { ProgressComponent } from './progress.component';
 
 const meta: Meta<ProgressComponent> = {
   title: 'Data Display/Progress',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: ProgressComponent,
   args: {
     value: 65,
@@ -10,6 +13,29 @@ const meta: Meta<ProgressComponent> = {
     size: 'md',
     indeterminate: false,
     label: 'Progreso de la tarea',
+  },
+  argTypes: {
+    value: {
+      description: 'Valor actual de progreso.',
+      control: { type: 'range', min: 0, max: 100, step: 1 },
+    },
+    max: {
+      description: 'Valor máximo del progreso.',
+      control: { type: 'number' },
+    },
+    size: {
+      description: 'Grosor de la barra.',
+      options: ['sm', 'md', 'lg'],
+      control: { type: 'select' },
+    },
+    indeterminate: {
+      description: 'Barra animada sin valor definido (carga).',
+      control: { type: 'boolean' },
+    },
+    label: {
+      description: 'Etiqueta accesible (`aria-label`).',
+      control: { type: 'text' },
+    },
   },
   render: (args) => ({
     props: args,

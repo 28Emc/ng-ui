@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
-import { userEvent, within, expect } from '@storybook/test';
+import { userEvent, within, expect, waitFor } from 'storybook/test';
 import { LucidePencil, LucideCopy, LucideTrash2 } from '@lucide/angular';
 import { DropdownComponent } from './dropdown.component';
 import { MenuItemComponent } from './menu-item.component';
@@ -45,7 +45,9 @@ type Story = StoryObj<DropdownComponent>;
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     await userEvent.click(within(canvasElement).getByRole('button', { name: 'Acciones' }));
-    await expect(await within(document.body).findByText('Editar')).toBeVisible();
+    await waitFor(async () => {
+      await expect(await within(document.body).findByText('Editar')).toBeVisible();
+    });
   },
 };
 
@@ -53,6 +55,8 @@ export const AlignLeft: Story = {
   args: { align: 'left' },
   play: async ({ canvasElement }) => {
     await userEvent.click(within(canvasElement).getByRole('button', { name: 'Acciones' }));
-    await expect(await within(document.body).findByText('Editar')).toBeVisible();
+    await waitFor(async () => {
+      await expect(await within(document.body).findByText('Editar')).toBeVisible();
+    });
   },
 };

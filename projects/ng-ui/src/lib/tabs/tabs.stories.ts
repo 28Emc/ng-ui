@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { moduleMetadata } from '@storybook/angular-vite';
+import { userEvent, within, expect } from 'storybook/test';
 import { TabsComponent } from './tabs.component';
 import { TabComponent } from './tab.component';
 
@@ -41,7 +42,20 @@ const meta: Meta<TabsComponent> = {
 export default meta;
 type Story = StoryObj<TabsComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole('tab', { name: 'General' })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    await userEvent.click(canvas.getByRole('tab', { name: 'Seguridad' }));
+    await expect(canvas.getByRole('tab', { name: 'Seguridad' })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+  },
+};
 
 export const SecondTabActive: Story = {
   args: { activeIndex: 1 },

@@ -21,6 +21,9 @@ const manyItems: UiBreadcrumbItem[] = [
 
 const meta: Meta<BreadcrumbComponent> = {
   title: 'Navigation/Breadcrumb',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: BreadcrumbComponent,
   args: { items, responsive: true },
   render: (args) => ({

@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as StatCardStories from './stat-card.stories';
+
+<Meta of={StatCardStories} />
+
+# StatCard
+
+Tarjeta resumen de métricas con icono, valor, etiqueta y sub-etiqueta, y color de acento semántico.
+
+<Canvas of={StatCardStories.Default} />
+<Controls of={StatCardStories.Default} />
+
+## Variantes de acento
+
+<Canvas of={StatCardStories.Success} />
+<Canvas of={StatCardStories.Warning} />
+<Canvas of={StatCardStories.Info} />
+<Canvas of={StatCardStories.Danger} />
+<Canvas of={StatCardStories.Pink} />
+
+## Uso
+
+<Source
+  code={`<ui-stat-card [icon]="LucideUsers" label="Usuarios" value="1.204" sublabel="+12% este mes" />`}
+  language="html"
+/>

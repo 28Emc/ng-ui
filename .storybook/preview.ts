@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import '../projects/ng-ui/styles.css';
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     controls: {
       matchers: {
@@ -11,11 +12,19 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      toc: true,
+    },
+    a11y: {
+      test: 'todo',
+    },
     chromatic: {
       modes: {
         light: { theme: 'light' },
         dark: { theme: 'dark' },
       },
+      viewports: [390, 768, 1280],
+      diffThreshold: 0.3,
     },
   },
   decorators: [

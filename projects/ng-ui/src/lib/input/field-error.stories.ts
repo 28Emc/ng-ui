@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { FieldErrorComponent } from './field-error.component';
 
 const meta: Meta<FieldErrorComponent> = {
-  title: 'Input/FieldError',
+  title: 'Inputs/FieldError',
+  parameters: {
+    a11y: { test: 'error' },
+  },
   component: FieldErrorComponent,
   render: (args) => ({
     props: args,

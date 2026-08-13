@@ -15,7 +15,7 @@ const FRAMEWORKS = [
 ];
 
 const meta: Meta<MultiSelectComponent> = {
-  title: 'Input/MultiSelect',
+  title: 'Pickers/MultiSelect',
   component: MultiSelectComponent,
   args: {
     options: FRAMEWORKS,

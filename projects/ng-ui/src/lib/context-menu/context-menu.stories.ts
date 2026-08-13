@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
-import { fireEvent, within, expect } from '@storybook/test';
+import { fireEvent, within, expect, waitFor } from 'storybook/test';
 import { LucideCopy, LucidePencil, LucideTrash2 } from '@lucide/angular';
 import { ContextMenuComponent, type UiContextMenuItem } from './context-menu.component';
 
@@ -33,7 +33,9 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const zone = within(canvasElement).getByText('Haz clic derecho en esta zona');
     fireEvent.contextMenu(zone);
-    await expect(await within(document.body).findByText('Renombrar')).toBeVisible();
+    await waitFor(async () => {
+      await expect(await within(document.body).findByText('Renombrar')).toBeVisible();
+    });
   },
 };
 

@@ -10,7 +10,7 @@ const OPTIONS = `
 `;
 
 const meta: Meta<SelectComponent> = {
-  title: 'Input/Select',
+  title: 'Inputs/Select',
   component: SelectComponent,
   decorators: [
     moduleMetadata({

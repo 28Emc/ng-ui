@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular-vite';
+import { fn } from 'storybook/test';
 import { TableComponent, TableColumn } from './table.component';
 
 interface DemoRow {
@@ -36,6 +37,13 @@ const meta: Meta<TableComponent<DemoRow>> = {
     pageSize: 5,
     showPagination: true,
     striped: false,
+    rowClick: fn(),
+  },
+  argTypes: {
+    rowClick: {
+      description: 'Se emite al hacer clic en una fila.',
+      table: { disable: true },
+    },
   },
   render: (args) => ({
     props: args,
@@ -47,6 +55,7 @@ const meta: Meta<TableComponent<DemoRow>> = {
         [pageSize]="pageSize"
         [showPagination]="showPagination"
         [striped]="striped"
+        (rowClick)="rowClick($event)"
       />
     `,
   }),

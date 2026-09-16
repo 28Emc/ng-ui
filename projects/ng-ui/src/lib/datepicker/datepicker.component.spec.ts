@@ -164,6 +164,7 @@ describe('DatePickerComponent', () => {
 
   it('localizes calendar month names and action labels', () => {
     host.locale.set('en-US');
+    comp().writeValue('2026-08-15');
     fixture.detectChanges();
     input().dispatchEvent(new Event('focus'));
     fixture.detectChanges();

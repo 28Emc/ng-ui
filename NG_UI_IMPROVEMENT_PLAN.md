@@ -10,30 +10,30 @@
 
 ### 1. Decisiones certificadas
 
-| # | Pregunta | Decisión |
-|---|----------|----------|
-| 1 | Alcance de la ejecución | **Plan completo por fases (1 → 4)** |
-| 2 | Motor de tests de historias | **`@storybook/addon-vitest`** (recomendado: `vitest` + `jsdom` ya instalados, integración nativa con `angular-vite`) |
-| 3 | Taxonomía de títulos | **Grupos unificados**: Inputs / Pickers / Data Display / Overlays / Feedback / Navigation / Forms / Actions / Accessibility |
+| #   | Pregunta                    | Decisión                                                                                                                    |
+| --- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Alcance de la ejecución     | **Plan completo por fases (1 → 4)**                                                                                         |
+| 2   | Motor de tests de historias | **`@storybook/addon-vitest`** (recomendado: `vitest` + `jsdom` ya instalados, integración nativa con `angular-vite`)        |
+| 3   | Taxonomía de títulos        | **Grupos unificados**: Inputs / Pickers / Data Display / Overlays / Feedback / Navigation / Forms / Actions / Accessibility |
 
 ### 2. Diagnóstico — estado inicial
 
-| # | Categoría | Problema | Resuelto |
-|---|-----------|----------|----------|
-| 1 | Riesgo técnico | `@storybook/test@8.6.15` desalineado con Storybook 10.5.7 | ✅ F1 |
-| 2 | Riesgo técnico | `axe-core@4.13.0` pinnado en devDeps | ✅ F1 |
-| 3 | Riesgo técnico | README documenta `pnpm build:styles` (script real: `tw:build`) | ✅ F1 |
-| 4 | Riesgo técnico | Script `storybook` no regenera `styles.css` | ✅ F1 |
-| 5 | Addons | Sin addon-interactions (core en v10) | ✅ F2 |
-| 6 | Addons | Sin `@storybook/addon-vitest` | ✅ F2 |
-| 7 | Consistencia | Títulos de sidebar mezclados | ✅ F2 |
-| 8 | Consistencia | MDX con tablas de inputs manuales | ✅ F3 |
-| 9 | Cobertura | Sin stories: `UiIcon`, `Radio`, `Field`, `LocaleService`, utils, tokens | ✅ F3 |
-| 10 | Cobertura | Sin MDX dedicado (15 componentes) | ✅ F3 |
-| 11 | Calidad | Cero `argTypes` en las 58 stories | ✅ F3 |
-| 12 | Calidad | Sin `parameters.a11y` global ni aserción a11y | ✅ F4 |
-| 13 | Calidad | Sin `manager.ts` ni `preview-head.html` (fuente Inter) | ✅ F2 |
-| 14 | Calidad | Play coverage bajo (8/58) | ✅ F4 |
+| #   | Categoría      | Problema                                                                | Resuelto |
+| --- | -------------- | ----------------------------------------------------------------------- | -------- |
+| 1   | Riesgo técnico | `@storybook/test@8.6.15` desalineado con Storybook 10.5.7               | ✅ F1    |
+| 2   | Riesgo técnico | `axe-core@4.13.0` pinnado en devDeps                                    | ✅ F1    |
+| 3   | Riesgo técnico | README documenta `pnpm build:styles` (script real: `tw:build`)          | ✅ F1    |
+| 4   | Riesgo técnico | Script `storybook` no regenera `styles.css`                             | ✅ F1    |
+| 5   | Addons         | Sin addon-interactions (core en v10)                                    | ✅ F2    |
+| 6   | Addons         | Sin `@storybook/addon-vitest`                                           | ✅ F2    |
+| 7   | Consistencia   | Títulos de sidebar mezclados                                            | ✅ F2    |
+| 8   | Consistencia   | MDX con tablas de inputs manuales                                       | ✅ F3    |
+| 9   | Cobertura      | Sin stories: `UiIcon`, `Radio`, `Field`, `LocaleService`, utils, tokens | ✅ F3    |
+| 10  | Cobertura      | Sin MDX dedicado (15 componentes)                                       | ✅ F3    |
+| 11  | Calidad        | Cero `argTypes` en las 58 stories                                       | ✅ F3    |
+| 12  | Calidad        | Sin `parameters.a11y` global ni aserción a11y                           | ✅ F4    |
+| 13  | Calidad        | Sin `manager.ts` ni `preview-head.html` (fuente Inter)                  | ✅ F2    |
+| 14  | Calidad        | Play coverage bajo (8/58)                                               | ✅ F4    |
 
 ### 3. Ejecución por fases
 
@@ -71,6 +71,7 @@
 #### Fase 4 — Tests interactivos, a11y y CI ✅ COMPLETADO
 
 > **Notas de ejecución (API real en Storybook 10.5.7):**
+>
 > - `expect(...).toHaveNoViolations()` **NO existe** en `@storybook/addon-a11y` v10 (verificado en `node_modules`). La aserción a11y se inyecta automáticamente en el runner de vitest según `parameters.a11y.test`; **solo el modo `'todo'` es blando** (reporta violaciones sin romper el test). Cualquier otro modo (incluido `'automatic'`) falla el test ante violaciones.
 > - Con `test: 'error'` global, **66/237 tests** fallaban por un backlog real de a11y del design system → **decisión:** global `todo` + estricto `error` por componente en historias limpias; el backlog se curará en la **Parte B (Fase 5)**.
 > - El `expect` de `storybook/test` **no hace auto-retry** (es one-shot). Las aserciones de visibilidad tras interacción/animación requieren envolverse en `waitFor`.
@@ -153,6 +154,7 @@ PARTE B (backlog):
 ```
 
 **Comandos de verificación:**
+
 ```bash
 pnpm lint
 pnpm build-storybook

@@ -6,7 +6,14 @@ export type SkeletonVariant = 'text' | 'circular' | 'rectangular';
 @Component({
   selector: 'ui-skeleton',
   standalone: true,
-  template: ` <div [class]="classes()" [style.width]="width()" [style.height]="height()" aria-hidden="true"></div> `,
+  template: `
+    <div
+      [class]="classes()"
+      [style.width]="width()"
+      [style.height]="height()"
+      aria-hidden="true"
+    ></div>
+  `,
 })
 export class SkeletonComponent {
   readonly class = input('');

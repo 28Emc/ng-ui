@@ -19,14 +19,10 @@ export function relativeLuminance([r, g, b]: [number, number, number]): number {
 }
 
 export function contrastWithWhite(rgb: [number, number, number]): number {
-  return (1.05 / (relativeLuminance(rgb) + 0.05));
+  return 1.05 / (relativeLuminance(rgb) + 0.05);
 }
 
-export function ensureContrast(
-  color: string,
-  target = 4.5,
-  maxIterations = 40,
-): string {
+export function ensureContrast(color: string, target = 4.5, maxIterations = 40): string {
   const rgb = parseHexColor(color);
   if (!rgb) return color;
   if (contrastWithWhite(rgb) >= target) return color;

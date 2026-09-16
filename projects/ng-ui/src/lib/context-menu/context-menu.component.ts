@@ -228,7 +228,7 @@ export class ContextMenuComponent {
     const top = Math.max(8, Math.min(y, maxTop));
     if (left !== x || top !== y) {
       ref.updatePositionStrategy(
-        this.overlay.position().global().left(`${left}px`).top(`${top}px`)
+        this.overlay.position().global().left(`${left}px`).top(`${top}px`),
       );
     }
   }

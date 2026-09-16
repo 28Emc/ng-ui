@@ -1,5 +1,17 @@
 # @emc-dev/ng-ui
 
+## 1.3.7
+
+### Patch Changes
+
+- chore: regenerate styles.css for CI compatibility
+
+## 1.3.6
+
+### Patch Changes
+
+- chore: regenerate styles.css for CI compatibility
+
 ## 1.3.5
 
 ### Patch Changes

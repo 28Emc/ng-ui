@@ -1,5 +1,11 @@
 # @emc-dev/ng-ui
 
+## 1.3.5
+
+### Patch Changes
+
+- 0178880: README improvement
+
 ## 1.3.4
 
 ### Patch Changes

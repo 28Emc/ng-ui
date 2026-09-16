@@ -1,5 +1,11 @@
 # @emc-dev/ng-ui
 
+## 1.3.8
+
+### Patch Changes
+
+- f01cb58: docs: update README documentation on testing runners, theming separation, and component API descriptions
+
 ## 1.3.7
 
 ### Patch Changes

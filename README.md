@@ -14,10 +14,10 @@ Angular 22 UI component library (standalone components, `ui-*` selectors) with S
 
 The library is distributed as a single npm package under the `@emc-dev` scope and includes:
 
-- **80+ exported components, directives, and utilities** covering forms, navigation, overlays, feedback, data display, and utilities
+- **80+ exported components, directives, services, and utilities** covering forms, navigation, overlays, feedback, data display, and utilities
 - **Tailwind CSS v4** theming with CSS custom properties, light/dark mode, and container queries
 - **Storybook 10** documentation with autodocs, controls, accessibility addon, and Vitest/Playwright interaction testing
-- **Accessibility validation** via axe-core (WCAG 2.1 A/AA) across 59 components
+- **Accessibility testing** via axe-core (WCAG 2.1 A/AA tags) across the component test suite
 - **Visual regression testing** via Chromatic
 - **Changesets-based versioning** with automated npm publishing via GitHub Actions (Trusted Publishing)
 
@@ -25,17 +25,17 @@ The library is distributed as a single npm package under the `@emc-dev` scope an
 
 ## Features
 
-| Category              | Components                                                                                                                                                                                                                                                                                          |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Buttons & Actions** | `ui-button`, `ui-copy-to-clipboard-button`                                                                                                                                                                                                                                                          |
-| **Form Inputs**       | `ui-input`, `ui-textarea`, `ui-select`, `ui-masked-input`, `ui-combobox`, `ui-multiselect`, `ui-taginput`, `ui-datepicker`, `ui-timepicker`, `ui-daterangepicker`, `ui-otp-input`, `ui-password-strength-meter`, `ui-checkbox`, `ui-radio`, `ui-radio-group`, `ui-switch`, `ui-rating`, `ui-slider` |
-| **Form Layout**       | `ui-field`, `ui-label`, `ui-field-error`, `ui-form-section`, `ui-field-base`                                                                                                                                                                                                                        |
-| **Navigation**        | `ui-breadcrumb`, `ui-sidebar`, `ui-pagination`, `ui-tabs`, `ui-stepper`, `ui-tree-view`                                                                                                                                                                                                             |
-| **Overlays**          | `ui-modal`, `ui-confirm-modal`, `ui-drawer`, `ui-popover`, `ui-dropdown`, `ui-tooltip`, `ui-context-menu`                                                                                                                                                                                           |
-| **Feedback**          | `ui-toast`/`ToastService`, `ui-spinner`, `ui-skeleton`, `ui-page-loader`, `ui-empty-state`, `ui-badge`, `ui-progress`, `ui-skip-link`                                                                                                                                                               |
-| **Data Display**      | `ui-card`, `ui-card-header`, `ui-card-body`, `ui-stat-card`, `ui-expandable-card`, `ui-table`, `ui-infinite-scroll-table`, `ui-virtual-scroll-list`, `ui-drag-drop-list`, `ui-avatar`, `ui-avatar-group`, `ui-accordion`, `ui-sparkline`, `ui-carousel`, `ui-image`, `ui-file-upload`               |
-| **Utilities**         | `ui-screen-reader-only`, `ui-theme-switcher`/`ThemeService`, `LocaleService`, `cn` (classname utility), `focus` utilities                                                                                                                                                                           |
-| **Icons**             | `ui-icon` (inline SVG icon component for Lucide icons)                                                                                                                                                                                                                                              |
+| Category              | Components                                                                                                                                                                                                                                                                             |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Buttons & Actions** | `ui-button`, `ui-copy-to-clipboard-button`                                                                                                                                                                                                                                             |
+| **Form Inputs**       | `ui-input`, `ui-textarea`, `ui-select`, `ui-masked-input`, `ui-combobox`, `ui-multiselect`, `ui-taginput`, `ui-datepicker`, `ui-timepicker`, `ui-daterangepicker`, `ui-otp-input`, `ui-password-strength-meter`, `ui-checkbox`, `ui-radio`, `ui-radio-group`, `ui-switch`, `ui-rating` |
+| **Form Layout**       | `ui-field`, `ui-label`, `ui-field-error`, `ui-form-section`, `ui-field-base`                                                                                                                                                                                                           |
+| **Navigation**        | `ui-breadcrumb`, `ui-sidebar`, `ui-pagination`, `ui-tabs`, `ui-stepper`, `ui-tree-view`                                                                                                                                                                                                |
+| **Overlays**          | `ui-modal`, `ui-confirm-modal`, `ui-drawer`, `ui-popover`, `ui-dropdown`, `ui-tooltip`, `ui-context-menu`                                                                                                                                                                              |
+| **Feedback**          | `ui-toast`/`ToastService`, `ui-spinner`, `ui-skeleton`, `ui-page-loader`, `ui-empty-state`, `ui-badge`, `ui-progress`, `ui-skip-link`                                                                                                                                                  |
+| **Data Display**      | `ui-card`, `ui-card-header`, `ui-card-body`, `ui-stat-card`, `ui-expandable-card`, `ui-table`, `ui-infinite-scroll-table`, `ui-virtual-scroll-list`, `ui-drag-drop-list`, `ui-avatar`, `ui-avatar-group`, `ui-accordion`, `ui-sparkline`, `ui-carousel`, `ui-image`, `ui-file-upload`  |
+| **Utilities**         | `ui-screen-reader-only`, `ui-theme-switcher`/`ThemeService`, `LocaleService`, `cn` (classname utility), `focus` utilities                                                                                                                                                              |
+| **Icons**             | `ui-icon` (inline SVG icon component for Lucide icons)                                                                                                                                                                                                                                 |
 
 All components are **standalone**, use `ui-*` selectors, and are exported via `public-api.ts`.
 
@@ -58,10 +58,26 @@ All components are **standalone**, use `ui-*` selectors, and are exported via `p
 ## Installation
 
 ```bash
-pnpm add @emc-dev/ng-ui @angular/animations @angular/cdk @angular/common @angular/core @angular/forms @angular/router @lucide/angular
+pnpm add @emc-dev/ng-ui
 ```
 
-> **Note:** The peer dependencies must be installed explicitly. The library does not bundle Angular or CDK.
+`@emc-dev/ng-ui` declares the following as **peer dependencies**:
+
+- `@angular/animations` ^22.0.0
+- `@angular/cdk` ^22.0.0
+- `@angular/common` ^22.0.0
+- `@angular/core` ^22.0.0
+- `@angular/forms` ^22.0.0
+- `@angular/router` ^22.0.0
+- `@lucide/angular` ^1.28.0
+
+Your Angular application likely already provides compatible versions. If a required peer dependency is missing or incompatible, install it separately, for example:
+
+```bash
+pnpm add @angular/cdk @lucide/angular
+```
+
+The library does not bundle Angular, CDK, or Lucide.
 
 ---
 
@@ -110,109 +126,33 @@ document.documentElement.classList.add('dark');
 
 ## Components
 
-The public API is defined in [`projects/ng-ui/src/public-api.ts`](projects/ng-ui/src/public-api.ts). Key exports:
+The public API is defined in [`projects/ng-ui/src/public-api.ts`](projects/ng-ui/src/public-api.ts). All exports are available from the package root:
 
 ```ts
-// Buttons
-export { ButtonComponent } from './lib/button/button.component';
-
-// Form fields
-export {
+import {
+  ButtonComponent,
   FieldComponent,
-  LabelComponent,
-  FieldErrorComponent,
   InputComponent,
-  TextareaComponent,
-  SelectComponent,
-  MaskedInputComponent,
-  ComboboxComponent,
-  MultiSelectComponent,
-  TagInputComponent,
-  DatePickerComponent,
-  TimePickerComponent,
-  DateRangePickerComponent,
-  OTPInputComponent,
-  PasswordStrengthMeterComponent,
-  CheckboxComponent,
-  RadioComponent,
-  RadioGroupComponent,
-  SwitchComponent,
-  RatingComponent,
-} from './lib/...';
-
-// Navigation
-export {
-  BreadcrumbComponent,
-  SidebarComponent,
-  PaginationComponent,
-  TabsComponent,
-  TabComponent,
-  StepperComponent,
-  TreeViewComponent,
-} from './lib/...';
-
-// Overlays
-export {
   ModalComponent,
-  ConfirmModalComponent,
-  DrawerComponent,
-  PopoverComponent,
-  DropdownComponent,
-  MenuItemComponent,
-  MenuDividerComponent,
-  TooltipDirective,
-  TooltipContentComponent,
-  ContextMenuComponent,
-} from './lib/...';
-
-// Feedback
-export {
-  ToastComponent,
   ToastService,
-  ToastHostComponent,
-  SpinnerComponent,
-  SkeletonComponent,
-  PageLoaderComponent,
-  EmptyStateComponent,
-  BadgeComponent,
-  ProgressComponent,
-  SkipLinkComponent,
-} from './lib/...';
-
-// Data display
-export {
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  StatCardComponent,
-  ExpandableCardComponent,
-  TableComponent,
-  InfiniteScrollTableComponent,
-  VirtualScrollListComponent,
-  DragDropListComponent,
-  AvatarComponent,
-  AvatarGroupComponent,
-  AccordionComponent,
-  AccordionItemComponent,
-  SparklineComponent,
-  CarouselComponent,
-  ImageComponent,
-  FileUploadComponent,
-} from './lib/...';
-
-// Utilities
-export {
-  ScreenReaderOnlyComponent,
-  ThemeSwitcherComponent,
-  ThemeService,
-  LocaleService,
-  cn,
-  focus,
-} from './lib/...';
-
-// Icons
-export { UiIconComponent } from './lib/icon/ui-icon.component';
+} from '@emc-dev/ng-ui';
 ```
+
+### Component catalog
+
+| Category              | Components                                                                                                                                                                                                                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Buttons & Actions** | `ui-button`, `ui-copy-to-clipboard-button`                                                                                                                                                                                                                                                             |
+| **Form Inputs**       | `ui-input`, `ui-textarea`, `ui-select`, `ui-masked-input`, `ui-combobox`, `ui-multiselect`, `ui-taginput`, `ui-datepicker`, `ui-timepicker`, `ui-daterangepicker`, `ui-otp-input`, `ui-password-strength-meter`, `ui-checkbox`, `ui-radio`/`ui-radio-group`, `ui-switch`, `ui-rating`                  |
+| **Form Layout**       | `ui-field`, `ui-label`, `ui-field-error`, `ui-form-section`, `ui-field-base`                                                                                                                                                                                                                           |
+| **Navigation**        | `ui-breadcrumb`, `ui-sidebar`, `ui-pagination`, `ui-tabs`/`ui-tab`, `ui-stepper`, `ui-tree-view`                                                                                                                                                                                                       |
+| **Overlays**          | `ui-modal`/`ui-confirm-modal`, `ui-drawer`, `ui-popover`, `ui-dropdown`/`ui-menu-item`/`ui-menu-divider`, `ui-tooltip`, `ui-context-menu`                                                                                                                                                              |
+| **Feedback**          | `ui-toast`/`ToastService`, `ui-spinner`, `ui-skeleton`, `ui-page-loader`, `ui-empty-state`, `ui-badge`, `ui-progress`, `ui-skip-link`                                                                                                                                                                  |
+| **Data Display**      | `ui-card`/`ui-card-header`/`ui-card-body`, `ui-stat-card`, `ui-expandable-card`, `ui-table`, `ui-infinite-scroll-table`, `ui-virtual-scroll-list`, `ui-drag-drop-list`, `ui-avatar`/`ui-avatar-group`, `ui-accordion`/`ui-accordion-item`, `ui-sparkline`, `ui-carousel`, `ui-image`, `ui-file-upload` |
+| **Utilities**         | `ui-screen-reader-only`, `ui-theme-switcher`/`ThemeService`, `LocaleService`, `cn`, `focus`                                                                                                                                                                                                            |
+| **Icons**             | `ui-icon` (inline SVG for Lucide icons)                                                                                                                                                                                                                                                                |
+
+All components are **standalone**, use `ui-*` selectors, and are exported via `public-api.ts`.
 
 See individual component stories in Storybook for complete API documentation (inputs, outputs, slots, variants).
 
@@ -234,13 +174,13 @@ Customize the theme by overriding CSS variables or extending `theme.css` before 
 
 ## Accessibility
 
-The library includes an **automated accessibility test suite** (`projects/ng-ui/src/lib/a11y/a11y.spec.ts`) using **axe-core** that validates **59 components** against **WCAG 2.1 A/AA** rules (`wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa`).
+The library includes an **automated accessibility test suite** (`projects/ng-ui/src/lib/a11y/a11y.spec.ts`) using **axe-core** that validates components against **WCAG 2.1 A/AA** rules (`wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa`).
 
 ### Validation approach
 
 | Layer      | Tool                       | Scope                             |
 | ---------- | -------------------------- | --------------------------------- |
-| Unit tests | axe-core + Angular TestBed | 59 components, rendered in JSDOM  |
+| Unit tests | axe-core + Angular TestBed | Component hosts rendered in JSDOM |
 | Storybook  | `@storybook/addon-a11y`    | Interactive review in browser     |
 | CI         | `pnpm test:storybook`      | Vitest + Playwright browser tests |
 
@@ -254,7 +194,7 @@ pnpm test
 pnpm test:storybook
 ```
 
-> **Status:** The test suite enforces zero violations for the tested components. This is a validation strategy, not a blanket "WCAG compliant" claim — coverage is limited to the components and states exercised by the test hosts.
+> **Status:** The test suite enforces zero axe-core violations for the tested component hosts. This is a validation strategy integrated into development workflows, not a blanket WCAG compliance certification — coverage is limited to the components and states exercised by the test hosts.
 
 ---
 
@@ -299,9 +239,9 @@ See [`docs/`](./docs) for:
 
 ### Test structure
 
-- **Unit tests**: `*.component.spec.ts` beside each component
-- **Accessibility tests**: `projects/ng-ui/src/lib/a11y/a11y.spec.ts` (59 component hosts)
-- **Storybook tests**: `*.stories.ts` with play functions + `@storybook/addon-vitest`
+- **Unit tests**: `*.component.spec.ts` beside each component (Karma/Jasmine)
+- **Accessibility tests**: `projects/ng-ui/src/lib/a11y/a11y.spec.ts` (axe-core component hosts)
+- **Storybook tests**: `*.stories.ts` with play functions + `@storybook/addon-vitest` (Vitest + Playwright)
 
 ---
 

@@ -14,7 +14,7 @@ Angular 22 UI component library (standalone components, `ui-*` selectors) with S
 
 The library is distributed as a single npm package under the `@emc-dev` scope and includes:
 
-- **80+ exported components, directives, services, and utilities** covering forms, navigation, overlays, feedback, data display, and utilities
+- **A growing collection of standalone components, directives, services, and utilities** covering forms, navigation, overlays, feedback, data display, and utilities
 - **Tailwind CSS v4** theming with CSS custom properties, light/dark mode, and container queries
 - **Storybook 10** documentation with autodocs, controls, accessibility addon, and Vitest/Playwright interaction testing
 - **Accessibility testing** via axe-core (WCAG 2.1 A/AA tags) across the component test suite
@@ -99,7 +99,7 @@ export class AppComponent {}
 
 ### Import styles
 
-Import the pre-compiled theme CSS once in your global stylesheet:
+Import the library's compiled global styles once in your application's global stylesheet:
 
 ```css
 @import '@emc-dev/ng-ui/styles.css';
@@ -154,7 +154,7 @@ import {
 
 All components are **standalone**, use `ui-*` selectors, and are exported via `public-api.ts`.
 
-See individual component stories in Storybook for complete API documentation (inputs, outputs, slots, variants).
+See individual component stories in Storybook for complete API documentation (inputs, outputs, content projection, variants).
 
 ---
 
@@ -165,10 +165,27 @@ See individual component stories in Storybook for complete API documentation (in
 - **Light/dark mode** via `dark` class on `:root` / `html`
 - **Container queries** on `ui-card` and `ui-table` (`@container` / `@sm:` / `@wide:` variants)
 - **Density variants** (`comfortable` / `compact` / `spacious`) on `ui-button`, `ui-input`, and form fields via `data-density` attribute
-- **Pre-compiled CSS** (`styles.css`) generated at build time via `pnpm tw:build`
+- **Pre-compiled CSS** (`styles.css`) generated at library build time
 - **No runtime Tailwind** in consumers — only the compiled `styles.css` is required
 
-Customize the theme by overriding CSS variables or extending `theme.css` before running `pnpm tw:build`.
+### Customizing the theme (consumers)
+
+Applications consuming the npm package can customize the theme by overriding the exposed CSS variables in their application's global stylesheet (e.g., `src/styles.css`). Consumers do not need to modify files in `node_modules` or execute `pnpm tw:build`:
+
+```css
+:root {
+  --color-brand-500: #0ea5e9;
+  --surface: #ffffff;
+}
+
+.dark {
+  --app-bg: #0f172a;
+}
+```
+
+### Theme development (contributors)
+
+Modifying `projects/ng-ui/src/lib/styles/theme.css` and running `pnpm tw:build` (which compiles `theme.css` into `projects/ng-ui/styles.css`) is strictly for library development and maintenance, not for consuming the package.
 
 ---
 
@@ -232,14 +249,14 @@ See [`docs/`](./docs) for:
 
 | Command               | Description                                                       |
 | --------------------- | ----------------------------------------------------------------- |
-| `pnpm test`           | Angular unit tests (Karma/Jasmine via `ng test ng-ui`)            |
+| `pnpm test`           | Angular unit tests (`ng test ng-ui`)                              |
 | `pnpm test:storybook` | Storybook interaction + a11y tests (Vitest + Playwright/Chromium) |
 | `pnpm lint`           | ESLint + Angular ESLint                                           |
 | `pnpm format:check`   | Prettier formatting check                                         |
 
 ### Test structure
 
-- **Unit tests**: `*.component.spec.ts` beside each component (Karma/Jasmine)
+- **Unit tests**: `*.component.spec.ts` beside each component
 - **Accessibility tests**: `projects/ng-ui/src/lib/a11y/a11y.spec.ts` (axe-core component hosts)
 - **Storybook tests**: `*.stories.ts` with play functions + `@storybook/addon-vitest` (Vitest + Playwright)
 
@@ -279,7 +296,7 @@ ng-ui/
 ├── projects/
 │   └── ng-ui/                    # @emc-dev/ng-ui library
 │       ├── src/
-│       │   ├── lib/              # Component source (80+ folders)
+│       │   ├── lib/              # Component source directories
 │       │   ├── public-api.ts     # Public exports
 │       │   └── styles/theme.css  # Tailwind v4 theme source
 │       ├── ng-package.json       # ng-packagr config
